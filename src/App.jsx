@@ -18,7 +18,7 @@ const PERIODS = [
   "1–13 Sep 2025","14–27 Sep 2025","28 Sep–11 Oct 2025","12–25 Oct 2025",
   "26 Oct–8 Nov 2025","9–22 Nov 2025","23 Nov–6 Dec 2025","7–20 Dec 2025",
   "21 Dec–3 Jan 2026","4–17 Jan 2026","18–31 Jan 2026","1–14 Feb 2026",
-  "15–28 Feb 2026","1–14 Mar 2026","15–29 Mar 2026",
+  "15–28 Feb 2026","1–14 Mar 2026","15–28 Mar 2026",
 ];
 
 const SHORT = [
@@ -28,20 +28,21 @@ const SHORT = [
 
 // sessions, users, avgTime, retention%, dropTime%, highlighted, copied, pillTop, pillBot
 const RAW = [
-  [157,66,20.76,0,88,93,36,"Similar projects (216)","Inst. documents (42)"],
-  [496,139,26.9,26,88,308,88,null,null],
-  [256,102,24.07,21,84,168,71,null,null],
-  [289,119,25.92,30,86,179,57,"Similar projects (25)","Institutional documents (7)"],
-  [329,115,21.09,24,90,152,53,"Similar projects (82)","Institutional documents (13)"],
-  [384,149,22.15,33,83,201,45,"Similar projects (37)","Institutional Documents (5)"],
-  [241,95,16.64,33,89,134,51,"Similar projects (16)","Institutional Documents (3)"],
-  [351,119,23.17,16,87,116,13,"Similar projects (10)","Inst. Docs (4) / Literature (4)"],
-  [119,94,15.67,32,91,16,51,"Similar projects (1)","Rest: 0"],
-  [187,72,16.2,43,91,118,97,"Similar projects (5)","Institutional documents (0)"],
-  [247,71,12.49,33.5,89,143,42,"Similar projects (8)","Institutional documents (1)"],
+  [157,66,20.76,0,88,248,92,"Similar projects (258)","Inst. documents (53)"],
+  [496,139,26.9,26,88,308,92,null,null],
+  [256,102,24.07,21,84,168,68,null,null],
+  [289,119,25.92,30,86,179,87,"Similar projects (25)","Institutional documents (7)"],
+  [329,115,21.09,24,90,152,57,"Similar projects (82)","Institutional documents (13)"],
+  [384,149,22.15,33,83,201,53,"Similar projects (37)","Institutional Documents (5)"],
+  [241,95,16.64,33,89,134,45,"Similar projects (16)","Institutional Documents (3)"],
+  [351,119,23.17,16,87,116,51,"Similar projects (10)","Inst. Docs (4) / Literature (4)"],
+  [119,94,15.67,32,91,161,139,"Similar projects (1)","Rest: 0"],
+  [187,72,16.2,43,91,181,42,"Similar projects (5)","Institutional documents (0)"],
+  [247,71,12.49,33.5,89,143,97,"Similar projects (8)","Institutional documents (1)"],
   [361,104,15.86,33.3,91,185,79,"Similar projects (26)","Institutional documents (3)"],
   [268,81,15.45,36.73,91,291,111,"Similar projects (13)","Literature (3)"],
   [235,82,27.7,38,89,199,61,"Lessons learned (19)","Inst. Documents (5)"],
+  [427,178,22.2,55,91,233,177,"Similar projects (32)","Inst. Documents (7)"],
 ];
 
 const DATA = RAW.map((r, i) => ({
