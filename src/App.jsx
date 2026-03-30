@@ -28,7 +28,7 @@ const SHORT = [
 
 // sessions, users, avgTime, retention%, dropTime%, highlighted, copied, pillTop, pillBot
 const RAW = [
-  [157,66,20.76,0,88,248,92,"Similar projects (258)","Inst. documents (53)"],
+  [157,66,20.42,0,88,248,92,"Similar projects (258)","Inst. documents (53)"],
   [496,139,26.9,26,88,308,92,null,null],
   [256,102,24.07,21,84,168,68,null,null],
   [289,119,25.92,30,86,179,87,"Similar projects (25)","Institutional documents (7)"],
@@ -42,7 +42,7 @@ const RAW = [
   [361,104,15.86,33.3,91,185,79,"Similar projects (26)","Institutional documents (3)"],
   [268,81,15.45,36.73,91,291,111,"Similar projects (13)","Literature (3)"],
   [235,82,27.7,38,89,199,61,"Lessons learned (19)","Inst. Documents (5)"],
-  [427,178,22.2,55,91,233,177,"Similar projects (32)","Inst. Documents (7)"],
+  [427,178,16.82,50,91,233,177,"Similar projects (32)","Inst. Documents (7)"],
 ];
 
 const DATA = RAW.map((r, i) => ({
