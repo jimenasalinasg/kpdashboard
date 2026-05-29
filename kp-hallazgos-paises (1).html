@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hallazgos por País · Plataforma de Conocimiento BID</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #1A1814;
+  --ink-muted: #5F5E5A;
+  --ink-faint: #B4B2A9;
+  --surface: #FAFAF8;
+  --surface-2: #F1EFE8;
+  --border: rgba(26,24,20,0.1);
+  --accent: #0F6E56;
+  --accent-light: #E1F5EE;
+  --accent-mid: #1D9E75;
+  --warm: #B07D3A;
+  --warm-light: #F5EDD8;
+  --warm-mid: #D4A55A;
+  --alert: #D85A30;
+  --alert-light: #FAECE7;
+  --critical: #A32D2D;
+  --critical-light: #FCEBEB;
+}
+
+body { font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--ink); min-height: 100vh; }
+
+/* Header */
+.header {
+  background: var(--ink);
+  padding: 2rem 3rem 1.75rem;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
+}
+.eyebrow { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.35); font-weight: 500; margin-bottom: 0.6rem; }
+.header h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 2.2rem; color: #fff; line-height: 1.1; }
+.header h1 em { font-style: italic; color: var(--warm-mid); }
+
+.selector-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.selector-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+.country-select {
+  appearance: none;
+  background: rgba(255,255,255,0.07);
+  border: 0.5px solid rgba(255,255,255,0.2);
+  border-radius: 8px; color: #fff;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  padding: 10px 40px 10px 16px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; min-width: 200px; transition: border-color 0.2s;
+}
+.country-select:hover { border-color: rgba(255,255,255,0.4); }
+.country-select option { background: #2c2c2a; color: #fff; }
+
+/* Stats bar */
+.stats-bar { display: flex; gap: 0; border-bottom: 0.5px solid var(--border); background: #fff; }
+.stat-item { flex: 1; padding: 1rem 1.5rem; border-right: 0.5px solid var(--border); display: flex; align-items: center; gap: 12px; }
+.stat-item:last-child { border-right: none; }
+.stat-val { font-family: 'Fraunces', serif; font-size: 1.75rem; font-weight: 600; color: var(--ink); line-height: 1; }
+.stat-lbl { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
+
+/* Main */
+.main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 3rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+.section-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px;
+}
+.section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
+/* ── Top section: takeaways + quotes side by side ── */
+.top-block { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem; align-items: start; }
+
+/* Takeaways */
+.takeaways-block {}
+.takeaways-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+}
+
+/* First card spans full width — hero tension */
+.takeaway-card:first-child {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+.takeaway-card:first-child .tk-tension { font-size: 15px; }
+.takeaway-card:first-child .tk-signal { border-top: none; padding-top: 0; margin-top: 0; border-left: 2px solid var(--accent-light); padding-left: 1rem; }
+
+.takeaway-card {
+  background: #fff; border: 0.5px solid var(--border); border-radius: 14px;
+  padding: 1.4rem; display: flex; flex-direction: column; gap: 0.75rem;
+  position: relative; overflow: hidden;
+}
+.takeaway-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2.5px;
+}
+.tc1::before { background: var(--accent-mid); }
+.tc2::before { background: var(--warm-mid); }
+.tc3::before { background: var(--alert); }
+.tc4::before { background: #7F77DD; }
+
+.tk-num {
+  font-size: 9px; font-weight: 500; letter-spacing: 0.14em;
+  color: var(--ink-faint); text-transform: uppercase;
+}
+.tk-tension { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4; }
+.tk-signal {
+  font-size: 12px; color: var(--ink-muted); line-height: 1.55; flex: 1;
+  border-top: 0.5px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem;
+}
+.tk-implication {
+  font-size: 11px; font-style: italic; color: var(--ink-faint); line-height: 1.5;
+  border-top: 0.5px solid var(--border); padding-top: 0.75rem;
+}
+
+/* Quotes — vertical stack on the right */
+.quotes-block {}
+.quotes-grid { display: flex; flex-direction: column; gap: 1rem; }
+
+.quote-card {
+  background: #fff; border: 0.5px solid var(--border); border-radius: 14px;
+  padding: 1.25rem 1.4rem; display: flex; flex-direction: column; gap: 0.75rem;
+  position: relative; overflow: hidden;
+}
+.quote-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 2.5px; border-radius: 0; }
+.quote-card:nth-child(1)::before { background: var(--accent-mid); }
+.quote-card:nth-child(2)::before { background: var(--warm-mid); }
+.quote-card:nth-child(3)::before { background: var(--alert); }
+.quote-glyph { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; color: var(--surface-2); line-height: 0.7; user-select: none; }
+.quote-text { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 0.85rem; line-height: 1.65; color: var(--ink); flex: 1; }
+.quote-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.quote-tag { font-size: 9px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+.qt-accent { background: var(--accent-light); color: var(--accent); }
+.qt-warm   { background: var(--warm-light); color: var(--warm); }
+.qt-alert  { background: var(--alert-light); color: var(--alert); }
+.quote-etapa { font-size: 10px; color: var(--ink-faint); white-space: nowrap; }
+.quote-empty { background: var(--surface-2); border-radius: 14px; display: flex; align-items: center; justify-content: center; min-height: 100px; color: var(--ink-faint); font-size: 12px; font-style: italic; }
+
+/* Challenges */
+.challenges-block { grid-column: 1; }
+.challenge-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--border); }
+.challenge-row:last-child { border-bottom: none; }
+.ch-level { font-size: 9px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; flex-shrink: 0; width: 58px; text-align: center; }
+.lv-critical { background: var(--critical-light); color: var(--critical); }
+.lv-high     { background: var(--alert-light); color: var(--alert); }
+.lv-mid      { background: var(--warm-light); color: var(--warm); }
+.ch-info { flex: 1; }
+.ch-name { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 1px; }
+.ch-sub  { font-size: 11px; color: var(--ink-faint); }
+.ch-count { font-size: 11px; color: var(--ink-faint); white-space: nowrap; }
+
+/* Opportunities */
+.opps-block { grid-column: 2; }
+.opp-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--border); }
+.opp-row:last-child { border-bottom: none; }
+.opp-num { width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 10px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.opp-name { font-size: 12px; flex: 1; color: var(--ink); line-height: 1.35; }
+.opp-bar-wrap { width: 60px; flex-shrink: 0; }
+.opp-bar-bg { height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; }
+.opp-bar-fill { height: 100%; border-radius: 2px; background: var(--accent-mid); }
+.opp-pct { font-size: 11px; font-weight: 500; white-space: nowrap; width: 38px; text-align: right; }
+.pct-high { color: var(--accent); }
+.pct-mid  { color: var(--warm); }
+.pct-low  { color: var(--ink-faint); }
+
+/* Modes */
+.modes-block { grid-column: 1 / -1; }
+.modes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.mode-card { background: #fff; border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; display: flex; align-items: center; gap: 12px; }
+.mode-badge { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 0.95rem; font-weight: 600; flex-shrink: 0; }
+.mb-top { background: var(--warm-light); color: var(--warm); }
+.mb-rest { background: var(--surface-2); color: var(--ink-faint); }
+.mode-name { font-size: 12px; font-weight: 500; color: var(--ink); line-height: 1.35; margin-bottom: 2px; }
+.mode-pts  { font-size: 10px; color: var(--ink-faint); }
+
+/* Tools */
+.tools-block { grid-column: 1 / -1; }
+.tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.875rem; }
+.tool-card { background: #fff; border: 0.5px solid var(--border); border-radius: 10px; padding: 0.875rem 1rem; display: flex; align-items: center; gap: 10px; }
+.tool-bar-wrap { flex: 1; }
+.tool-bar-bg { height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; margin-top: 4px; }
+.tool-bar-fill { height: 100%; border-radius: 2px; background: var(--accent-mid); }
+.tool-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+.tool-count { font-size: 11px; color: var(--ink-faint); }
+.tool-num { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; color: var(--ink); flex-shrink: 0; }
+
+/* Footer */
+footer { border-top: 0.5px solid var(--border); padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; }
+.ft { font-size: 11px; color: var(--ink-faint); }
+
+@media (max-width: 800px) {
+  .header { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
+  .main { grid-template-columns: 1fr; padding: 1.5rem; }
+  .top-block { grid-template-columns: 1fr; }
+  .takeaways-grid { grid-template-columns: 1fr; }
+  .takeaway-card:first-child { grid-template-columns: 1fr; }
+  .quotes-grid { flex-direction: column; }
+  .modes-grid, .tools-grid { grid-template-columns: 1fr; }
+  .challenges-block, .opps-block { grid-column: 1; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <p class="eyebrow">Plataforma de Conocimiento · Grupo BID · VPS/KLD</p>
+    <h1>Voces del <em>terreno</em></h1>
+  </div>
+  <div class="selector-wrap">
+    <span class="selector-label">Seleccionar país</span>
+    <select class="country-select" id="countrySelect">
+      <option value="colombia">Colombia · Mayo 2026</option>
+      <option value="brasil" disabled>Brasil — próximamente</option>
+      <option value="panama" disabled>Panamá — próximamente</option>
+      <option value="costarica" disabled>Costa Rica — próximamente</option>
+    </select>
+  </div>
+</header>
+
+<div class="stats-bar" id="statsBar"></div>
+<main class="main" id="mainContent"></main>
+
+<footer>
+  <span class="ft">© 2026 Plataforma de Conocimiento del Grupo BID</span>
+  <span class="ft" id="footerCountry"></span>
+  <span class="ft">Documento de uso interno · VPS/KLD</span>
+</footer>
+
+<script>
+const DATA = {
+  colombia: {
+    label: "Colombia · Misión Mayo 2026",
+    stats: [
+      { val: "12", lbl: "Participantes encuesta" },
+      { val: "19", lbl: "Desafíos reportados" },
+      { val: "64", lbl: "Votos totales" },
+      { val: "57%", lbl: "Calificaron la plataforma de 'útil'" }
+    ],
+    takeaways: [
+      {
+        num: "Tensión 1",
+        tension: "Knowledge Loop — Brecha entre operaciones y conocimiento analítico",
+        signal: "Necesidad de sistematizar conocimiento no visible: minutas de taller, reportes semestrales, productos de TCs. El conocimiento se genera pero no circula.",
+        implication: "La plataforma debe ampliar fuentes más allá del acervo institucional y hacer visible el conocimiento del terreno.",
+        cls: "tc1"
+      },
+      {
+        num: "Tensión 2",
+        tension: "Interoperabilidad de sistemas",
+        signal: "Más de 1.500 agentes operando sin articulación. Dashboards duplicados e iniciativas paralelas sin integración entre plataformas del Banco.",
+        implication: "La interoperabilidad no es un problema técnico: es un problema de gobernanza.",
+        cls: "tc2"
+      },
+      {
+        num: "Tensión 3",
+        tension: "Demanda de personalización y reporting ad hoc",
+        signal: "Los reportes se construyen desde cero ante cada solicitud corporativa. Uso orgánico de Claude crece incluso con financiamiento personal.",
+        implication: "La plataforma debe habilitar producción continua, no solo dar acceso al stock acumulado.",
+        cls: "tc3"
+      },
+      {
+        num: "Tensión 4 · Knowledge Careers",
+        tension: "Conocimiento tácito en el terreno no transferible e incentivos desalineados",
+        signal: "El trabajo de conocimiento ocurre fuera del horario laboral. Las métricas premian publicaciones académicas sobre ejecución en campo. El acceso a sinergias depende de redes personales, no de sistemas.",
+        implication: "El conocimiento más valioso — el del terreno — no se sistematiza ni transfiere. Sin incentivos alineados, seguirá siendo invisible.",
+        cls: "tc4"
+      }
+    ],
+    quotes: [
+      {
+        text: "La plataforma lo que tiene distinto es el conocimiento curado. Pero el problema es que hay muchos dashboards. Que sea uno solo — tengo ochenta cosas que hacer a la vez.",
+        tag: "Fragmentación", tagClass: "qt-accent",
+        etapa: "Sesión plenaria"
+      },
+      {
+        text: "Que la información venga de documentos del BID me da a mí una tranquilidad.",
+        tag: "Confianza", tagClass: "qt-warm",
+        etapa: "Día 2 · Sinergias"
+      },
+      {
+        text: "Siempre estamos haciendo mucho — el problema es conectar lo que hacemos de manera ordenada.",
+        tag: "Coordinación", tagClass: "qt-alert",
+        etapa: "Sesión de sinergias"
+      }
+    ],
+    challenges: [
+      { name: "TdR y contrataciones similares sin acceso centralizado", sub: "Ejecución · Documentos", level: "CRÍTICO", lvCls: "lv-critical", count: "4 reportes" },
+      { name: "Búsqueda rápida de proyectos similares",                sub: "Preparación · Búsqueda de info", level: "ALTO", lvCls: "lv-high", count: "2 reportes" },
+      { name: "Fragmentación de plataformas, falta de integración",   sub: "Preparación · Herramientas", level: "ALTO", lvCls: "lv-high", count: "2 reportes" },
+      { name: "Armonización de procesos y herramientas",              sub: "Ejecución · Herramientas", level: "ALTO", lvCls: "lv-high", count: "2 reportes" },
+      { name: "Trazabilidad de la matriz de resultados histórica",    sub: "Cierre y Evaluación · Herramientas", level: "MEDIO", lvCls: "lv-mid", count: "1 reporte" },
+      { name: "Desembolsos y portafolio en Excel manual",             sub: "Ejecución · Data", level: "MEDIO", lvCls: "lv-mid", count: "1 reporte" }
+    ],
+    opportunities: [
+      { name: "Redactar el primer borrador de un POD",        pct: 100 },
+      { name: "Buscar y descargar operaciones o documentos",  pct: 100 },
+      { name: "Detectar brechas en un documento",             pct: 88  },
+      { name: "Consultar políticas con cita exacta",          pct: 88  },
+      { name: "Mapear ecosistema de un país y sector",        pct: 75  },
+      { name: "Cómo ha evolucionado un tema en la región",   pct: 75  },
+      { name: "Encontrar evidencia rigurosa para decisiones", pct: 63  },
+      { name: "Conectar con agentes de IA",                   pct: 38  }
+    ],
+    modes: [
+      { rank: 1, name: "Crear documento con contenido existente", pts: "22 pts" },
+      { rank: 2, name: "Buscar una respuesta rápida",              pts: "18 pts" },
+      { rank: 3, name: "Comparar o analizar información",          pts: "17 pts" },
+      { rank: 4, name: "Exportar datos en planilla",               pts: "16 pts" }
+    ],
+    tools: [
+      { name: "Copilot",           count: 11, pct: 100 },
+      { name: "Colegas",           count: 10, pct: 91  },
+      { name: "SharePoint/EzShare",count: 7,  pct: 64  },
+      { name: "Google",            count: 6,  pct: 55  },
+      { name: "Catálogo BID",      count: 6,  pct: 55  },
+      { name: "Claude",            count: 3,  pct: 27  },
+      { name: "ChatGPT",           count: 2,  pct: 18  },
+      { name: "Otra",              count: 3,  pct: 27  }
+    ]
+  }
+};
+
+function pctClass(p) {
+  if (p >= 75) return "pct-high";
+  if (p >= 50) return "pct-mid";
+  return "pct-low";
+}
+
+function renderStats(d) {
+  document.getElementById("statsBar").innerHTML = d.stats.map(s => `
+    <div class="stat-item">
+      <span class="stat-val">${s.val}</span>
+      <span class="stat-lbl">${s.lbl}</span>
+    </div>`).join("");
+}
+
+function renderMain(d) {
+  const takeawaysHTML = d.takeaways.map(t => `
+    <div class="takeaway-card ${t.cls}">
+      <span class="tk-num">${t.num}</span>
+      <p class="tk-tension">${t.tension}</p>
+      <p class="tk-signal">${t.signal}</p>
+      <p class="tk-implication">${t.implication}</p>
+    </div>`).join("");
+
+  const quotesHTML = d.quotes.length > 0
+    ? d.quotes.map(q => `
+      <div class="quote-card">
+        <span class="quote-glyph" aria-hidden="true">"</span>
+        <p class="quote-text">${q.text}</p>
+        <div class="quote-foot">
+          <span class="quote-tag ${q.tagClass}">${q.tag}</span>
+          <span class="quote-etapa">${q.etapa}</span>
+        </div>
+      </div>`).join("")
+    : ['','',''].map(() => `<div class="quote-empty">Sin citas registradas aún</div>`).join("");
+
+  const challengesHTML = d.challenges.map(c => `
+    <div class="challenge-row">
+      <span class="ch-level ${c.lvCls}">${c.level}</span>
+      <div class="ch-info">
+        <div class="ch-name">${c.name}</div>
+        <div class="ch-sub">${c.sub}</div>
+      </div>
+      <span class="ch-count">${c.count}</span>
+    </div>`).join("");
+
+  const oppsHTML = d.opportunities.map((o, i) => `
+    <div class="opp-row">
+      <span class="opp-num">${i+1}</span>
+      <span class="opp-name">${o.name}</span>
+      <div class="opp-bar-wrap">
+        <div class="opp-bar-bg"><div class="opp-bar-fill" style="width:${o.pct}%"></div></div>
+      </div>
+      <span class="opp-pct ${pctClass(o.pct)}">${o.pct}%</span>
+    </div>`).join("");
+
+  const modesHTML = d.modes.map(m => `
+    <div class="mode-card">
+      <div class="mode-badge ${m.rank <= 2 ? 'mb-top' : 'mb-rest'}">${m.rank}</div>
+      <div>
+        <div class="mode-name">${m.name}</div>
+        <div class="mode-pts">${m.pts}</div>
+      </div>
+    </div>`).join("");
+
+  const toolsHTML = d.tools.map(t => `
+    <div class="tool-card">
+      <span class="tool-num">${t.count}</span>
+      <div class="tool-bar-wrap">
+        <div class="tool-name">${t.name}</div>
+        <div class="tool-bar-bg"><div class="tool-bar-fill" style="width:${t.pct}%"></div></div>
+      </div>
+    </div>`).join("");
+
+  document.getElementById("mainContent").innerHTML = `
+    <section class="top-block">
+      <div class="takeaways-block">
+        <div class="section-label">Tensiones clave de la misión</div>
+        <div class="takeaways-grid">${takeawaysHTML}</div>
+      </div>
+      <div class="quotes-block">
+        <div class="section-label">Citas destacadas</div>
+        <div class="quotes-grid">${quotesHTML}</div>
+      </div>
+    </section>
+
+    <section class="challenges-block">
+      <div class="section-label">Desafíos por etapa · 19 reportados / 64 votos</div>
+      ${challengesHTML}
+    </section>
+
+    <section class="opps-block">
+      <div class="section-label">Ranking de oportunidades · % aprobación</div>
+      ${oppsHTML}
+    </section>
+
+    <section class="modes-block">
+      <div class="section-label">Modos de uso preferidos · priorización por puntos</div>
+      <div class="modes-grid">${modesHTML}</div>
+    </section>
+
+    <section class="tools-block">
+      <div class="section-label">Herramientas actuales · menciones por participante</div>
+      <div class="tools-grid">${toolsHTML}</div>
+    </section>
+  `;
+}
+
+function render(key) {
+  const d = DATA[key];
+  if (!d) return;
+  document.getElementById("footerCountry").textContent = `Misión ${d.label}`;
+  renderStats(d);
+  renderMain(d);
+}
+
+document.getElementById("countrySelect").addEventListener("change", e => render(e.target.value));
+render("colombia");
+</script>
+</body>
+</html>
