@@ -200,16 +200,16 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--surface);color:var(
 .occ-note{font-size:11px;color:var(--ink-faint);margin-bottom:1.5rem;padding:6px 2px 0}
 .occ-note strong{color:var(--ink-muted)}
 
-.diverge-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.875rem;margin-bottom:1.5rem}
-.div-card{border-radius:8px;padding:1.1rem;border:1px solid var(--border)}
+.diverge-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-bottom:2rem}
+.div-card{border-radius:8px;padding:1.4rem;border:1px solid var(--border)}
 .div-card.co{background:rgba(20,184,166,0.04);border-color:rgba(20,184,166,0.2)}
 .div-card.br{background:rgba(245,158,11,0.04);border-color:rgba(245,158,11,0.2)}
-.div-head{display:flex;align-items:center;gap:7px;margin-bottom:0.875rem}
+.div-head{display:flex;align-items:center;gap:8px;margin-bottom:1.1rem}
 .div-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .div-dot.co{background:var(--col-co)}.div-dot.br{background:var(--col-br)}
 .div-ctry{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em}
 .div-ctry.co{color:var(--teal)}.div-ctry.br{color:var(--amber)}
-.div-item{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)}
+.div-item{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--border)}
 .div-item:last-child{border-bottom:none}
 .div-bul{width:3px;height:3px;border-radius:50%;margin-top:7px;flex-shrink:0}
 .div-item.co .div-bul{background:var(--teal-mid)}.div-item.br .div-bul{background:var(--amber-mid)}
@@ -345,71 +345,106 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
     </div>
 
     <div class="sh"><span class="sh-num">02</span><h2 class="sh-title">Opportunities — where they <em>converge</em> and <em>diverge</em></h2><span class="sh-rule"></span></div>
-    <div class="opp-compare">
-      <div style="display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr">
-        <div class="occ-h co">Colombia</div><div></div>
-        <div class="occ-h" style="color:#6366F1;text-align:center">Costa Rica</div><div></div>
-        <div class="occ-h br" style="text-align:right">Brasil</div>
+    <div style="padding:0.25rem 0 0.5rem">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:1.25rem">
+        <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:2px;background:#14B8A6"></span>Colombia</span>
+        <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:2px;background:#F59E0B"></span>Brasil</span>
+        <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:2px;background:#6366F1"></span>Costa Rica</span>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr">
-        <div>
-          <div class="occ-row"><span class="occ-rank">1</span><span class="occ-name">Draft first POD version</span><span class="occ-pct co">100%</span></div>
-          <div class="occ-row"><span class="occ-rank">2</span><span class="occ-name">Search and download operations</span><span class="occ-pct co">100%</span></div>
-          <div class="occ-row"><span class="occ-rank">3</span><span class="occ-name">Detect gaps in a document</span><span class="occ-pct co">88%</span></div>
-          <div class="occ-row"><span class="occ-rank">4</span><span class="occ-name">Consult policies with exact citation</span><span class="occ-pct co">88%</span></div>
-          <div class="occ-row"><span class="occ-rank">5</span><span class="occ-name">Map ecosystem country/sector</span><span class="occ-pct co">75%</span></div>
-          <div class="occ-row"><span class="occ-rank">6</span><span class="occ-name">How a topic evolved in the region</span><span class="occ-pct co">75%</span></div>
-          <div class="occ-row"><span class="occ-rank">7</span><span class="occ-name">Find rigorous evidence</span><span class="occ-pct co">63%</span></div>
-          <div class="occ-row"><span class="occ-rank">8</span><span class="occ-name">Connect with AI agents</span><span class="occ-pct co">38%</span></div>
-        </div>
-        <div class="occ-mid"></div>
-        <div>
-          <div class="occ-row"><span class="occ-rank">1</span><span class="occ-name" style="text-align:center">Detect gaps in a document</span><span class="occ-pct" style="color:#6366F1">100%</span></div>
-          <div class="occ-row"><span class="occ-rank">2</span><span class="occ-name" style="text-align:center">Consult policies with exact citation</span><span class="occ-pct" style="color:#6366F1">100%</span></div>
-          <div class="occ-row"><span class="occ-rank">3</span><span class="occ-name" style="text-align:center">Find rigorous evidence</span><span class="occ-pct" style="color:#6366F1">100%</span></div>
-          <div class="occ-row"><span class="occ-rank">4</span><span class="occ-name" style="text-align:center">How a topic evolved in the region</span><span class="occ-pct" style="color:#6366F1">100%</span></div>
-          <div class="occ-row"><span class="occ-rank">5</span><span class="occ-name" style="text-align:center">Connect with AI agents</span><span class="occ-pct" style="color:#6366F1">100%</span></div>
-          <div class="occ-row"><span class="occ-rank">6</span><span class="occ-name" style="text-align:center">Draft first POD version</span><span class="occ-pct" style="color:#6366F1">71%</span></div>
-          <div class="occ-row"><span class="occ-rank">7</span><span class="occ-name" style="text-align:center">Map ecosystem country/sector</span><span class="occ-pct" style="color:#6366F1">67%</span></div>
-          <div class="occ-row"><span class="occ-rank">8</span><span class="occ-name" style="text-align:center">Search and download operations</span><span class="occ-pct" style="color:#6366F1">67%</span></div>
-        </div>
-        <div class="occ-mid"></div>
-        <div>
-          <div class="occ-row br"><span class="occ-rank">1</span><span class="occ-name br">Consult policies with exact citation</span><span class="occ-pct br">92%</span></div>
-          <div class="occ-row br"><span class="occ-rank">2</span><span class="occ-name br">Find rigorous evidence</span><span class="occ-pct br">90%</span></div>
-          <div class="occ-row br"><span class="occ-rank">3</span><span class="occ-name br">Detect gaps in a document</span><span class="occ-pct br">88%</span></div>
-          <div class="occ-row br"><span class="occ-rank">4</span><span class="occ-name br">Search and download operations</span><span class="occ-pct br">79%</span></div>
-          <div class="occ-row br"><span class="occ-rank">5</span><span class="occ-name br">How a topic evolved in the region</span><span class="occ-pct br">73%</span></div>
-          <div class="occ-row br"><span class="occ-rank">6</span><span class="occ-name br">Draft first POD version</span><span class="occ-pct br">71%</span></div>
-          <div class="occ-row br"><span class="occ-rank">7</span><span class="occ-name br">Connect with AI agents</span><span class="occ-pct br">70%</span></div>
-          <div class="occ-row br"><span class="occ-rank">8</span><span class="occ-name br">Map ecosystem country/sector</span><span class="occ-pct br">69%</span></div>
-        </div>
-      </div>
+      <div id="opp-bars-chart" style="display:flex;flex-direction:column;gap:18px"></div>
+      <p class="occ-note" style="margin-top:1rem">% of participants who said they would use each feature. Ordered by average approval across 3 missions. <strong>Key read:</strong> Connect with AI agents is the widest spread (38%→70%→100%) — the clearest signal of growing AI maturity across countries. Detect gaps and Consult policies hit 100% in Costa Rica while remaining strong across all three.</p>
     </div>
-    <p class="occ-note"><strong>Key read:</strong> Detect gaps and Consult policies appear top-3 in all three countries. Costa Rica is the most demanding profile — 5 items at 100%. Connect with AI agents jumps from 38% (Colombia) to 70–100% in Brasil and Costa Rica, signaling growing AI integration maturity.</p>
+    <script>
+    (function(){
+      const oppData = [
+        { label: "Detect gaps in a document",        co: 88, br: 88, cr: 100 },
+        { label: "Consult policies (exact citation)", co: 88, br: 92, cr: 100 },
+        { label: "Find rigorous evidence",            co: 63, br: 90, cr: 100 },
+        { label: "How a topic evolved (region)",      co: 75, br: 73, cr: 100 },
+        { label: "Connect with AI agents",            co: 38, br: 70, cr: 100 },
+        { label: "Search & download operations",      co: 100, br: 79, cr: 67  },
+        { label: "Map country/sector ecosystem",      co: 75, br: 69, cr: 67  },
+        { label: "Draft first POD version",           co: 100, br: 71, cr: 71  },
+      ];
+      oppData.sort((a,b)=>((b.co+b.br+b.cr)/3)-((a.co+a.br+a.cr)/3));
 
-    <div class="sh"><span class="sh-num">03</span><h2 class="sh-title">What <em>diverges</em> — each country has its own pain</h2><span class="sh-rule"></span></div>
-    <div class="diverge-grid" style="grid-template-columns:1fr 1fr 1fr">
+      const container = document.getElementById('opp-bars-chart');
+      if (!container) return;
+      const isDark = matchMedia('(prefers-color-scheme:dark)').matches;
+      const textPri = isDark?'#e5e5e5':'#111827';
+      const textSec = isDark?'#9CA3AF':'#6B7280';
+      const bgTrack = isDark?'rgba(255,255,255,0.08)':'rgba(0,0,0,0.06)';
+      const countries = [
+        {key:'co',color:'#14B8A6',label:'Colombia'},
+        {key:'br',color:'#F59E0B',label:'Brasil'},
+        {key:'cr',color:'#6366F1',label:'Costa Rica'},
+      ];
+
+      oppData.forEach(d=>{
+        const avg = Math.round((d.co+d.br+d.cr)/3);
+        const row = document.createElement('div');
+        row.style.cssText='display:grid;grid-template-columns:180px 1fr;gap:12px;align-items:center';
+
+        const labelEl = document.createElement('div');
+        labelEl.style.cssText=`font-size:12px;color:${textPri};line-height:1.35;text-align:right`;
+        labelEl.textContent=d.label;
+        row.appendChild(labelEl);
+
+        const barsCol = document.createElement('div');
+        barsCol.style.cssText='display:flex;flex-direction:column;gap:4px';
+
+        countries.forEach(c=>{
+          const pct=d[c.key];
+          const barRow=document.createElement('div');
+          barRow.style.cssText='display:flex;align-items:center;gap:8px';
+          const track=document.createElement('div');
+          track.style.cssText=`flex:1;height:14px;background:${bgTrack};border-radius:3px;overflow:hidden`;
+          const fill=document.createElement('div');
+          fill.style.cssText=`height:100%;width:${pct}%;background:${c.color};border-radius:3px`;
+          track.appendChild(fill);
+          const pctLabel=document.createElement('div');
+          pctLabel.style.cssText=`font-size:11px;font-weight:500;color:${c.color};width:34px;flex-shrink:0`;
+          pctLabel.textContent=pct+'%';
+          barRow.appendChild(track);
+          barRow.appendChild(pctLabel);
+          barsCol.appendChild(barRow);
+        });
+
+        const avgBadge=document.createElement('div');
+        avgBadge.style.cssText=`font-size:10px;color:${textSec};margin-top:1px`;
+        avgBadge.textContent='avg '+avg+'%';
+        barsCol.appendChild(avgBadge);
+
+        row.appendChild(barsCol);
+        container.appendChild(row);
+      });
+    })();
+    </script>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-bottom:2rem">
+
       <div class="div-card co">
         <div class="div-head"><span class="div-dot co"></span><span class="div-ctry co">Colombia · Unique tensions</span></div>
-        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Knowledge Careers gap.</strong> KM work isn't valued or visible. Incentives are misaligned with tacit knowledge production.</p></div>
-        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>TdR as the most urgent use case.</strong> Centralized access to similar terms of reference — concrete, solvable today.</p></div>
-        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Redactar POD as #1 opportunity.</strong> Colombia wants generation more than search — already trusts enough to want outputs.</p></div>
+        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>TdR (Terms of Reference) as the most urgent use case.</strong> When designing a new operation, teams search for TdR from similar past projects to avoid starting from scratch. Today there's no centralized way to find them — it's the most concrete, immediately solvable gap the platform could close.</p></div>
+        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Draft POD as #1 opportunity.</strong> Colombia wants generation more than search — already trusts enough to want outputs, not just inputs. The most generation-forward profile of the three missions.</p></div>
+        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Knowledge Careers gap.</strong> KM work isn't valued or visible. Metrics reward academic publications over field execution. Knowledge work often happens outside working hours with no system to capture it.</p></div>
       </div>
+
       <div class="div-card br">
         <div class="div-head"><span class="div-dot br"></span><span class="div-ctry br">Brasil · Unique tensions</span></div>
-        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Portfolio intelligence demand.</strong> Cross-sectional data — disbursements by project, risks by region — built manually in Excel today.</p></div>
-        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>PCR automático — explicit demand.</strong> "Why isn't there a system that automatically generates a PCR?" Not better search; automation of closure.</p></div>
-        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Consultar políticas as #1.</strong> Brasil prioritizes regulatory evidence over generation — one step earlier on the trust curve.</p></div>
+        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Portfolio intelligence demand.</strong> Specialists need disbursement projections by month and project, risks by sector/region. Today this is built manually in Excel — the platform could replace it.</p></div>
+        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>PCR automation — explicit demand.</strong> "Why isn't there a system that automatically generates a PCR (Project Completion Report)?" Teams want closure documents generated from execution data, not written from scratch.</p></div>
+        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Institutional memory dispersed.</strong> Lessons learned by state, municipality and execution mechanism aren't accessible. The most experienced country context — with the hardest knowledge retrieval problem.</p></div>
       </div>
+
       <div class="div-card" style="background:rgba(99,102,241,0.04);border-color:rgba(99,102,241,0.2)">
         <div class="div-head"><span class="div-dot" style="background:#6366F1"></span><span class="div-ctry" style="color:#6366F1">Costa Rica · Unique tensions</span></div>
-        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>"Parecerse más a Claude" [Be more like Claude].</strong> The most candid retention signal in the corpus. The platform must win on specialization, not restriction — institutional knowledge with the same conversational fluency.</p></div>
-        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>Cross-window silos — structural gap.</strong> BID Invest, BID Lab, and BID operate in isolation. No structured cross-visibility. Synergies depend on personal relationships, not the platform.</p></div>
-        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>Highest prior use (46%) but Convergencia bugs.</strong> Most mature adopter — yet technical failures undermine trust. A broken project link erases months of adoption gains.</p></div>
+        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>"Be more like Claude."</strong> The most candid retention signal in the corpus — a user named Claude as the benchmark spontaneously. The platform must win on institutional specialization, not by restricting access to generic AI.</p></div>
+        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>Cross-window silos — BID Invest, BID Lab, BID.</strong> No structured cross-visibility between windows. Users can't consult environmental/social docs from BID Invest projects. Synergies still depend on personal relationships.</p></div>
+        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>Highest prior use (46%) — but Convergencia has bugs.</strong> Most mature adopter across 3 missions, yet technical failures erode trust. Projects that don't appear in the platform break the adoption cycle built over months.</p></div>
       </div>
-    </div>
 
+    </div>
     <div class="sh"><span class="sh-num">04</span><h2 class="sh-title">Design <em>implications</em> — what to do with all this</h2><span class="sh-rule"></span></div>
     <div class="impl-grid">
       <div class="impl-card"><p class="impl-ey">Trust architecture</p><p class="impl-title">Design for the citation, not the answer</p><p class="impl-body">Every result must show its evidence chain visibly and clickably: source doc, section, date. Not as collapsed metadata — as part of the result itself.</p><p class="impl-sw">→ Trust isn't built with disclaimers — it's built with radical source transparency.</p></div>
