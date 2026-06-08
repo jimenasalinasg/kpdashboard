@@ -3,732 +3,765 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plataforma de Conocimiento · Hallazgos BID</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>KP Field Findings · IDB Knowledge Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --ink: #1A1814;
-  --ink-muted: #5F5E5A;
-  --ink-faint: #B4B2A9;
-  --surface: #FAFAF8;
-  --surface-2: #F1EFE8;
-  --border: rgba(26,24,20,0.10);
-  --border-strong: rgba(26,24,20,0.18);
-  --accent: #0F6E56;
-  --accent-light: #E1F5EE;
-  --accent-mid: #1D9E75;
-  --warm: #B07D3A;
-  --warm-light: #F5EDD8;
-  --warm-mid: #D4A55A;
-  --alert: #D85A30;
-  --alert-light: #FAECE7;
-  --critical: #A32D2D;
-  --critical-light: #FCEBEB;
-  --purple: #7F77DD;
-  --purple-light: #EEEDFB;
-  --col-co: #1D9E75;
-  --col-br: #D4A55A;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D1B2E;--navy-2:#162236;
+  --blue:#2563EB;--blue-light:#EFF6FF;--blue-mid:#3B82F6;
+  --teal:#0F766E;--teal-light:#F0FDFA;--teal-mid:#14B8A6;
+  --amber:#92400E;--amber-light:#FFFBEB;--amber-mid:#F59E0B;
+  --red:#991B1B;--red-light:#FEF2F2;--red-mid:#EF4444;
+  --purple:#5B21B6;--purple-light:#F5F3FF;--purple-mid:#8B5CF6;
+  --ink:#111827;--ink-muted:#6B7280;--ink-faint:#9CA3AF;
+  --surface:#F3F4F6;--surface-2:#E5E7EB;--white:#FFFFFF;
+  --border:rgba(0,0,0,0.08);--border-strong:rgba(0,0,0,0.15);
+  --col-co:#14B8A6;--col-br:#F59E0B;
 }
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--surface);color:var(--ink);min-height:100vh;font-size:14px}
 
-body { font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--ink); min-height: 100vh; }
+/* ── HEADER ── */
+.header{background:var(--navy);padding:0}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2.5rem 0}
+.brand-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:3px}
+.header-title{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:1.1rem;color:#fff}
+.tab-nav{display:flex;gap:2px;padding:0 2.5rem;margin-top:1rem;overflow-x:auto}
+.tab-btn{background:none;border:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:rgba(255,255,255,0.4);letter-spacing:0.08em;text-transform:uppercase;padding:0.625rem 1rem;border-bottom:2px solid transparent;transition:all 0.15s;display:flex;align-items:center;gap:7px;white-space:nowrap;border-radius:4px 4px 0 0}
+.tab-btn:hover{color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.05)}
+.tab-btn.active{color:#fff;border-bottom-color:var(--blue-mid);background:rgba(255,255,255,0.07)}
+.tab-btn.disabled{opacity:0.25;cursor:default;pointer-events:none}
+.tab-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.td-sint{background:#3B82F6}.td-co{background:var(--col-co)}.td-br{background:var(--col-br)}.td-dim{background:rgba(255,255,255,0.2)}
 
-/* ── Header ── */
-.header {
-  background: var(--ink);
-  padding: 1.75rem 3rem 0;
-}
-.header-top {
-  display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
-  padding-bottom: 1.5rem;
-}
-.eyebrow { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.35); font-weight: 500; margin-bottom: 0.5rem; }
-.header h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 2rem; color: #fff; line-height: 1.1; }
-.header h1 em { font-style: italic; color: var(--warm-mid); }
+/* ── VIEWS ── */
+.view{display:none}.view.active{display:block}
 
-/* Tab nav */
-.tab-nav {
-  display: flex; gap: 0; border-top: 0.5px solid rgba(255,255,255,0.1);
-}
-.tab-btn {
-  background: none; border: none; cursor: pointer;
-  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-  color: rgba(255,255,255,0.45);
-  padding: 0.875rem 1.25rem;
-  border-bottom: 2px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
-  display: flex; align-items: center; gap: 8px;
-  white-space: nowrap;
-}
-.tab-btn:hover { color: rgba(255,255,255,0.75); }
-.tab-btn.active { color: #fff; border-bottom-color: var(--warm-mid); }
-.tab-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.tab-dot.sintesis { background: var(--warm-mid); }
-.tab-dot.co { background: var(--col-co); }
-.tab-dot.br { background: var(--col-br); }
-.tab-dot.coming { background: rgba(255,255,255,0.2); }
-.tab-btn.disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+/* ── SUBHEADER ── */
+.subheader{background:var(--white);border-bottom:1px solid var(--border);padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.report-label{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-faint);margin-bottom:2px}
+.report-title{font-size:1.5rem;font-weight:600;color:var(--ink);line-height:1}
+.report-source{font-size:12px;color:var(--ink-faint);margin-top:3px}
+.export-btn{display:flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--border-strong);border-radius:6px;padding:7px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:var(--ink-muted);cursor:pointer;letter-spacing:0.06em;transition:all 0.15s;white-space:nowrap}
+.export-btn:hover{background:var(--surface);color:var(--ink);border-color:var(--ink-muted)}
 
-/* ── View containers ── */
-.view { display: none; }
-.view.active { display: block; }
+/* ── CUMULATIVE ── */
+.cumulative{background:var(--navy);margin:1.5rem 2.5rem 0;border-radius:10px;padding:1.25rem 2rem}
+.cum-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.4);margin-bottom:0.875rem}
+.cum-stats{display:flex;flex-wrap:wrap;gap:0}
+.cum-item{padding-right:2.5rem}
+.cum-val{font-family:'IBM Plex Mono',monospace;font-size:1.75rem;font-weight:500;color:#fff;line-height:1}
+.cum-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-top:3px}
+.cum-div{width:1px;background:rgba(255,255,255,0.1);margin-right:2.5rem;align-self:stretch}
 
-/* ── Stats bar ── */
-.stats-bar { display: flex; background: #fff; border-bottom: 0.5px solid var(--border); }
-.stat-item { flex: 1; padding: 1rem 1.5rem; border-right: 0.5px solid var(--border); display: flex; align-items: center; gap: 12px; }
-.stat-item:last-child { border-right: none; }
-.stat-val { font-family: 'Fraunces', serif; font-size: 1.75rem; font-weight: 600; color: var(--ink); line-height: 1; }
-.stat-lbl { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
+/* ── STAT CARDS ── */
+.section{padding:1.5rem 2.5rem 0}
+.section-head{display:flex;align-items:center;gap:8px;margin-bottom:1rem}
+.section-mono{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-muted);font-weight:500}
+.stat-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:0.875rem}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem}
+.stat-card.hi{border-color:rgba(37,99,235,0.25);background:var(--blue-light)}
+.sc-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-faint);margin-bottom:0.5rem}
+.sc-val{font-family:'IBM Plex Mono',monospace;font-size:1.75rem;font-weight:500;color:var(--ink);line-height:1;margin-bottom:4px}
+.sc-val.blue{color:var(--blue)}
+.sc-sub{font-size:11px;color:var(--ink-muted);margin-bottom:8px}
+.delta{display:inline-flex;align-items:center;gap:4px;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px}
+.up{background:#DCFCE7;color:#166534}.dn{background:#FEE2E2;color:#991B1B}.neu{background:var(--surface-2);color:var(--ink-muted)}
 
-/* ── Main grid (country views) ── */
-.main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 3rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+/* ── TWO COL ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:0.875rem;padding:1.5rem 2.5rem 0}
+.full-w{padding:1.5rem 2.5rem 0}
 
-.section-label {
-  font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink-faint); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px;
-}
-.section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+/* ── TABLE CARD ── */
+.table-card{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.tc-head{padding:0.875rem 1.1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.tc-title{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-muted);font-weight:500}
+.tc-sub{font-size:11px;color:var(--ink-faint)}
 
-/* Top block: takeaways + quotes */
-.top-block { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem; align-items: start; }
+.ch-row{display:flex;align-items:center;gap:10px;padding:9px 1.1rem;border-bottom:1px solid var(--border)}
+.ch-row:last-child{border-bottom:none}
+.ch-badge{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;padding:2px 6px;border-radius:3px;flex-shrink:0;width:54px;text-align:center;letter-spacing:0.06em}
+.b-crit{background:var(--red-light);color:var(--red)}.b-high{background:#FEF3C7;color:#92400E}.b-mid{background:var(--surface-2);color:var(--ink-muted)}
+.ch-info{flex:1}.ch-name{font-size:12px;font-weight:500;color:var(--ink);margin-bottom:1px}.ch-sub2{font-size:11px;color:var(--ink-faint)}.ch-count{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);white-space:nowrap}
 
-/* Takeaways */
-.takeaways-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.takeaway-card:first-child { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
-.takeaway-card:first-child .tk-tension { font-size: 15px; }
-.takeaway-card:first-child .tk-signal { border-top: none; padding-top: 0; margin-top: 0; border-left: 2px solid var(--accent-light); padding-left: 1rem; }
-.takeaway-card { background: #fff; border: 0.5px solid var(--border); border-radius: 14px; padding: 1.4rem; display: flex; flex-direction: column; gap: 0.75rem; position: relative; overflow: hidden; }
-.takeaway-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2.5px; }
-.tc1::before { background: var(--accent-mid); }
-.tc2::before { background: var(--warm-mid); }
-.tc3::before { background: var(--alert); }
-.tc4::before { background: var(--purple); }
-.tk-num { font-size: 9px; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-faint); text-transform: uppercase; }
-.tk-tension { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4; }
-.tk-signal { font-size: 12px; color: var(--ink-muted); line-height: 1.55; flex: 1; border-top: 0.5px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
-.tk-implication { font-size: 11px; font-style: italic; color: var(--ink-faint); line-height: 1.5; border-top: 0.5px solid var(--border); padding-top: 0.75rem; }
+.opp-row{display:flex;align-items:center;gap:10px;padding:9px 1.1rem;border-bottom:1px solid var(--border)}
+.opp-row:last-child{border-bottom:none}
+.opp-num{width:20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opp-name{font-size:12px;flex:1;color:var(--ink);line-height:1.3}
+.opp-bar-wrap{width:64px;flex-shrink:0}
+.opp-bar-bg{height:3px;background:var(--surface-2);border-radius:2px;overflow:hidden}
+.opp-bar-fill{height:100%;border-radius:2px;background:var(--teal-mid)}
+.opp-pct{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;width:36px;text-align:right;white-space:nowrap}
+.pct-h{color:var(--teal)}.pct-m{color:var(--amber)}.pct-l{color:var(--ink-faint)}
 
-/* Quotes vertical */
-.quotes-grid { display: flex; flex-direction: column; gap: 1rem; }
-.quote-card { background: #fff; border: 0.5px solid var(--border); border-radius: 14px; padding: 1.25rem 1.4rem; display: flex; flex-direction: column; gap: 0.75rem; position: relative; overflow: hidden; }
-.quote-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 2.5px; }
-.quote-card:nth-child(1)::before { background: var(--accent-mid); }
-.quote-card:nth-child(2)::before { background: var(--warm-mid); }
-.quote-card:nth-child(3)::before { background: var(--alert); }
-.quote-glyph { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; color: var(--surface-2); line-height: 0.7; user-select: none; }
-.quote-text { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 0.85rem; line-height: 1.65; color: var(--ink); flex: 1; }
-.quote-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.quote-tag { font-size: 9px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
-.qt-accent { background: var(--accent-light); color: var(--accent); }
-.qt-warm   { background: var(--warm-light); color: var(--warm); }
-.qt-alert  { background: var(--alert-light); color: var(--alert); }
-.quote-etapa { font-size: 10px; color: var(--ink-faint); white-space: nowrap; }
+/* ── MODES ── */
+.modes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.875rem}
+.mode-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:0.875rem 1rem;display:flex;align-items:center;gap:10px}
+.mode-rank{font-family:'IBM Plex Mono',monospace;font-size:1.1rem;font-weight:500;color:var(--ink-faint);width:24px;flex-shrink:0}
+.mode-rank.top{color:var(--blue)}
+.mode-name{font-size:12px;font-weight:500;color:var(--ink);line-height:1.3;margin-bottom:2px}
+.mode-pts{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-faint)}
 
-/* Challenges */
-.challenges-block { grid-column: 1; }
-.challenge-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--border); }
-.challenge-row:last-child { border-bottom: none; }
-.ch-level { font-size: 9px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; flex-shrink: 0; width: 58px; text-align: center; }
-.lv-critical { background: var(--critical-light); color: var(--critical); }
-.lv-high { background: var(--alert-light); color: var(--alert); }
-.lv-mid { background: var(--warm-light); color: var(--warm); }
-.ch-info { flex: 1; }
-.ch-name { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 1px; }
-.ch-sub { font-size: 11px; color: var(--ink-faint); }
-.ch-count { font-size: 11px; color: var(--ink-faint); white-space: nowrap; }
+/* ── TOOLS ── */
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.875rem}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:0.875rem 1rem;display:flex;align-items:center;gap:10px}
+.tool-num{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:500;color:var(--ink);flex-shrink:0;width:32px}
+.tool-info{flex:1}
+.tool-name{font-size:12px;font-weight:500;color:var(--ink);margin-bottom:4px}
+.tool-bar-bg{height:3px;background:var(--surface-2);border-radius:2px;overflow:hidden}
+.tool-bar-fill{height:100%;border-radius:2px;background:var(--blue-mid)}
 
-/* Opportunities */
-.opps-block { grid-column: 2; }
-.opp-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--border); }
-.opp-row:last-child { border-bottom: none; }
-.opp-num { width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 10px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.opp-name { font-size: 12px; flex: 1; color: var(--ink); line-height: 1.35; }
-.opp-bar-wrap { width: 60px; flex-shrink: 0; }
-.opp-bar-bg { height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; }
-.opp-bar-fill { height: 100%; border-radius: 2px; background: var(--accent-mid); }
-.opp-pct { font-size: 11px; font-weight: 500; white-space: nowrap; width: 38px; text-align: right; }
-.pct-high { color: var(--accent); }
-.pct-mid  { color: var(--warm); }
-.pct-low  { color: var(--ink-faint); }
+/* ── TOP BLOCK (takeaways + quotes) ── */
+.top-block{display:grid;grid-template-columns:1fr 310px;gap:0.875rem;padding:1.5rem 2.5rem 0}
+.tk-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.875rem}
+.tk-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.1rem;position:relative;overflow:hidden}
+.tk-card:first-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+.tk-card:first-child .tk-signal{border-top:none;padding-top:0;margin-top:0;border-left:2px solid var(--blue-light);padding-left:0.875rem}
+.tk-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.tc1::before{background:var(--teal-mid)}.tc2::before{background:var(--amber-mid)}.tc3::before{background:var(--red-mid)}.tc4::before{background:var(--purple-mid)}
+.tk-num{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-faint);margin-bottom:6px}
+.tk-tension{font-size:12px;font-weight:600;color:var(--ink);line-height:1.4}
+.tk-signal{font-size:11px;color:var(--ink-muted);line-height:1.6;border-top:1px solid var(--border);padding-top:0.75rem;margin-top:0.75rem}
+.tk-impl{font-size:10px;font-style:italic;color:var(--ink-faint);border-top:1px solid var(--border);padding-top:0.75rem;margin-top:0.5rem;line-height:1.5}
 
-/* Modes */
-.modes-block { grid-column: 1 / -1; }
-.modes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-.mode-card { background: #fff; border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; display: flex; align-items: center; gap: 12px; }
-.mode-badge { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 0.95rem; font-weight: 600; flex-shrink: 0; }
-.mb-top { background: var(--warm-light); color: var(--warm); }
-.mb-rest { background: var(--surface-2); color: var(--ink-faint); }
-.mode-name { font-size: 12px; font-weight: 500; color: var(--ink); line-height: 1.35; margin-bottom: 2px; }
-.mode-pts { font-size: 10px; color: var(--ink-faint); }
+/* ── QUOTES COL ── */
+.quotes-col{display:flex;flex-direction:column;gap:0.875rem}
+.quote-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:0.625rem}
+.quote-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:2px}
+.quote-card:nth-child(1)::before{background:var(--teal-mid)}.quote-card:nth-child(2)::before{background:var(--amber-mid)}.quote-card:nth-child(3)::before{background:var(--red-mid)}
+.q-glyph{font-size:1.5rem;color:var(--surface-2);line-height:0.7;font-weight:700;user-select:none}
+.q-text{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:0.8rem;line-height:1.65;color:var(--ink);flex:1}
+.q-foot{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.q-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:3px}
+.qt-teal{background:var(--teal-light);color:var(--teal)}.qt-amber{background:var(--amber-light);color:var(--amber)}.qt-red{background:var(--red-light);color:var(--red)}
+.q-etapa{font-size:10px;color:var(--ink-faint);white-space:nowrap}
 
-/* Tools */
-.tools-block { grid-column: 1 / -1; }
-.tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.875rem; }
-.tool-card { background: #fff; border: 0.5px solid var(--border); border-radius: 10px; padding: 0.875rem 1rem; display: flex; align-items: center; gap: 10px; }
-.tool-bar-wrap { flex: 1; }
-.tool-bar-bg { height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; margin-top: 4px; }
-.tool-bar-fill { height: 100%; border-radius: 2px; background: var(--accent-mid); }
-.tool-name { font-size: 12px; font-weight: 500; color: var(--ink); }
-.tool-count { font-size: 11px; color: var(--ink-faint); }
-.tool-num { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; color: var(--ink); flex-shrink: 0; }
+.pb{height:2.5rem}
 
-/* ══════════════════════════════
-   SÍNTESIS VIEW
-══════════════════════════════ */
-.sint-page { max-width: 1100px; margin: 0 auto; padding: 2.5rem 3rem 5rem; }
+/* ══ SÍNTESIS ══ */
+.sint-subheader{background:var(--white);border-bottom:1px solid var(--border);padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.sint-pills{display:flex;gap:8px}
+.sint-pill{display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:4px 12px 4px 8px}
+.sp-dot{width:7px;height:7px;border-radius:50%}
+.sp-dot.co{background:var(--col-co)}.sp-dot.br{background:var(--col-br)}
+.sp-text{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-muted)}
 
-.sint-scale-bar {
-  background: #fff; border-bottom: 0.5px solid var(--border);
-  padding: 0.875rem 3rem; display: flex; align-items: center; gap: 2rem;
-}
-.sint-scale-item { display: flex; align-items: center; gap: 10px; }
-.sint-scale-val { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; color: var(--ink); }
-.sint-scale-lbl { font-size: 11px; color: var(--ink-faint); line-height: 1.3; }
-.sint-scale-div { width: 0.5px; height: 32px; background: var(--border); }
+.sint-scale{background:var(--navy);margin:1.5rem 2.5rem 0;border-radius:10px;padding:1.25rem 2rem}
+.ss-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.4);margin-bottom:0.875rem}
+.ss-items{display:flex;flex-wrap:wrap;gap:0}
+.ss-item{padding-right:2rem}
+.ss-val{font-family:'IBM Plex Mono',monospace;font-size:1.75rem;font-weight:500;color:#fff;line-height:1}
+.ss-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-top:3px}
+.ss-div{width:1px;background:rgba(255,255,255,0.1);margin-right:2rem;align-self:stretch}
 
-.section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 1.5rem; }
-.section-num { font-family: 'Fraunces', serif; font-size: 0.75rem; font-weight: 600; color: var(--ink-faint); letter-spacing: 0.1em; flex-shrink: 0; }
-.section-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: 1.35rem; color: var(--ink); line-height: 1.2; }
-.section-title em { font-style: italic; color: var(--warm-mid); }
-.section-rule { flex: 1; height: 0.5px; background: var(--border); }
+.sint-page{padding:1.5rem 2.5rem 4rem}
+.sh{display:flex;align-items:baseline;gap:10px;margin-bottom:1rem}
+.sh-num{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:var(--ink-faint);letter-spacing:0.1em}
+.sh-title{font-size:1.05rem;font-weight:600;color:var(--ink)}
+.sh-title em{font-style:italic;color:var(--blue);font-weight:300}
+.sh-rule{flex:1;height:1px;background:var(--border)}
 
-.editorial { background: var(--ink); border-radius: 16px; padding: 2rem 2.5rem; margin-bottom: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.editorial-lead { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.9); }
-.editorial-lead strong { font-style: normal; font-weight: 600; color: var(--warm-mid); }
-.editorial-body { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 1.5rem; }
+.editorial{background:var(--navy);border-radius:10px;padding:1.75rem 2rem;margin-bottom:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.ed-lead{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1rem;line-height:1.75;color:rgba(255,255,255,0.9)}
+.ed-lead strong{font-style:normal;font-weight:600;color:var(--amber-mid)}
+.ed-body{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.75;border-left:1px solid rgba(255,255,255,0.1);padding-left:1.5rem}
 
-.universals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2.5rem; }
-.universal-card { background: #fff; border: 0.5px solid var(--border); border-radius: 14px; padding: 1.4rem; position: relative; overflow: hidden; }
-.universal-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2.5px; }
-.uc1::before { background: var(--accent-mid); }
-.uc2::before { background: var(--warm-mid); }
-.uc3::before { background: var(--alert); }
-.uc4::before { background: var(--purple); }
-.uc5::before { background: #5BA4D4; }
-.uc6::before { background: #C45B8A; }
-.u-label { font-size: 9px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.6rem; }
-.u-signal { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1rem; color: var(--ink); line-height: 1.3; margin-bottom: 0.6rem; }
-.u-body { font-size: 12px; color: var(--ink-muted); line-height: 1.6; }
-.u-countries { display: flex; gap: 6px; margin-top: 0.875rem; }
-.u-tag { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
-.tag-co { background: var(--accent-light); color: var(--accent); }
-.tag-br { background: var(--warm-light); color: var(--warm); }
+.universals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.875rem;margin-bottom:1.5rem}
+.u-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.1rem;position:relative;overflow:hidden}
+.u-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.uc1::before{background:var(--teal-mid)}.uc2::before{background:var(--amber-mid)}.uc3::before{background:var(--red-mid)}.uc4::before{background:var(--purple-mid)}.uc5::before{background:#3B82F6}.uc6::before{background:#EC4899}
+.u-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-faint);margin-bottom:6px}
+.u-signal{font-size:12px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:6px}
+.u-body{font-size:11px;color:var(--ink-muted);line-height:1.6}
+.u-tags{display:flex;gap:6px;margin-top:0.75rem}
+.u-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px}
+.tag-co{background:var(--teal-light);color:var(--teal)}.tag-br{background:var(--amber-light);color:var(--amber)}
 
-.trust-block { background: var(--warm-light); border: 0.5px solid rgba(176,125,58,0.2); border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 2.5rem; display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; }
-.trust-stat { text-align: center; }
-.trust-num { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 600; color: var(--warm); line-height: 1; }
-.trust-sub { font-size: 10px; color: var(--warm); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
-.trust-body { font-size: 13px; color: var(--ink-muted); line-height: 1.7; }
-.trust-body strong { color: var(--ink); font-weight: 500; }
+.trust-bar{background:var(--amber-light);border:1px solid rgba(245,158,11,0.2);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center}
+.trust-num{font-family:'IBM Plex Mono',monospace;font-size:2.5rem;font-weight:500;color:var(--amber);line-height:1}
+.trust-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-top:2px}
+.trust-body{font-size:12px;color:var(--ink-muted);line-height:1.7}
+.trust-body strong{color:var(--ink);font-weight:500}
 
-.opp-col-head { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 12px; margin-bottom: 4px; }
-.opp-col-head.co { color: var(--col-co); }
-.opp-col-head.br { color: var(--col-br); text-align: right; }
-.opp-row-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 0.5px solid var(--border); }
-.opp-row-item:last-child { border-bottom: none; }
-.opp-row-item.br { flex-direction: row-reverse; }
-.opp-name-co { font-size: 12px; color: var(--ink); flex: 1; }
-.opp-name-br { font-size: 12px; color: var(--ink); flex: 1; text-align: right; }
-.opp-pct-co { font-size: 12px; font-weight: 500; color: var(--col-co); width: 38px; flex-shrink: 0; }
-.opp-pct-br { font-size: 12px; font-weight: 500; color: var(--col-br); width: 38px; text-align: right; flex-shrink: 0; }
-.opp-rank { font-size: 10px; font-weight: 600; color: var(--ink-faint); width: 18px; text-align: center; flex-shrink: 0; }
+.opp-compare{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:0.5rem}
+.occ-head-row{display:grid;grid-template-columns:1fr 20px 1fr}
+.occ-h{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;padding:8px 12px}
+.occ-h.co{color:var(--teal)}.occ-h.br{color:var(--amber);text-align:right}
+.occ-body-grid{display:grid;grid-template-columns:1fr 20px 1fr}
+.occ-row{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border)}
+.occ-row:last-child{border-bottom:none}
+.occ-row.br{flex-direction:row-reverse}
+.occ-rank{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--ink-faint);width:14px;text-align:center;flex-shrink:0}
+.occ-name{font-size:11px;color:var(--ink);flex:1;line-height:1.3}
+.occ-name.br{text-align:right}
+.occ-pct{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;width:34px;flex-shrink:0}
+.occ-pct.co{color:var(--teal)}.occ-pct.br{color:var(--amber);text-align:right}
+.occ-mid{border-left:1px solid var(--border);border-right:1px solid var(--border)}
+.occ-note{font-size:11px;color:var(--ink-faint);margin-bottom:1.5rem;padding:6px 2px 0}
+.occ-note strong{color:var(--ink-muted)}
 
-.implications-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
-.impl-card { background: #fff; border: 0.5px solid var(--border); border-radius: 14px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.875rem; }
-.impl-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-.impl-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1rem; color: var(--ink); line-height: 1.3; }
-.impl-body { font-size: 12.5px; color: var(--ink-muted); line-height: 1.65; flex: 1; }
-.impl-so-what { font-size: 11.5px; font-style: italic; color: var(--accent); border-top: 0.5px solid var(--border); padding-top: 0.875rem; line-height: 1.5; }
+.diverge-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.875rem;margin-bottom:1.5rem}
+.div-card{border-radius:8px;padding:1.1rem;border:1px solid var(--border)}
+.div-card.co{background:rgba(20,184,166,0.04);border-color:rgba(20,184,166,0.2)}
+.div-card.br{background:rgba(245,158,11,0.04);border-color:rgba(245,158,11,0.2)}
+.div-head{display:flex;align-items:center;gap:7px;margin-bottom:0.875rem}
+.div-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.div-dot.co{background:var(--col-co)}.div-dot.br{background:var(--col-br)}
+.div-ctry{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em}
+.div-ctry.co{color:var(--teal)}.div-ctry.br{color:var(--amber)}
+.div-item{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)}
+.div-item:last-child{border-bottom:none}
+.div-bul{width:3px;height:3px;border-radius:50%;margin-top:7px;flex-shrink:0}
+.div-item.co .div-bul{background:var(--teal-mid)}.div-item.br .div-bul{background:var(--amber-mid)}
+.div-text{font-size:11.5px;color:var(--ink-muted);line-height:1.6}
 
-.divergence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
-.div-card { border-radius: 14px; padding: 1.5rem; border: 0.5px solid var(--border); }
-.div-card.co { background: rgba(29,158,117,0.04); border-color: rgba(29,158,117,0.2); }
-.div-card.br { background: rgba(212,165,90,0.04); border-color: rgba(212,165,90,0.2); }
-.div-head { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
-.div-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.div-dot.co { background: var(--col-co); }
-.div-dot.br { background: var(--col-br); }
-.div-country { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
-.div-country.co { color: var(--col-co); }
-.div-country.br { color: var(--col-br); }
-.div-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
-.div-item:last-child { border-bottom: none; }
-.div-bullet { width: 4px; height: 4px; border-radius: 50%; background: currentColor; margin-top: 6px; flex-shrink: 0; }
-.div-item.co .div-bullet { color: var(--col-co); }
-.div-item.br .div-bullet { color: var(--col-br); }
-.div-text { font-size: 12.5px; color: var(--ink-muted); line-height: 1.6; }
+.impl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.875rem;margin-bottom:1.5rem}
+.impl-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.1rem;display:flex;flex-direction:column;gap:0.625rem}
+.impl-ey{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-faint)}
+.impl-title{font-size:12px;font-weight:600;color:var(--ink);line-height:1.35}
+.impl-body{font-size:11px;color:var(--ink-muted);line-height:1.65;flex:1}
+.impl-sw{font-size:11px;font-style:italic;color:var(--teal);border-top:1px solid var(--border);padding-top:0.625rem;line-height:1.5}
 
-.hypothesis { background: var(--ink); border-radius: 16px; padding: 2rem 2.5rem; display: grid; grid-template-columns: 3px 1fr; gap: 1.5rem; }
-.hyp-bar { background: var(--warm-mid); border-radius: 3px; }
-.hyp-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.75rem; }
-.hyp-text { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 1.2rem; color: #fff; line-height: 1.65; margin-bottom: 1rem; }
-.hyp-text strong { font-style: normal; font-weight: 600; color: var(--warm-mid); }
-.hyp-sub { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+.hypothesis{background:var(--navy);border-radius:10px;padding:1.75rem 2rem;display:grid;grid-template-columns:2px 1fr;gap:1.5rem}
+.hyp-bar{background:var(--amber-mid);border-radius:2px}
+.hyp-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:0.625rem}
+.hyp-text{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1.05rem;color:#fff;line-height:1.65;margin-bottom:0.875rem}
+.hyp-text strong{font-style:normal;font-weight:600;color:var(--amber-mid)}
+.hyp-sub{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65}
 
-/* ── Footer ── */
-footer { border-top: 0.5px solid var(--border); padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; }
-.ft { font-size: 11px; color: var(--ink-faint); }
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:var(--white)}
+.ft{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-faint);letter-spacing:0.06em}
 
-@media (max-width: 800px) {
-  .header { padding: 1.25rem 1.5rem 0; }
-  .main, .sint-page { padding: 1.5rem; grid-template-columns: 1fr; }
-  .top-block { grid-template-columns: 1fr; }
-  .takeaways-grid { grid-template-columns: 1fr; }
-  .takeaway-card:first-child { grid-template-columns: 1fr; }
-  .modes-grid, .tools-grid, .universals-grid, .implications-grid, .divergence-grid { grid-template-columns: 1fr; }
-  .editorial { grid-template-columns: 1fr; }
-  .challenges-block, .opps-block { grid-column: 1; }
-  .sint-scale-bar { flex-wrap: wrap; padding: 1rem 1.5rem; }
+@media(max-width:900px){
+  .stat-cards,.modes-grid,.tools-grid,.universals-grid,.impl-grid{grid-template-columns:1fr 1fr}
+  .two-col,.top-block,.diverge-grid,.editorial{grid-template-columns:1fr}
+  .tk-grid{grid-template-columns:1fr}.tk-card:first-child{grid-template-columns:1fr}
+  .sint-page,.section,.full-w,.top-block,.two-col{padding-left:1.25rem;padding-right:1.25rem}
+  .cumulative,.sint-scale{margin-left:1.25rem;margin-right:1.25rem}
 }
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="header">
   <div class="header-top">
     <div>
-      <p class="eyebrow">Plataforma de Conocimiento · Grupo BID · VPS/KLD</p>
-      <h1>Voces del <em>terreno</em></h1>
+      <div class="brand-label">IDB Knowledge Platform · VPS/KLD</div>
+      <div class="header-title">Field Research Findings</div>
     </div>
   </div>
   <nav class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('sintesis')">
-      <span class="tab-dot sintesis"></span> Síntesis transversal
-    </button>
-    <button class="tab-btn" onclick="switchTab('colombia')">
-      <span class="tab-dot co"></span> Colombia · Mayo 2026
-    </button>
-    <button class="tab-btn" onclick="switchTab('brasil')">
-      <span class="tab-dot br"></span> Brasil · Junho 2026
-    </button>
-    <button class="tab-btn disabled">
-      <span class="tab-dot coming"></span> Panamá — próximamente
-    </button>
-    <button class="tab-btn disabled">
-      <span class="tab-dot coming"></span> Costa Rica — próximamente
-    </button>
+    <button class="tab-btn active" onclick="switchTab('sintesis',this)"><span class="tab-dot td-sint"></span>SYNTHESIS</button>
+    <button class="tab-btn" onclick="switchTab('colombia',this)"><span class="tab-dot td-co"></span>COLOMBIA · MAY 2026</button>
+    <button class="tab-btn" onclick="switchTab('brasil',this)"><span class="tab-dot td-br"></span>BRASIL · JUN 2026</button>
+    <button class="tab-btn disabled"><span class="tab-dot td-dim"></span>PANAMÁ</button>
+    <button class="tab-btn disabled"><span class="tab-dot td-dim"></span>COSTA RICA</button>
   </nav>
 </header>
 
-<!-- ══════════ SÍNTESIS VIEW ══════════ -->
+<!-- ══════════ SÍNTESIS ══════════ -->
 <div id="view-sintesis" class="view active">
+  <div class="sint-subheader">
+    <div>
+      <div class="report-label">Comparative Report</div>
+      <div class="report-title">Synthesis</div>
+      <div class="report-source">IDB Knowledge Platform · Source: Field missions + survey data</div>
+    </div>
+    <div class="sint-pills">
+      <div class="sint-pill"><span class="sp-dot co"></span><span class="sp-text">Colombia · May 2026</span></div>
+      <div class="sint-pill"><span class="sp-dot br"></span><span class="sp-text">Brasil · Junho 2026</span></div>
+    </div>
+  </div>
 
-  <div class="sint-scale-bar">
-    <div class="sint-scale-item"><span class="sint-scale-val">2</span><span class="sint-scale-lbl">países<br>analizados</span></div>
-    <div class="sint-scale-div"></div>
-    <div class="sint-scale-item"><span class="sint-scale-val">32</span><span class="sint-scale-lbl">participantes<br>en encuesta</span></div>
-    <div class="sint-scale-div"></div>
-    <div class="sint-scale-item"><span class="sint-scale-val">126</span><span class="sint-scale-lbl">desafíos<br>reportados</span></div>
-    <div class="sint-scale-div"></div>
-    <div class="sint-scale-item"><span class="sint-scale-val">447</span><span class="sint-scale-lbl">votos<br>totales</span></div>
-    <div class="sint-scale-div"></div>
-    <div class="sint-scale-item"><span class="sint-scale-val">~80%</span><span class="sint-scale-lbl">usan IA<br>diariamente</span></div>
+  <div class="sint-scale">
+    <div class="ss-label">Cumulative totals — both missions</div>
+    <div class="ss-items">
+      <div class="ss-item"><div class="ss-val">2</div><div class="ss-lbl">Countries</div></div>
+      <div class="ss-div"></div>
+      <div class="ss-item"><div class="ss-val">32</div><div class="ss-lbl">Participants</div></div>
+      <div class="ss-div"></div>
+      <div class="ss-item"><div class="ss-val">126</div><div class="ss-lbl">Challenges</div></div>
+      <div class="ss-div"></div>
+      <div class="ss-item"><div class="ss-val">447</div><div class="ss-lbl">Votes</div></div>
+      <div class="ss-div"></div>
+      <div class="ss-item"><div class="ss-val">~80%</div><div class="ss-lbl">Use AI daily</div></div>
+      <div class="ss-div"></div>
+      <div class="ss-item"><div class="ss-val">≥87%</div><div class="ss-lbl">Prefer traceability</div></div>
+    </div>
   </div>
 
   <div class="sint-page">
-
     <div class="editorial">
-      <p class="editorial-lead">Dos países, dos contextos operativos, dos idiomas. Y sin embargo, <strong>el mismo deseo</strong>: una fuente de conocimiento institucional que sea confiable, trazable y que hable el idioma del trabajo real — no el del archivo formal.</p>
-      <p class="editorial-body">Lo que emerge no es un problema de tecnología ni de acceso. Es un problema de <em>confianza epistemológica</em>: los equipos del BID ya usan IA todos los días, pero no confían en ella para documentos oficiales. La plataforma tiene una ventana de oportunidad precisa — no competir con Copilot en velocidad, sino ganarse un lugar donde Copilot no puede entrar: el conocimiento institucional citado, curado y trazable.</p>
+      <p class="ed-lead">Dos países, dos contextos operativos, dos idiomas. Y sin embargo, <strong>el mismo deseo</strong>: una fuente de conocimiento institucional que sea confiable, trazable y que hable el idioma del trabajo real.</p>
+      <p class="ed-body">Lo que emerge no es un problema de tecnología ni de acceso. Es un problema de confianza epistemológica: los equipos del BID ya usan IA todos los días, pero no confían en ella para documentos oficiales. La plataforma tiene una ventana de oportunidad precisa — no competir con Copilot en velocidad, sino ganarse un lugar donde Copilot no puede entrar: el conocimiento institucional citado, curado y trazable.</p>
     </div>
 
-    <div class="section-head">
-      <span class="section-num">01</span>
-      <h2 class="section-title">Señales <em>universales</em> — lo que cruza fronteras</h2>
-      <span class="section-rule"></span>
-    </div>
-
+    <div class="sh"><span class="sh-num">01</span><h2 class="sh-title">Universal signals — <em>what crosses borders</em></h2><span class="sh-rule"></span></div>
     <div class="universals-grid">
-      <div class="universal-card uc1">
-        <p class="u-label">Confianza · Universal</p>
-        <p class="u-signal">Trazabilidad sobre velocidad — siempre</p>
-        <p class="u-body">En ambos países la mayoría abrumadora prefiere respuestas más lentas con fuentes citadas. Colombia: 100%. Brasil: 87%. La fuente no es un plus — es el producto.</p>
-        <div class="u-countries"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div>
-      </div>
-      <div class="universal-card uc2">
-        <p class="u-label">Herramientas · Universal</p>
-        <p class="u-signal">Copilot lidera, pero los colegas son el segundo recurso</p>
-        <p class="u-body">Copilot domina en ambos países. Pero "colegas" aparece en el top 3 en los dos: el conocimiento tácito sigue circulando por red humana, no por sistema.</p>
-        <div class="u-countries"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div>
-      </div>
-      <div class="universal-card uc3">
-        <p class="u-label">Adopción · Universal</p>
-        <p class="u-signal">La plataforma será complemento, no reemplazo</p>
-        <p class="u-body">En ambos países la intención mayoritaria es "complementaría otras herramientas". Nadie quiere migrar — quieren integrar. El diseño debe abrazar esto, no resistirlo.</p>
-        <div class="u-countries"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div>
-      </div>
-      <div class="universal-card uc4">
-        <p class="u-label">Fragmentación · Universal</p>
-        <p class="u-signal">Demasiados dashboards, demasiado poco conocimiento consolidado</p>
-        <p class="u-body">Colombia lo nombra explícitamente. Brasil lo vive con datos transversales que exigen construcción manual. El problema no es falta de datos — es falta de síntesis.</p>
-        <div class="u-countries"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div>
-      </div>
-      <div class="universal-card uc5">
-        <p class="u-label">Uso de IA · Universal</p>
-        <p class="u-signal">IA ya es hábito — la plataforma llega a un ecosistema establecido</p>
-        <p class="u-body">~80% usa IA generativa diariamente en ambos países. No hay resistencia cultural — hay un ecosistema ya activo donde la plataforma debe encontrar su lugar diferencial.</p>
-        <div class="u-countries"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div>
-      </div>
-      <div class="universal-card uc6">
-        <p class="u-label">Conocimiento tácito · Universal</p>
-        <p class="u-signal">Lo más valioso no está en ningún sistema</p>
-        <p class="u-body">Lecciones aprendidas, buenas prácticas, quién sabe qué — circulan por conversaciones, no por plataformas. En Colombia como tensión de carreras; en Brasil como imposibilidad de recuperar historia de programas antiguos.</p>
-        <div class="u-countries"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div>
-      </div>
+      <div class="u-card uc1"><p class="u-label">Trust · Universal</p><p class="u-signal">Traceability over speed — always</p><p class="u-body">Colombia: 100%, Brasil: 87% prefer slower answers with cited sources. The source isn't a bonus — it's the product.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
+      <div class="u-card uc2"><p class="u-label">Tools · Universal</p><p class="u-signal">Copilot leads, but colleagues are #2</p><p class="u-body">Copilot dominates both countries. "Colegas" appears top-3 in both — tacit knowledge still flows through human networks, not systems.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
+      <div class="u-card uc3"><p class="u-label">Adoption · Universal</p><p class="u-signal">Complement, not replace</p><p class="u-body">Majority intent in both countries: "complement tools I already use." Nobody wants to migrate — they want to integrate.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
+      <div class="u-card uc4"><p class="u-label">Fragmentation · Universal</p><p class="u-signal">Too many dashboards, too little synthesis</p><p class="u-body">Colombia names it explicitly. Brasil lives it through transversal portfolio data built manually. Not lack of data — lack of synthesis.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
+      <div class="u-card uc5"><p class="u-label">AI Use · Universal</p><p class="u-signal">AI is already a habit</p><p class="u-body">~80% use generative AI daily. No cultural resistance — there's an established ecosystem where the platform must find its differential.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
+      <div class="u-card uc6"><p class="u-label">Tacit Knowledge · Universal</p><p class="u-signal">The most valuable knowledge isn't in any system</p><p class="u-body">Lessons learned, good practices — flow through conversations, not platforms. In Colombia as a careers tension; in Brasil as inability to recover history of old programs.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
     </div>
 
-    <div class="trust-block">
-      <div class="trust-stat">
-        <div class="trust-num">≥87%</div>
-        <div class="trust-sub">ambos países</div>
-      </div>
-      <p class="trust-body"><strong>Prefieren trazabilidad sobre velocidad.</strong> Este no es un dato menor — es la arquitectura de confianza de la plataforma. Implica que el diseño debe priorizar la cadena de evidencia visible en cada respuesta: documento fuente, página, fecha. No como opción — como estándar. En Brasil se añade una señal social: el uso masivo por colegas BID sería por sí mismo una señal de confiabilidad. <strong>El network effect puede ser tan importante como la calidad del resultado.</strong></p>
+    <div class="trust-bar">
+      <div><div class="trust-num">≥87%</div><div class="trust-lbl">both countries</div></div>
+      <p class="trust-body"><strong>Prefer traceability over speed.</strong> Design must prioritize the visible evidence chain in every response: source doc, page, date. Not as an option — as a standard. In Brasil, a social signal emerges: mass usage by BID colleagues would itself be a reliability signal. <strong>The network effect may matter as much as result quality.</strong></p>
     </div>
 
-    <div class="section-head">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Oportunidades — dónde <em>convergen</em> y dónde <em>divergen</em></h2>
-      <span class="section-rule"></span>
-    </div>
-
-    <div style="margin-bottom:2.5rem;">
-      <div style="display:grid; grid-template-columns:1fr 24px 1fr; margin-bottom:4px;">
-        <div class="opp-col-head co">Colombia</div>
-        <div></div>
-        <div class="opp-col-head br">Brasil</div>
-      </div>
-      <div style="display:grid; grid-template-columns:1fr 24px 1fr; background:#fff; border:0.5px solid var(--border); border-radius:12px; overflow:hidden;">
+    <div class="sh"><span class="sh-num">02</span><h2 class="sh-title">Opportunities — where they <em>converge</em> and <em>diverge</em></h2><span class="sh-rule"></span></div>
+    <div class="opp-compare">
+      <div class="occ-head-row"><div class="occ-h co">Colombia</div><div></div><div class="occ-h br" style="text-align:right">Brasil</div></div>
+      <div class="occ-body-grid">
         <div>
-          <div class="opp-row-item co"><span class="opp-rank">1</span><span class="opp-name-co">Redactar borrador de un POD</span><span class="opp-pct-co">100%</span></div>
-          <div class="opp-row-item co"><span class="opp-rank">2</span><span class="opp-name-co">Buscar y descargar operaciones</span><span class="opp-pct-co">100%</span></div>
-          <div class="opp-row-item co"><span class="opp-rank">3</span><span class="opp-name-co">Detectar brechas en documento</span><span class="opp-pct-co">88%</span></div>
-          <div class="opp-row-item co"><span class="opp-rank">4</span><span class="opp-name-co">Consultar políticas con cita exacta</span><span class="opp-pct-co">88%</span></div>
-          <div class="opp-row-item co"><span class="opp-rank">5</span><span class="opp-name-co">Mapear ecosistema país/sector</span><span class="opp-pct-co">75%</span></div>
-          <div class="opp-row-item co"><span class="opp-rank">6</span><span class="opp-name-co">Cómo evolucionó un tema en la región</span><span class="opp-pct-co">75%</span></div>
-          <div class="opp-row-item co"><span class="opp-rank">7</span><span class="opp-name-co">Encontrar evidencia rigurosa</span><span class="opp-pct-co">63%</span></div>
-          <div class="opp-row-item co"><span class="opp-rank">8</span><span class="opp-name-co">Conectar con agentes de IA</span><span class="opp-pct-co">38%</span></div>
+          <div class="occ-row"><span class="occ-rank">1</span><span class="occ-name">Redactar borrador POD</span><span class="occ-pct co">100%</span></div>
+          <div class="occ-row"><span class="occ-rank">2</span><span class="occ-name">Buscar y descargar operaciones</span><span class="occ-pct co">100%</span></div>
+          <div class="occ-row"><span class="occ-rank">3</span><span class="occ-name">Detectar brechas en documento</span><span class="occ-pct co">88%</span></div>
+          <div class="occ-row"><span class="occ-rank">4</span><span class="occ-name">Consultar políticas con cita exacta</span><span class="occ-pct co">88%</span></div>
+          <div class="occ-row"><span class="occ-rank">5</span><span class="occ-name">Mapear ecosistema país/sector</span><span class="occ-pct co">75%</span></div>
+          <div class="occ-row"><span class="occ-rank">6</span><span class="occ-name">Cómo evolucionó un tema en la región</span><span class="occ-pct co">75%</span></div>
+          <div class="occ-row"><span class="occ-rank">7</span><span class="occ-name">Encontrar evidencia rigurosa</span><span class="occ-pct co">63%</span></div>
+          <div class="occ-row"><span class="occ-rank">8</span><span class="occ-name">Conectar con agentes de IA</span><span class="occ-pct co">38%</span></div>
         </div>
-        <div style="border-left:0.5px solid var(--border); border-right:0.5px solid var(--border);"></div>
+        <div class="occ-mid"></div>
         <div>
-          <div class="opp-row-item br"><span class="opp-rank" style="text-align:right">1</span><span class="opp-name-br">Consultar políticas con cita exacta</span><span class="opp-pct-br">92%</span></div>
-          <div class="opp-row-item br"><span class="opp-rank" style="text-align:right">2</span><span class="opp-name-br">Encontrar evidencia rigurosa</span><span class="opp-pct-br">90%</span></div>
-          <div class="opp-row-item br"><span class="opp-rank" style="text-align:right">3</span><span class="opp-name-br">Detectar brechas en documento</span><span class="opp-pct-br">88%</span></div>
-          <div class="opp-row-item br"><span class="opp-rank" style="text-align:right">4</span><span class="opp-name-br">Buscar y descargar operaciones</span><span class="opp-pct-br">79%</span></div>
-          <div class="opp-row-item br"><span class="opp-rank" style="text-align:right">5</span><span class="opp-name-br">Cómo evolucionó un tema en la región</span><span class="opp-pct-br">73%</span></div>
-          <div class="opp-row-item br"><span class="opp-rank" style="text-align:right">6</span><span class="opp-name-br">Redactar borrador de un POD</span><span class="opp-pct-br">71%</span></div>
-          <div class="opp-row-item br"><span class="opp-rank" style="text-align:right">7</span><span class="opp-name-br">Conectar con agentes de IA</span><span class="opp-pct-br">70%</span></div>
-          <div class="opp-row-item br"><span class="opp-rank" style="text-align:right">8</span><span class="opp-name-br">Mapear ecosistema país/sector</span><span class="opp-pct-br">69%</span></div>
+          <div class="occ-row br"><span class="occ-rank">1</span><span class="occ-name br">Consultar políticas con cita exacta</span><span class="occ-pct br">92%</span></div>
+          <div class="occ-row br"><span class="occ-rank">2</span><span class="occ-name br">Encontrar evidencia rigurosa</span><span class="occ-pct br">90%</span></div>
+          <div class="occ-row br"><span class="occ-rank">3</span><span class="occ-name br">Detectar brechas en documento</span><span class="occ-pct br">88%</span></div>
+          <div class="occ-row br"><span class="occ-rank">4</span><span class="occ-name br">Buscar y descargar operaciones</span><span class="occ-pct br">79%</span></div>
+          <div class="occ-row br"><span class="occ-rank">5</span><span class="occ-name br">Cómo evolucionó un tema en la región</span><span class="occ-pct br">73%</span></div>
+          <div class="occ-row br"><span class="occ-rank">6</span><span class="occ-name br">Redactar borrador POD</span><span class="occ-pct br">71%</span></div>
+          <div class="occ-row br"><span class="occ-rank">7</span><span class="occ-name br">Conectar con agentes de IA</span><span class="occ-pct br">70%</span></div>
+          <div class="occ-row br"><span class="occ-rank">8</span><span class="occ-name br">Mapear ecosistema país/sector</span><span class="occ-pct br">69%</span></div>
         </div>
       </div>
-      <p style="font-size:11px; color:var(--ink-faint); margin-top:8px; padding-left:4px;"><strong style="color:var(--ink-muted)">Lectura clave:</strong> Detectar brechas y buscar operaciones son top-4 en ambos. Redactar POD cae del #1 al #6 en Brasil — donde la prioridad es la evidencia antes que la generación. Conectar con IA sube de 38% a 70% en Brasil — señal de mayor madurez o mayor urgencia operativa.</p>
     </div>
+    <p class="occ-note"><strong>Key read:</strong> Detectar brechas and Buscar operaciones are top-4 in both. Redactar POD drops from #1 to #6 in Brasil — evidence before generation. Conectar con IA jumps from 38% to 70% in Brasil.</p>
 
-    <div class="section-head">
-      <span class="section-num">03</span>
-      <h2 class="section-title">Lo que <em>diverge</em> — cada país tiene su propio dolor</h2>
-      <span class="section-rule"></span>
-    </div>
-
-    <div class="divergence-grid">
+    <div class="sh"><span class="sh-num">03</span><h2 class="sh-title">What <em>diverges</em> — each country has its own pain</h2><span class="sh-rule"></span></div>
+    <div class="diverge-grid">
       <div class="div-card co">
-        <div class="div-head"><span class="div-dot co"></span><span class="div-country co">Colombia · Tensiones propias</span></div>
-        <div class="div-item co"><span class="div-bullet"></span><p class="div-text"><strong>Visibilidad del trabajo de conocimiento.</strong> El problema no es solo encontrar información — es que el trabajo de KM no se valora ni se ve. Incentivos desalineados con la producción de conocimiento tácito.</p></div>
-        <div class="div-item co"><span class="div-bullet"></span><p class="div-text"><strong>TdR como caso de uso urgente.</strong> El acceso centralizado a términos de referencia similares es el desafío más crítico — una necesidad concreta que la plataforma podría resolver hoy.</p></div>
-        <div class="div-item co"><span class="div-bullet"></span><p class="div-text"><strong>Redactar POD como oportunidad #1.</strong> Colombia quiere generación más que búsqueda — ya confía suficiente para querer outputs, no solo inputs.</p></div>
+        <div class="div-head"><span class="div-dot co"></span><span class="div-ctry co">Colombia · Unique tensions</span></div>
+        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Knowledge Careers gap.</strong> KM work isn't valued or visible. Incentives are misaligned with tacit knowledge production.</p></div>
+        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>TdR as the most urgent use case.</strong> Centralized access to similar terms of reference — concrete, solvable today.</p></div>
+        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Redactar POD as #1 opportunity.</strong> Colombia wants generation more than search — already trusts enough to want outputs.</p></div>
       </div>
       <div class="div-card br">
-        <div class="div-head"><span class="div-dot br"></span><span class="div-country br">Brasil · Tensiones propias</span></div>
-        <div class="div-item br"><span class="div-bullet"></span><p class="div-text"><strong>Demanda de inteligencia de portafolio.</strong> Quieren datos transversales — desembolsos por proyecto, riesgos por región — que hoy se construyen manualmente en Excel.</p></div>
-        <div class="div-item br"><span class="div-bullet"></span><p class="div-text"><strong>PCR automático como demanda explícita.</strong> "¿Por qué no hay un sistema que genere automáticamente un PCR?" — la pregunta más disruptiva del corpus. No piden mejor búsqueda; piden automatización de cierre.</p></div>
-        <div class="div-item br"><span class="div-bullet"></span><p class="div-text"><strong>Consultar políticas con cita exacta como #1.</strong> Brasil prioriza evidencia regulatoria sobre generación — están un paso antes en la curva de confianza.</p></div>
+        <div class="div-head"><span class="div-dot br"></span><span class="div-ctry br">Brasil · Unique tensions</span></div>
+        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Portfolio intelligence demand.</strong> Cross-sectional data — disbursements by project, risks by region — built manually in Excel today.</p></div>
+        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>PCR automático — explicit demand.</strong> "Why isn't there a system that automatically generates a PCR?" Not better search; automation of closure.</p></div>
+        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Consultar políticas as #1.</strong> Brasil prioritizes regulatory evidence over generation — one step earlier on the trust curve.</p></div>
       </div>
     </div>
 
-    <div class="section-head">
-      <span class="section-num">04</span>
-      <h2 class="section-title">Implicaciones de <em>diseño</em> — qué hacer con todo esto</h2>
-      <span class="section-rule"></span>
-    </div>
-
-    <div class="implications-grid">
-      <div class="impl-card">
-        <p class="impl-eyebrow">Arquitectura de confianza</p>
-        <p class="impl-title">Diseñar para la cita, no para la respuesta</p>
-        <p class="impl-body">Cada resultado debe mostrar su cadena de evidencia de forma visible y clicable: documento fuente, sección, fecha. No como metadata colapsada — como parte del resultado mismo.</p>
-        <p class="impl-so-what">→ La confianza no se construye con disclaimers — se construye con transparencia radical de fuentes.</p>
-      </div>
-      <div class="impl-card">
-        <p class="impl-eyebrow">Estrategia de posicionamiento</p>
-        <p class="impl-title">No reemplazar Copilot — posicionarse donde no puede entrar</p>
-        <p class="impl-body">Copilot tiene velocidad y familiaridad. La plataforma tiene el acervo institucional citado del BID. La propuesta de valor no es "mejor que Copilot" — es lo que Copilot no puede hacer: responder con documentos reales del banco, operaciones específicas, políticas vigentes con número de página.</p>
-        <p class="impl-so-what">→ La plataforma gana en el margen donde Copilot pierde: precisión institucional.</p>
-      </div>
-      <div class="impl-card">
-        <p class="impl-eyebrow">Roadmap diferenciado</p>
-        <p class="impl-title">Colombia quiere generar. Brasil quiere consultar. Diseñar para ambos.</p>
-        <p class="impl-body">Colombia ya confía suficiente para querer outputs (redactar POD, detectar brechas). Brasil está validando fuentes antes de generar. Un diseño que calibre el nivel de autonomía según perfil de usuario y tipo de tarea.</p>
-        <p class="impl-so-what">→ No hay un solo modo de uso — hay una progresión de confianza que la UX debe acompañar.</p>
-      </div>
-      <div class="impl-card">
-        <p class="impl-eyebrow">Conocimiento tácito</p>
-        <p class="impl-title">Capturar lo que no está en ningún documento</p>
-        <p class="impl-body">La plataforma necesita un canal de ingesta de conocimiento tácito: notas de misión, minutas de taller, aprendizajes post-operación. El valor crece cada vez que un equipo deposita conocimiento, no solo cuando lo consulta.</p>
-        <p class="impl-so-what">→ El valor de la plataforma es acumulativo — cada contribución la hace más valiosa para todos.</p>
-      </div>
-      <div class="impl-card">
-        <p class="impl-eyebrow">Quick win · Inmediato</p>
-        <p class="impl-title">TdR y operaciones similares: el caso de uso más concreto</p>
-        <p class="impl-body">En Colombia, acceso a TdR similares es el desafío más crítico. En Brasil, encontrar operaciones con el mismo ejecutor o mecanismo. Caso de uso finito, definible y demostrable — ideal para una primera versión que genere confianza.</p>
-        <p class="impl-so-what">→ Lanzar con un caso de uso estrecho y excelente es más poderoso que lanzar con todo y regular.</p>
-      </div>
-      <div class="impl-card">
-        <p class="impl-eyebrow">Visión de largo plazo · Brasil</p>
-        <p class="impl-title">PCR automático: la apuesta más ambiciosa y más legítima</p>
-        <p class="impl-body">Si la plataforma puede capturar cambios durante la ejecución y sintetizarlos al cierre, estaría resolviendo un pain point que ninguna otra herramienta aborda. No es un feature — es una propuesta de valor que redefine el rol de la plataforma.</p>
-        <p class="impl-so-what">→ Este caso de uso redefine la plataforma como sistema de producción, no solo de consulta.</p>
-      </div>
+    <div class="sh"><span class="sh-num">04</span><h2 class="sh-title">Design <em>implications</em> — what to do with all this</h2><span class="sh-rule"></span></div>
+    <div class="impl-grid">
+      <div class="impl-card"><p class="impl-ey">Trust architecture</p><p class="impl-title">Design for the citation, not the answer</p><p class="impl-body">Every result must show its evidence chain visibly and clickably: source doc, section, date. Not as collapsed metadata — as part of the result itself.</p><p class="impl-sw">→ Trust isn't built with disclaimers — it's built with radical source transparency.</p></div>
+      <div class="impl-card"><p class="impl-ey">Positioning</p><p class="impl-title">Don't replace Copilot — occupy where it can't go</p><p class="impl-body">Copilot has speed and familiarity. The platform has the BID's cited institutional knowledge. Value prop: real bank documents, specific operations, policies with page numbers.</p><p class="impl-sw">→ The platform wins in the margin where Copilot falls short: institutional precision.</p></div>
+      <div class="impl-card"><p class="impl-ey">Differentiated roadmap</p><p class="impl-title">Colombia wants to generate. Brasil wants to verify. Design for both.</p><p class="impl-body">Adaptive UX that calibrates autonomy level per user profile and task type. There's no single use mode — there's a trust progression the UX must support.</p><p class="impl-sw">→ One platform, two entry points on the trust curve.</p></div>
+      <div class="impl-card"><p class="impl-ey">Tacit knowledge</p><p class="impl-title">Capture what's in no document</p><p class="impl-body">An ingestion channel for tacit knowledge: mission notes, workshop minutes, post-operation learnings. Value grows every time a team deposits knowledge.</p><p class="impl-sw">→ The platform's value is cumulative — each contribution makes it more valuable for everyone.</p></div>
+      <div class="impl-card"><p class="impl-ey">Quick win · Immediate</p><p class="impl-title">TdR and similar operations: the clearest first use case</p><p class="impl-body">Finite, definable, demonstrable — ideal for a first version that builds trust. A narrow excellent launch beats a broad average one.</p><p class="impl-sw">→ Start narrow, prove value, then expand.</p></div>
+      <div class="impl-card"><p class="impl-ey">Long-term vision · Brasil</p><p class="impl-title">PCR automático: the most ambitious and legitimate bet</p><p class="impl-body">Capturing execution changes and synthesizing them at closure solves a pain point no other tool addresses. Not a feature — a value proposition that redefines the platform.</p><p class="impl-sw">→ This use case redefines the platform as a production system, not just a search tool.</p></div>
     </div>
 
     <div class="hypothesis">
       <div class="hyp-bar"></div>
       <div>
-        <p class="hyp-label">Hipótesis de diseño · Transversal</p>
-        <p class="hyp-text">La Plataforma de Conocimiento no compite en el mercado de la IA generativa. Compite en el mercado de la <strong>confianza institucional</strong>. Su ventaja diferencial no es la velocidad de respuesta sino la trazabilidad del conocimiento — y eso es exactamente lo que ninguna herramienta generalista puede ofrecer.</p>
-        <p class="hyp-sub">Colombia y Brasil, con perfiles operativos distintos, convergen en la misma señal: <em>no necesitamos más información, necesitamos información en la que podamos confiar</em>. Esa es la plataforma que el BID tiene la oportunidad única de construir.</p>
+        <p class="hyp-label">Design hypothesis · Transversal</p>
+        <p class="hyp-text">The Knowledge Platform doesn't compete in the generative AI market. It competes in the market of <strong>institutional trust</strong>. Its differential advantage isn't response speed but knowledge traceability — and that's exactly what no generalist tool can offer.</p>
+        <p class="hyp-sub">Colombia and Brasil, with distinct operational profiles, converge on the same signal: <em>we don't need more information, we need information we can trust</em>. That is the platform the IDB has the unique opportunity to build.</p>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- ══════════ COLOMBIA VIEW ══════════ -->
+<!-- ══════════ COLOMBIA ══════════ -->
 <div id="view-colombia" class="view">
-  <div class="stats-bar" id="stats-colombia"></div>
-  <div class="main" id="main-colombia"></div>
+  <div class="subheader">
+    <div>
+      <div class="report-label">Mission Report</div>
+      <div class="report-title">Colombia</div>
+      <div class="report-source">IDB Knowledge Platform · Source: Field mission + Mentimeter survey · May 2026</div>
+    </div>
+    <button class="export-btn" onclick="exportCSV('colombia')">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      ↓ Export raw data
+    </button>
+  </div>
+
+  <div class="cumulative">
+    <div class="cum-label">Cumulative totals — Colombia mission</div>
+    <div class="cum-stats">
+      <div class="cum-item"><div class="cum-val">12</div><div class="cum-lbl">Participants</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">19</div><div class="cum-lbl">Challenges</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">64</div><div class="cum-lbl">Votes</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">57%</div><div class="cum-lbl">Rated platform "useful"</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><span class="section-mono">&#9646; General Usability</span></div>
+    <div class="stat-cards">
+      <div class="stat-card hi">
+        <div class="sc-label">Prior platform use</div>
+        <div class="sc-val blue">33%</div>
+        <div class="sc-sub">Had used it before</div>
+        <span class="delta neu">50% never used it</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Utility rating</div>
+        <div class="sc-val">57%</div>
+        <div class="sc-sub">Rated 4 — útil</div>
+        <span class="delta up">↑ 0% rated 1–2</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">AI frequency</div>
+        <div class="sc-val">64%</div>
+        <div class="sc-sub">Use AI daily</div>
+        <span class="delta neu">27% weekly</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Source preference</div>
+        <div class="sc-val">100%</div>
+        <div class="sc-sub">Prefer traceability</div>
+        <span class="delta up">↑ vs speed</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Internal tools sufficient</div>
+        <div class="sc-val">4.8</div>
+        <div class="sc-sub">Score /10</div>
+        <span class="delta neu">Neutral</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="top-block">
+    <div>
+      <div class="section-head" style="margin-bottom:0.875rem"><span class="section-mono">&#9646; Key tensions from the mission</span></div>
+      <div class="tk-grid" id="tk-colombia"></div>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:0.875rem"><span class="section-mono">&#9646; Top quotes</span></div>
+      <div class="quotes-col" id="q-colombia"></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="table-card">
+      <div class="tc-head"><span class="tc-title">Challenges by stage</span><span class="tc-sub">19 reported · 64 votes</span></div>
+      <div id="ch-colombia"></div>
+    </div>
+    <div class="table-card">
+      <div class="tc-head"><span class="tc-title">Opportunities ranking</span><span class="tc-sub">% would use it</span></div>
+      <div id="opp-colombia"></div>
+    </div>
+  </div>
+
+  <div class="full-w">
+    <div class="section-head"><span class="section-mono">&#9646; Preferred use modes</span></div>
+    <div class="modes-grid" id="modes-colombia"></div>
+  </div>
+
+  <div class="full-w">
+    <div class="section-head"><span class="section-mono">&#9646; Current tools used · mentions</span></div>
+    <div class="tools-grid" id="tools-colombia"></div>
+  </div>
+  <div class="pb"></div>
 </div>
 
-<!-- ══════════ BRASIL VIEW ══════════ -->
+<!-- ══════════ BRASIL ══════════ -->
 <div id="view-brasil" class="view">
-  <div class="stats-bar" id="stats-brasil"></div>
-  <div class="main" id="main-brasil"></div>
+  <div class="subheader">
+    <div>
+      <div class="report-label">Mission Report</div>
+      <div class="report-title">Brasil</div>
+      <div class="report-source">IDB Knowledge Platform · Source: Field mission + Mentimeter survey (PT) · Junho 2026</div>
+    </div>
+    <button class="export-btn" onclick="exportCSV('brasil')">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      ↓ Export raw data
+    </button>
+  </div>
+
+  <div class="cumulative">
+    <div class="cum-label">Cumulative totals — Brasil mission</div>
+    <div class="cum-stats">
+      <div class="cum-item"><div class="cum-val">20</div><div class="cum-lbl">Participants</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">107</div><div class="cum-lbl">Challenges</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">383</div><div class="cum-lbl">Votes</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">85%</div><div class="cum-lbl">Use AI daily</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><span class="section-mono">&#9646; General Usability</span></div>
+    <div class="stat-cards">
+      <div class="stat-card hi">
+        <div class="sc-label">Prior platform use</div>
+        <div class="sc-val blue">20%</div>
+        <div class="sc-sub">Had used it before</div>
+        <span class="delta neu">60% never used it</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Utility rating</div>
+        <div class="sc-val">65%</div>
+        <div class="sc-sub">Rated 4–5 (útil)</div>
+        <span class="delta up">↑ 0% rated 1–2</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">AI frequency</div>
+        <div class="sc-val">85%</div>
+        <div class="sc-sub">Use AI daily</div>
+        <span class="delta up">↑ vs Colombia 64%</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Source preference</div>
+        <div class="sc-val">87%</div>
+        <div class="sc-sub">Prefer traceability</div>
+        <span class="delta up">↑ vs speed</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Internal tools sufficient</div>
+        <div class="sc-val">4.0</div>
+        <div class="sc-sub">Score /10</div>
+        <span class="delta dn">↓ vs Colombia 4.8</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="top-block">
+    <div>
+      <div class="section-head" style="margin-bottom:0.875rem"><span class="section-mono">&#9646; Key tensions from the mission</span></div>
+      <div class="tk-grid" id="tk-brasil"></div>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:0.875rem"><span class="section-mono">&#9646; Top quotes</span></div>
+      <div class="quotes-col" id="q-brasil"></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="table-card">
+      <div class="tc-head"><span class="tc-title">Challenges by stage</span><span class="tc-sub">107 reported · 383 votes</span></div>
+      <div id="ch-brasil"></div>
+    </div>
+    <div class="table-card">
+      <div class="tc-head"><span class="tc-title">Opportunities ranking</span><span class="tc-sub">% would use it</span></div>
+      <div id="opp-brasil"></div>
+    </div>
+  </div>
+
+  <div class="full-w">
+    <div class="section-head"><span class="section-mono">&#9646; Preferred use modes</span></div>
+    <div class="modes-grid" id="modes-brasil"></div>
+  </div>
+
+  <div class="full-w">
+    <div class="section-head"><span class="section-mono">&#9646; Current tools used · mentions</span></div>
+    <div class="tools-grid" id="tools-brasil"></div>
+  </div>
+  <div class="pb"></div>
 </div>
 
 <footer>
-  <span class="ft">© 2026 Plataforma de Conocimiento del Grupo BID</span>
-  <span class="ft" id="footer-label">Síntesis comparativa · VPS/KLD</span>
-  <span class="ft">Documento de uso interno</span>
+  <span class="ft">© 2026 IDB KNOWLEDGE PLATFORM · VPS/KLD</span>
+  <span class="ft" id="footer-label">SYNTHESIS · COMPARATIVE REPORT</span>
+  <span class="ft">INTERNAL USE ONLY</span>
 </footer>
 
 <script>
-// ── Tab switching ──
-function switchTab(tab) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('view-' + tab).classList.add('active');
-  event.currentTarget.classList.add('active');
-  const labels = { sintesis: 'Síntesis comparativa · VPS/KLD', colombia: 'Misión Colombia · Mayo 2026', brasil: 'Missão Brasil · Junho 2026' };
-  document.getElementById('footer-label').textContent = labels[tab] || '';
-}
-
-// ── Country data ──
 const DATA = {
   colombia: {
-    stats: [
-      { val: "12", lbl: "Participantes encuesta" },
-      { val: "19",  lbl: "Desafíos reportados" },
-      { val: "64",  lbl: "Votos totales" },
-      { val: "57%", lbl: "Calificaron la plataforma de 'útil'" }
-    ],
     takeaways: [
-      { num:"Tensión 1", tension:"Knowledge Loop — Brecha entre operaciones y conocimiento analítico", signal:"Necesidad de sistematizar conocimiento no visible: minutas de taller, reportes semestrales, productos de TCs. El conocimiento se genera pero no circula.", implication:"La plataforma debe ampliar fuentes más allá del acervo institucional y hacer visible el conocimiento del terreno.", cls:"tc1" },
-      { num:"Tensión 2", tension:"Interoperabilidad de sistemas", signal:"Más de 1.500 agentes operando sin articulación. Dashboards duplicados e iniciativas paralelas sin integración entre plataformas del Banco.", implication:"La interoperabilidad no es un problema técnico: es un problema de gobernanza.", cls:"tc2" },
-      { num:"Tensión 3", tension:"Demanda de personalización y reporting ad hoc", signal:"Los reportes se construyen desde cero ante cada solicitud corporativa. Uso orgánico de Claude crece incluso con financiamiento personal.", implication:"La plataforma debe habilitar producción continua, no solo dar acceso al stock acumulado.", cls:"tc3" },
-      { num:"Tensión 4 · Knowledge Careers", tension:"Conocimiento tácito no transferible e incentivos desalineados", signal:"El trabajo de conocimiento ocurre fuera del horario laboral. Las métricas premian publicaciones académicas sobre ejecución en campo. El acceso a sinergias depende de redes personales, no de sistemas.", implication:"El conocimiento más valioso — el del terreno — no se sistematiza ni transfiere. Sin incentivos alineados, seguirá siendo invisible.", cls:"tc4" }
+      {num:"Tension 1",tension:"Knowledge Loop — Gap between operations and analytical knowledge",signal:"Need to systematize non-visible knowledge: workshop minutes, semester reports, TC products. Knowledge is generated but doesn't circulate.",impl:"The platform must expand beyond the institutional archive and make field knowledge visible.",cls:"tc1"},
+      {num:"Tension 2",tension:"Systems interoperability",signal:"1,500+ agents operating without articulation. Duplicated dashboards and parallel initiatives without integration between bank platforms.",impl:"Interoperability isn't a technical problem — it's a governance problem.",cls:"tc2"},
+      {num:"Tension 3",tension:"Demand for personalization and ad hoc reporting",signal:"Reports are built from scratch for each corporate request. Organic use of Claude grows even with personal funding.",impl:"The platform must enable continuous production, not just access to the accumulated stock.",cls:"tc3"},
+      {num:"Tension 4 · Knowledge Careers",tension:"Non-transferable tacit knowledge and misaligned incentives",signal:"Knowledge work happens outside working hours. Metrics reward academic publications over field execution. Access to synergies depends on personal networks, not systems.",impl:"The most valuable knowledge — field knowledge — isn't systematized or transferred.",cls:"tc4"}
     ],
     quotes: [
-      { text:"La plataforma lo que tiene distinto es el conocimiento curado. Pero el problema es que hay muchos dashboards. Que sea uno solo — tengo ochenta cosas que hacer a la vez.", tag:"Fragmentación", tagClass:"qt-accent", etapa:"Sesión plenaria" },
-      { text:"Que la información venga de documentos del BID me da a mí una tranquilidad.", tag:"Confianza", tagClass:"qt-warm", etapa:"Día 2 · Sinergias" },
-      { text:"Siempre estamos haciendo mucho — el problema es conectar lo que hacemos de manera ordenada.", tag:"Coordinación", tagClass:"qt-alert", etapa:"Sesión de sinergias" }
+      {text:"La plataforma lo que tiene distinto es el conocimiento curado. Pero hay muchos dashboards. Que sea uno solo — tengo ochenta cosas que hacer a la vez.",tag:"Fragmentation",tagCls:"qt-teal",etapa:"Plenary session"},
+      {text:"Que la información venga de documentos del BID me da a mí una tranquilidad.",tag:"Trust",tagCls:"qt-amber",etapa:"Day 2 · Synergies"},
+      {text:"Siempre estamos haciendo mucho — el problema es conectar lo que hacemos de manera ordenada.",tag:"Coordination",tagCls:"qt-red",etapa:"Synergies session"}
     ],
     challenges: [
-      { name:"TdR y contrataciones similares sin acceso centralizado", sub:"Ejecución · Documentos", level:"CRÍTICO", lvCls:"lv-critical", count:"4 reportes" },
-      { name:"Búsqueda rápida de proyectos similares", sub:"Preparación · Búsqueda de info", level:"ALTO", lvCls:"lv-high", count:"2 reportes" },
-      { name:"Fragmentación de plataformas, falta de integración", sub:"Preparación · Herramientas", level:"ALTO", lvCls:"lv-high", count:"2 reportes" },
-      { name:"Armonización de procesos y herramientas", sub:"Ejecución · Herramientas", level:"ALTO", lvCls:"lv-high", count:"2 reportes" },
-      { name:"Trazabilidad de la matriz de resultados histórica", sub:"Cierre y Evaluación · Herramientas", level:"MEDIO", lvCls:"lv-mid", count:"1 reporte" },
-      { name:"Desembolsos y portafolio en Excel manual", sub:"Ejecución · Data", level:"MEDIO", lvCls:"lv-mid", count:"1 reporte" }
+      {name:"TdR and similar contracts — no centralized access",sub:"Execution · Documents",badge:"CRITICAL",bcls:"b-crit",count:"4 reports"},
+      {name:"Quick search for similar projects",sub:"Preparation · Search",badge:"HIGH",bcls:"b-high",count:"2 reports"},
+      {name:"Platform fragmentation, lack of integration",sub:"Preparation · Tools",badge:"HIGH",bcls:"b-high",count:"2 reports"},
+      {name:"Process and tool harmonization",sub:"Execution · Tools",badge:"HIGH",bcls:"b-high",count:"2 reports"},
+      {name:"Results matrix historical traceability",sub:"Closure · Tools",badge:"MED",bcls:"b-mid",count:"1 report"},
+      {name:"Disbursements and portfolio in manual Excel",sub:"Execution · Data",badge:"MED",bcls:"b-mid",count:"1 report"}
     ],
     opportunities: [
-      { name:"Redactar el primer borrador de un POD", pct:100 },
-      { name:"Buscar y descargar operaciones o documentos", pct:100 },
-      { name:"Detectar brechas en un documento", pct:88 },
-      { name:"Consultar políticas con cita exacta", pct:88 },
-      { name:"Mapear ecosistema de un país y sector", pct:75 },
-      { name:"Cómo ha evolucionado un tema en la región", pct:75 },
-      { name:"Encontrar evidencia rigurosa para decisiones", pct:63 },
-      { name:"Conectar con agentes de IA", pct:38 }
+      {name:"Redactar el primer borrador de un POD",pct:100},
+      {name:"Buscar y descargar operaciones o documentos",pct:100},
+      {name:"Detectar brechas en un documento",pct:88},
+      {name:"Consultar políticas con cita exacta",pct:88},
+      {name:"Mapear ecosistema de un país y sector",pct:75},
+      {name:"Cómo ha evolucionado un tema en la región",pct:75},
+      {name:"Encontrar evidencia rigurosa para decisiones",pct:63},
+      {name:"Conectar con agentes de IA",pct:38}
     ],
     modes: [
-      { rank:1, name:"Crear documento con contenido existente", pts:"22 pts" },
-      { rank:2, name:"Buscar una respuesta rápida", pts:"18 pts" },
-      { rank:3, name:"Comparar o analizar información", pts:"17 pts" },
-      { rank:4, name:"Exportar datos en planilla", pts:"16 pts" }
+      {rank:1,name:"Crear documento con contenido existente",pts:"22 pts"},
+      {rank:2,name:"Buscar una respuesta rápida",pts:"18 pts"},
+      {rank:3,name:"Comparar o analizar información",pts:"17 pts"},
+      {rank:4,name:"Exportar datos en planilla",pts:"16 pts"}
     ],
     tools: [
-      { name:"Copilot", count:11, pct:100 },
-      { name:"Colegas", count:10, pct:91 },
-      { name:"SharePoint/EzShare", count:7, pct:64 },
-      { name:"Google", count:6, pct:55 },
-      { name:"Catálogo BID", count:6, pct:55 },
-      { name:"Claude", count:3, pct:27 },
-      { name:"ChatGPT", count:2, pct:18 },
-      { name:"Otra", count:3, pct:27 }
+      {name:"Copilot",count:11,pct:100},{name:"Colegas",count:10,pct:91},
+      {name:"SharePoint/EzShare",count:7,pct:64},{name:"Google",count:6,pct:55},
+      {name:"Catálogo BID",count:6,pct:55},{name:"Claude",count:3,pct:27},
+      {name:"ChatGPT",count:2,pct:18},{name:"Otra",count:3,pct:27}
     ]
   },
   brasil: {
-    stats: [
-      { val:"20", lbl:"Participantes encuesta" },
-      { val:"107", lbl:"Desafíos reportados" },
-      { val:"383", lbl:"Votos totales" },
-      { val:"85%", lbl:"Usan IA generativa diariamente" }
-    ],
     takeaways: [
-      { num:"Tensão 1", tension:"Conocimiento histórico inencontrable — la memoria institucional está dispersa", signal:"En programas más antiguos hay dificultad para encontrar documentos y acuerdos de ejecución. Lecciones aprendidas por estado, municipio y mecanismo de ejecución no están accesibles de forma sistematizada.", implication:"La plataforma debe ser el lugar donde la memoria operativa del BID se vuelva consultable, no solo las publicaciones formales.", cls:"tc1" },
-      { num:"Tensão 2", tension:"Demanda de inteligencia de portafolio — datos transversales inaccesibles", signal:"Los especialistas necesitan proyecciones de desembolso por mes y proyecto, riesgos por sector/prestatario/ejecutor/región, y poder combinar impactos entre distintas operaciones. Hoy esto se hace en Excel manual.", implication:"La oportunidad no es solo buscar documentos — es construir inteligencia de portafolio en tiempo real.", cls:"tc2" },
-      { num:"Tensão 3", tension:"PCR automático — generación de documentos de cierre es pain point crítico", signal:"¿Por qué no hay un sistema que genere automáticamente un PCR? Los cambios realizados durante la ejecución no se registran, lo que dificulta el cierre. El equipo pide automatización, no solo consulta.", implication:"El caso de uso más deseado no es búsqueda — es generación automatizada de documentos con trazabilidad.", cls:"tc3" },
-      { num:"Tensão 4 · Confiança", tension:"Adopción condicionada a trazabilidad — velocidad no compensa sin fuentes citadas", signal:"87% prefiere respuestas con mayor trazabilidad aunque demoren más. La demanda unánime es referencia clara con link al documento fuente. El uso masivo por colegas BID sería la señal de confiabilidad más contundente.", implication:"La adopción no se gana con velocidad sino con precisión y transparencia de fuentes.", cls:"tc4" }
+      {num:"Tensão 1",tension:"Institutional memory untraceable — knowledge dispersed in old programs",signal:"In older programs it's hard to find documents and execution agreements. Lessons learned by state, municipality and execution mechanism aren't accessible.",impl:"The platform must be where the BID's operational memory becomes queryable, not just formal publications.",cls:"tc1"},
+      {num:"Tensão 2",tension:"Portfolio intelligence demand — transversal data inaccessible",signal:"Specialists need disbursement projections by month and project, risks by sector/borrower/executor/region. Today this is done manually in Excel.",impl:"The opportunity isn't just document search — it's building real-time portfolio intelligence.",cls:"tc2"},
+      {num:"Tensão 3",tension:"PCR automático — closure document generation is a critical pain point",signal:"'Why isn't there a system that automatically generates a PCR?' Changes made during execution aren't recorded, making closure difficult.",impl:"The most desired use case isn't search — it's automated document generation with traceability.",cls:"tc3"},
+      {num:"Tensão 4 · Confiança",tension:"Adoption conditioned on traceability — speed doesn't compensate without cited sources",signal:"87% prefer answers with greater traceability even if slower. The unanimous demand: clear reference with link to source document.",impl:"Adoption isn't won with speed but with precision and source transparency.",cls:"tc4"}
     ],
     quotes: [
-      { text:"Me gustaría tener información como gestora de portafolio: lecciones aprendidas de cierto mecanismo de ejecución en cierto estado, municipio de Brasil, y una recopilación de riesgos relevantes por sector, prestatario, ejecutor, región.", tag:"Inteligencia de portafolio", tagClass:"qt-accent", etapa:"Preparación" },
-      { text:"Futuro: ¿por qué no hay un sistema o herramienta que genere automáticamente un PCR?", tag:"Automatización", tagClass:"qt-warm", etapa:"Cierre y Evaluación" },
-      { text:"Que la herramienta se use de manera masiva y frecuente por los distintos funcionarios del BID — eso sería un mensaje contundente de confiabilidad.", tag:"Adopción & confianza", tagClass:"qt-alert", etapa:"Sesión plenaria" }
+      {text:"Me gustaría tener información como gestora de portafolio: lecciones aprendidas de cierto mecanismo de ejecución en cierto estado, municipio de Brasil, y una recopilación de riesgos relevantes por sector, prestatario, ejecutor, región.",tag:"Portfolio intelligence",tagCls:"qt-teal",etapa:"Preparation"},
+      {text:"Futuro: ¿por qué no hay un sistema o herramienta que genere automáticamente un PCR?",tag:"Automation",tagCls:"qt-amber",etapa:"Closure & Evaluation"},
+      {text:"Que la herramienta se use de manera masiva y frecuente por los distintos funcionarios del BID — eso sería un mensaje contundente de confiabilidad.",tag:"Adoption & trust",tagCls:"qt-red",etapa:"Plenary session"}
     ],
     challenges: [
-      { name:"Búsqueda de operaciones vinculadas y similares", sub:"Preparación · Búsqueda de info", level:"CRÍTICO", lvCls:"lv-critical", count:"23 reportes" },
-      { name:"Referentes teóricos y documentos de diseño de operaciones", sub:"Preparación · Documentos", level:"ALTO", lvCls:"lv-high", count:"11 reportes" },
-      { name:"Data estructurada para evidencia en documentos", sub:"Preparación · Data", level:"ALTO", lvCls:"lv-high", count:"11 reportes" },
-      { name:"Lecciones aprendidas de ejecución", sub:"Ejecución · Documentos", level:"ALTO", lvCls:"lv-high", count:"10 reportes" },
-      { name:"Herramientas para alineamiento con políticas del banco", sub:"Ejecución · Herramientas", level:"ALTO", lvCls:"lv-high", count:"8 reportes" },
-      { name:"Documentos históricos en programas antiguos", sub:"Cierre y Evaluación · Docs", level:"MEDIO", lvCls:"lv-mid", count:"6 reportes" }
+      {name:"Search for linked and similar operations",sub:"Preparation · Search",badge:"CRITICAL",bcls:"b-crit",count:"23 reports"},
+      {name:"Theoretical references and operation design docs",sub:"Preparation · Documents",badge:"HIGH",bcls:"b-high",count:"11 reports"},
+      {name:"Structured data for evidence in documents",sub:"Preparation · Data",badge:"HIGH",bcls:"b-high",count:"11 reports"},
+      {name:"Lessons learned from execution",sub:"Execution · Documents",badge:"HIGH",bcls:"b-high",count:"10 reports"},
+      {name:"Tools for bank policy alignment",sub:"Execution · Tools",badge:"HIGH",bcls:"b-high",count:"8 reports"},
+      {name:"Historical documents in older programs",sub:"Closure · Documents",badge:"MED",bcls:"b-mid",count:"6 reports"}
     ],
     opportunities: [
-      { name:"Consultar políticas con cita exacta", pct:92 },
-      { name:"Encontrar evidencia rigurosa para toma de decisiones", pct:90 },
-      { name:"Detectar brechas en un documento", pct:88 },
-      { name:"Buscar y descargar un grupo de operaciones o documentos", pct:79 },
-      { name:"Cómo ha evolucionado un tema en la región", pct:73 },
-      { name:"Redactar el primer borrador de un POD", pct:71 },
-      { name:"Conectar con agentes de IA", pct:70 },
-      { name:"Mapear ecosistema de un país y sector", pct:69 }
+      {name:"Consultar políticas con cita exacta",pct:92},
+      {name:"Encontrar evidencia rigurosa para decisiones",pct:90},
+      {name:"Detectar brechas en un documento",pct:88},
+      {name:"Buscar y descargar un grupo de operaciones",pct:79},
+      {name:"Cómo ha evolucionado un tema en la región",pct:73},
+      {name:"Redactar el primer borrador de un POD",pct:71},
+      {name:"Conectar con agentes de IA",pct:70},
+      {name:"Mapear ecosistema de un país y sector",pct:69}
     ],
     modes: [
-      { rank:1, name:"Crear documento con contenido existente", pts:"60 pts" },
-      { rank:2, name:"Comparar o analizar información", pts:"58 pts" },
-      { rank:3, name:"Buscar una respuesta rápida", pts:"52 pts" },
-      { rank:4, name:"Exportar datos en planilla", pts:"24 pts" }
+      {rank:1,name:"Criar documento com conteúdo existente",pts:"60 pts"},
+      {rank:2,name:"Comparar ou analisar informação",pts:"58 pts"},
+      {rank:3,name:"Buscar uma resposta rápida",pts:"52 pts"},
+      {rank:4,name:"Exportar dados em planilha",pts:"24 pts"}
     ],
     tools: [
-      { name:"Copilot", count:18, pct:100 },
-      { name:"SharePoint/EzShare", count:16, pct:89 },
-      { name:"Colegas", count:15, pct:83 },
-      { name:"Google", count:14, pct:78 },
-      { name:"ChatGPT", count:11, pct:61 },
-      { name:"Catálogo BID", count:8, pct:44 },
-      { name:"Claude", count:6, pct:33 },
-      { name:"Otra", count:6, pct:33 }
+      {name:"Copilot",count:18,pct:100},{name:"SharePoint/EzShare",count:16,pct:89},
+      {name:"Colegas",count:15,pct:83},{name:"Google",count:14,pct:78},
+      {name:"ChatGPT",count:11,pct:61},{name:"Catálogo BID",count:8,pct:44},
+      {name:"Claude",count:6,pct:33},{name:"Otra",count:6,pct:33}
     ]
   }
 };
 
-function pctClass(p) {
-  if (p >= 75) return "pct-high";
-  if (p >= 50) return "pct-mid";
-  return "pct-low";
-}
+function pctCls(p){return p>=75?'pct-h':p>=50?'pct-m':'pct-l'}
 
-function renderCountry(key) {
-  const d = DATA[key];
+function renderCountry(k){
+  const d=DATA[k];
 
-  document.getElementById('stats-' + key).innerHTML = d.stats.map(s =>
-    `<div class="stat-item"><span class="stat-val">${s.val}</span><span class="stat-lbl">${s.lbl}</span></div>`
-  ).join('');
-
-  const takeawaysHTML = d.takeaways.map(t => `
-    <div class="takeaway-card ${t.cls}">
-      <span class="tk-num">${t.num}</span>
-      <p class="tk-tension">${t.tension}</p>
-      <p class="tk-signal">${t.signal}</p>
-      <p class="tk-implication">${t.implication}</p>
+  // Takeaways
+  document.getElementById('tk-'+k).innerHTML=d.takeaways.map(t=>`
+    <div class="tk-card ${t.cls}">
+      <div><p class="tk-num">${t.num}</p><p class="tk-tension">${t.tension}</p></div>
+      <div><p class="tk-signal">${t.signal}</p><p class="tk-impl">${t.impl}</p></div>
     </div>`).join('');
 
-  const quotesHTML = d.quotes.map(q => `
+  // Quotes
+  document.getElementById('q-'+k).innerHTML=d.quotes.map(q=>`
     <div class="quote-card">
-      <span class="quote-glyph">"</span>
-      <p class="quote-text">${q.text}</p>
-      <div class="quote-foot">
-        <span class="quote-tag ${q.tagClass}">${q.tag}</span>
-        <span class="quote-etapa">${q.etapa}</span>
+      <span class="q-glyph">"</span>
+      <p class="q-text">${q.text}</p>
+      <div class="q-foot">
+        <span class="q-tag ${q.tagCls}">${q.tag}</span>
+        <span class="q-etapa">${q.etapa}</span>
       </div>
     </div>`).join('');
 
-  const challengesHTML = d.challenges.map(c => `
-    <div class="challenge-row">
-      <span class="ch-level ${c.lvCls}">${c.level}</span>
-      <div class="ch-info"><div class="ch-name">${c.name}</div><div class="ch-sub">${c.sub}</div></div>
+  // Challenges
+  document.getElementById('ch-'+k).innerHTML=d.challenges.map(c=>`
+    <div class="ch-row">
+      <span class="ch-badge ${c.bcls}">${c.badge}</span>
+      <div class="ch-info"><div class="ch-name">${c.name}</div><div class="ch-sub2">${c.sub}</div></div>
       <span class="ch-count">${c.count}</span>
     </div>`).join('');
 
-  const oppsHTML = d.opportunities.map((o, i) => `
+  // Opportunities
+  document.getElementById('opp-'+k).innerHTML=d.opportunities.map((o,i)=>`
     <div class="opp-row">
       <span class="opp-num">${i+1}</span>
       <span class="opp-name">${o.name}</span>
       <div class="opp-bar-wrap"><div class="opp-bar-bg"><div class="opp-bar-fill" style="width:${o.pct}%"></div></div></div>
-      <span class="opp-pct ${pctClass(o.pct)}">${o.pct}%</span>
+      <span class="opp-pct ${pctCls(o.pct)}">${o.pct}%</span>
     </div>`).join('');
 
-  const modesHTML = d.modes.map(m => `
+  // Modes
+  document.getElementById('modes-'+k).innerHTML=d.modes.map(m=>`
     <div class="mode-card">
-      <div class="mode-badge ${m.rank <= 2 ? 'mb-top' : 'mb-rest'}">${m.rank}</div>
+      <div class="mode-rank${m.rank<=2?' top':''}">${m.rank}</div>
       <div><div class="mode-name">${m.name}</div><div class="mode-pts">${m.pts}</div></div>
     </div>`).join('');
 
-  const toolsHTML = d.tools.map(t => `
+  // Tools
+  document.getElementById('tools-'+k).innerHTML=d.tools.map(t=>`
     <div class="tool-card">
-      <span class="tool-num">${t.count}</span>
-      <div class="tool-bar-wrap">
+      <div class="tool-num">${t.count}</div>
+      <div class="tool-info">
         <div class="tool-name">${t.name}</div>
         <div class="tool-bar-bg"><div class="tool-bar-fill" style="width:${t.pct}%"></div></div>
       </div>
     </div>`).join('');
+}
 
-  document.getElementById('main-' + key).innerHTML = `
-    <section class="top-block">
-      <div>
-        <div class="section-label">Tensiones clave de la misión</div>
-        <div class="takeaways-grid">${takeawaysHTML}</div>
-      </div>
-      <div>
-        <div class="section-label">Citas destacadas</div>
-        <div class="quotes-grid">${quotesHTML}</div>
-      </div>
-    </section>
-    <section class="challenges-block">
-      <div class="section-label">Desafíos por etapa</div>
-      ${challengesHTML}
-    </section>
-    <section class="opps-block">
-      <div class="section-label">Ranking de oportunidades · % aprobación</div>
-      ${oppsHTML}
-    </section>
-    <section class="modes-block">
-      <div class="section-label">Modos de uso preferidos</div>
-      <div class="modes-grid">${modesHTML}</div>
-    </section>
-    <section class="tools-block">
-      <div class="section-label">Herramientas actuales · menciones</div>
-      <div class="tools-grid">${toolsHTML}</div>
-    </section>`;
+function switchTab(tab,btn){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('view-'+tab).classList.add('active');
+  btn.classList.add('active');
+  const labels={sintesis:'SYNTHESIS · COMPARATIVE REPORT',colombia:'COLOMBIA · MISSION REPORT · MAY 2026',brasil:'BRASIL · MISSION REPORT · JUN 2026'};
+  document.getElementById('footer-label').textContent=labels[tab]||'';
+}
+
+function exportCSV(country){
+  const d=DATA[country];
+  const rows=[
+    ['Section','Item','Value','Notes'],
+    ['','','',''],
+    ['OPPORTUNITIES','','',''],
+    ...d.opportunities.map((o,i)=>[`Opportunity ${i+1}`,o.name,`${o.pct}%`,'% would use it']),
+    ['','','',''],
+    ['CHALLENGES','','',''],
+    ...d.challenges.map(c=>['Challenge',c.name,c.count,`${c.badge} · ${c.sub}`]),
+    ['','','',''],
+    ['USE MODES','','',''],
+    ...d.modes.map(m=>[`Mode ${m.rank}`,m.name,m.pts,'']),
+    ['','','',''],
+    ['TOOLS','','',''],
+    ...d.tools.map(t=>['Tool',t.name,`${t.count} mentions`,`${t.pct}% of max`]),
+    ['','','',''],
+    ['QUOTES','','',''],
+    ...d.quotes.map((q,i)=>[`Quote ${i+1}`,q.text,q.tag,q.etapa])
+  ];
+  const csv=rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`KP-field-findings-${country}-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
 }
 
 renderCountry('colombia');
@@ -736,3 +769,8 @@ renderCountry('brasil');
 </script>
 </body>
 </html>
+"""
+with open('/mnt/user-data/outputs/kp-dashboard.html','w') as f:
+    f.write(html)
+print('Written:', len(html), 'chars')
+PYEOF
