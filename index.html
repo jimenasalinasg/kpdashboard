@@ -575,8 +575,8 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
 
 <footer>
   <span class="ft">© 2026 IDB KNOWLEDGE PLATFORM · VPS/KLD</span>
-  <span class="ft" id="footer-label">SYNTHESIS · COMPARATIVE REPORT</span>
-  <span class="ft">INTERNAL USE ONLY</span>
+  <span class="ft" id="footer-label" style="text-align:center">SYNTHESIS · COMPARATIVE REPORT</span>
+  <span class="ft" style="text-align:right">INTERNAL USE ONLY</span>
 </footer>
 
 <script>
@@ -769,8 +769,3 @@ renderCountry('brasil');
 </script>
 </body>
 </html>
-"""
-with open('/mnt/user-data/outputs/kp-dashboard.html','w') as f:
-    f.write(html)
-print('Written:', len(html), 'chars')
-PYEOF
