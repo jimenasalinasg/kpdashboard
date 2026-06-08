@@ -17,7 +17,7 @@
   --ink:#111827;--ink-muted:#6B7280;--ink-faint:#9CA3AF;
   --surface:#F3F4F6;--surface-2:#E5E7EB;--white:#FFFFFF;
   --border:rgba(0,0,0,0.08);--border-strong:rgba(0,0,0,0.15);
-  --col-co:#14B8A6;--col-br:#F59E0B;
+  --col-co:#14B8A6;--col-br:#F59E0B;--col-cr:#6366F1;--col-cr:#6366F1;
 }
 body{font-family:'IBM Plex Sans',sans-serif;background:var(--surface);color:var(--ink);min-height:100vh;font-size:14px}
 
@@ -32,7 +32,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--surface);color:var(
 .tab-btn.active{color:#fff;border-bottom-color:var(--blue-mid);background:rgba(255,255,255,0.07)}
 .tab-btn.disabled{opacity:0.25;cursor:default;pointer-events:none}
 .tab-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.td-sint{background:#3B82F6}.td-co{background:var(--col-co)}.td-br{background:var(--col-br)}.td-dim{background:rgba(255,255,255,0.2)}
+.td-sint{background:#3B82F6}.td-co{background:var(--col-co)}.td-br{background:var(--col-br)}.td-cr{background:#6366F1}.td-dim{background:rgba(255,255,255,0.2)}.td-cr{background:#6366F1}
 
 /* ── VIEWS ── */
 .view{display:none}.view.active{display:block}
@@ -143,7 +143,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--surface);color:var(
 .sint-pills{display:flex;gap:8px}
 .sint-pill{display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:4px 12px 4px 8px}
 .sp-dot{width:7px;height:7px;border-radius:50%}
-.sp-dot.co{background:var(--col-co)}.sp-dot.br{background:var(--col-br)}
+.sp-dot.co{background:var(--col-co)}.sp-dot.br{background:var(--col-br)}.sp-dot.cr{background:#6366F1}
 .sp-text{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-muted)}
 
 .sint-scale{background:var(--navy);margin:1.5rem 2.5rem 0;border-radius:10px;padding:1.25rem 2rem}
@@ -175,7 +175,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--surface);color:var(
 .u-body{font-size:11px;color:var(--ink-muted);line-height:1.6}
 .u-tags{display:flex;gap:6px;margin-top:0.75rem}
 .u-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px}
-.tag-co{background:var(--teal-light);color:var(--teal)}.tag-br{background:var(--amber-light);color:var(--amber)}
+.tag-co{background:var(--teal-light);color:var(--teal)}.tag-br{background:var(--amber-light);color:var(--amber)}.tag-cr{background:#EEF2FF;color:#4338CA}
 
 .trust-bar{background:var(--amber-light);border:1px solid rgba(245,158,11,0.2);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center}
 .trust-num{font-family:'IBM Plex Mono',monospace;font-size:2.5rem;font-weight:500;color:var(--amber);line-height:1}
@@ -254,10 +254,10 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
   </div>
   <nav class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('sintesis',this)"><span class="tab-dot td-sint"></span>SYNTHESIS</button>
-    <button class="tab-btn" onclick="switchTab('colombia',this)"><span class="tab-dot td-co"></span>COLOMBIA · MAY 2026</button>
-    <button class="tab-btn" onclick="switchTab('brasil',this)"><span class="tab-dot td-br"></span>BRASIL · JUN 2026</button>
-    <button class="tab-btn disabled"><span class="tab-dot td-dim"></span>PANAMÁ</button>
-    <button class="tab-btn disabled"><span class="tab-dot td-dim"></span>COSTA RICA</button>
+    <button class="tab-btn" onclick="switchTab('colombia',this)"><span class="tab-dot td-co"></span>COLOMBIA · MAY 26–27</button>
+    <button class="tab-btn" onclick="switchTab('brasil',this)"><span class="tab-dot td-br"></span>BRASIL · JUN 1</button>
+    <button class="tab-btn" onclick="switchTab('costarica',this)"><span class="tab-dot td-cr"></span>COSTA RICA · JUN 8</button>
+    <button class="tab-btn disabled"><span class="tab-dot td-dim"></span>PANAMÁ — coming soon</button>
   </nav>
 </header>
 
@@ -270,21 +270,22 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
       <div class="report-source">IDB Knowledge Platform · Source: Field missions + survey data</div>
     </div>
     <div class="sint-pills">
-      <div class="sint-pill"><span class="sp-dot co"></span><span class="sp-text">Colombia · May 2026</span></div>
-      <div class="sint-pill"><span class="sp-dot br"></span><span class="sp-text">Brasil · Junho 2026</span></div>
+      <div class="sint-pill"><span class="sp-dot co"></span><span class="sp-text">Colombia · May 26–27, 2026</span></div>
+      <div class="sint-pill"><span class="sp-dot br"></span><span class="sp-text">Brasil · Jun 1, 2026</span></div>
+          <div class="sint-pill"><span class="sp-dot cr"></span><span class="sp-text">Costa Rica · 8 Jun 2026</span></div>
     </div>
   </div>
 
   <div class="sint-scale">
-    <div class="ss-label">Cumulative totals — both missions</div>
+    <div class="ss-label">Cumulative totals — all 3 missions</div>
     <div class="ss-items">
-      <div class="ss-item"><div class="ss-val">2</div><div class="ss-lbl">Countries</div></div>
+      <div class="ss-item"><div class="ss-val">3</div><div class="ss-lbl">Countries</div></div>
       <div class="ss-div"></div>
-      <div class="ss-item"><div class="ss-val">32</div><div class="ss-lbl">Participants</div></div>
+      <div class="ss-item"><div class="ss-val">41</div><div class="ss-lbl">Participants</div></div>
       <div class="ss-div"></div>
-      <div class="ss-item"><div class="ss-val">126</div><div class="ss-lbl">Challenges</div></div>
+      <div class="ss-item"><div class="ss-val">139</div><div class="ss-lbl">Challenges</div></div>
       <div class="ss-div"></div>
-      <div class="ss-item"><div class="ss-val">447</div><div class="ss-lbl">Votes</div></div>
+      <div class="ss-item"><div class="ss-val">496</div><div class="ss-lbl">Votes</div></div>
       <div class="ss-div"></div>
       <div class="ss-item"><div class="ss-val">~80%</div><div class="ss-lbl">Use AI daily</div></div>
       <div class="ss-div"></div>
@@ -294,56 +295,101 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
 
   <div class="sint-page">
     <div class="editorial">
-      <p class="ed-lead">Dos países, dos contextos operativos, dos idiomas. Y sin embargo, <strong>el mismo deseo</strong>: una fuente de conocimiento institucional que sea confiable, trazable y que hable el idioma del trabajo real.</p>
-      <p class="ed-body">Lo que emerge no es un problema de tecnología ni de acceso. Es un problema de confianza epistemológica: los equipos del BID ya usan IA todos los días, pero no confían en ella para documentos oficiales. La plataforma tiene una ventana de oportunidad precisa — no competir con Copilot en velocidad, sino ganarse un lugar donde Copilot no puede entrar: el conocimiento institucional citado, curado y trazable.</p>
+      <p class="ed-lead">Three countries, three operational contexts. And yet, <strong>the same desire</strong>: an institutional knowledge source that is reliable, traceable and speaks the language of real work — not the language of the formal archive.</p>
+      <p class="ed-body">What emerges isn't a technology or access problem. It's an epistemic trust problem. Teams already use AI daily — 64% in Colombia, 85% in Brasil, 75% in Costa Rica. But they don't trust it for official documents. Costa Rica adds a new signal: the spontaneous benchmark is no longer Copilot — it's Claude. The question is no longer whether they'll use AI. It's which one, and for what.</p>
     </div>
 
     <div class="sh"><span class="sh-num">01</span><h2 class="sh-title">Universal signals — <em>what crosses borders</em></h2><span class="sh-rule"></span></div>
     <div class="universals-grid">
-      <div class="u-card uc1"><p class="u-label">Trust · Universal</p><p class="u-signal">Traceability over speed — always</p><p class="u-body">Colombia: 100%, Brasil: 87% prefer slower answers with cited sources. The source isn't a bonus — it's the product.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
-      <div class="u-card uc2"><p class="u-label">Tools · Universal</p><p class="u-signal">Copilot leads, but colleagues are #2</p><p class="u-body">Copilot dominates both countries. "Colegas" appears top-3 in both — tacit knowledge still flows through human networks, not systems.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
-      <div class="u-card uc3"><p class="u-label">Adoption · Universal</p><p class="u-signal">Complement, not replace</p><p class="u-body">Majority intent in both countries: "complement tools I already use." Nobody wants to migrate — they want to integrate.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
-      <div class="u-card uc4"><p class="u-label">Fragmentation · Universal</p><p class="u-signal">Too many dashboards, too little synthesis</p><p class="u-body">Colombia names it explicitly. Brasil lives it through transversal portfolio data built manually. Not lack of data — lack of synthesis.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
-      <div class="u-card uc5"><p class="u-label">AI Use · Universal</p><p class="u-signal">AI is already a habit</p><p class="u-body">~80% use generative AI daily. No cultural resistance — there's an established ecosystem where the platform must find its differential.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
-      <div class="u-card uc6"><p class="u-label">Tacit Knowledge · Universal</p><p class="u-signal">The most valuable knowledge isn't in any system</p><p class="u-body">Lessons learned, good practices — flow through conversations, not platforms. In Colombia as a careers tension; in Brasil as inability to recover history of old programs.</p><div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span></div></div>
+      <div class="u-card uc1">
+        <p class="u-label">Trust · Universal</p>
+        <p class="u-signal">Traceability over speed — always</p>
+        <p class="u-body">Colombia: 100%, Brasil: 87%, Costa Rica: 60% prefer slower answers with cited sources. CR is the first country where speed preference appears (40%) — but the majority still demands traceability. <em style="color:var(--ink-faint);font-size:10px">"La respuesta muestra la fuente de manera que se puede validar." [The answer shows the source in a way that can be validated] — CR participant</em></p>
+        <div class="u-tags"><span class="u-tag tag-co">CO 100%</span><span class="u-tag tag-br">BR 87%</span><span class="u-tag tag-cr">CR 60%</span></div>
+      </div>
+      <div class="u-card uc2">
+        <p class="u-label">Tools · Universal</p>
+        <p class="u-signal">Copilot #1, but Claude is rising</p>
+        <p class="u-body">Copilot leads all 3 countries (11 mentions each in CO/CR, 18 in BR). Claude is growing: 3→4→6 mentions across CO, CR, BR. In CR, ChatGPT ties with colegas at 8 — the most AI-diverse tool mix of the three missions.</p>
+        <div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span><span class="u-tag tag-cr">Costa Rica</span></div>
+      </div>
+      <div class="u-card uc3">
+        <p class="u-label">Adoption · Universal</p>
+        <p class="u-signal">Complement, not replace — across all 3</p>
+        <p class="u-body">0% want the KP as their main tool in any country. CR: 7 complement + 6 find sources = 76% see it as a layer, not a replacement. <em style="color:var(--ink-faint);font-size:10px">"Ya lo hace" [It already does it] — one CR participant, when asked what they need from the platform in one click.</em></p>
+        <div class="u-tags"><span class="u-tag tag-co">Colombia</span><span class="u-tag tag-br">Brasil</span><span class="u-tag tag-cr">Costa Rica</span></div>
+      </div>
+      <div class="u-card uc4">
+        <p class="u-label">Source quality · Universal</p>
+        <p class="u-signal">Integration #1 need in CR; cited sources #1 in CO+BR</p>
+        <p class="u-body">CO and BR rank fuentes confiables y citadas as #1 to switch. CR flips it — integración con herramientas actuales is #1, fuentes #2. CR users are already more integrated in their workflows and want seamless embedding, not just better search.</p>
+        <div class="u-tags"><span class="u-tag tag-co">CO: cited sources first</span><span class="u-tag tag-br">BR: cited sources first</span><span class="u-tag tag-cr">CR: tool integration first</span></div>
+      </div>
+      <div class="u-card uc5">
+        <p class="u-label">AI Use · Universal</p>
+        <p class="u-signal">AI daily: BR 85% · CR 75% · CO 64%</p>
+        <p class="u-body">All three missions show majority daily AI use — and 0% "never" in any country. CR and BR are most mature. The benchmark CR named for retention: <em style="color:var(--ink-faint);font-size:10px">"Parecerse más a Claude" [Be more like Claude] — CR participant, Mentimeter retention question.</em></p>
+        <div class="u-tags"><span class="u-tag tag-co">CO 64%</span><span class="u-tag tag-br">BR 85%</span><span class="u-tag tag-cr">CR 75%</span></div>
+      </div>
+      <div class="u-card uc6">
+        <p class="u-label">Platform perception · Universal</p>
+        <p class="u-signal">Prior use highest in CR — and so is utility rating</p>
+        <p class="u-body">CR: 46% had used KP before (vs 33% CO, 20% BR) — and 91% rate it useful, the highest across missions. More familiarity → higher perceived value. But bugs in Convergencia integration threaten this trust: projects that don't appear break the adoption cycle.</p>
+        <div class="u-tags"><span class="u-tag tag-co">CO: 33% prior use / 57% useful</span><span class="u-tag tag-br">BR: 20% prior use / 65% useful</span><span class="u-tag tag-cr">CR: 46% prior use / 91% useful</span></div>
+      </div>
     </div>
 
     <div class="trust-bar">
-      <div><div class="trust-num">≥87%</div><div class="trust-lbl">both countries</div></div>
-      <p class="trust-body"><strong>Prefer traceability over speed.</strong> Design must prioritize the visible evidence chain in every response: source doc, page, date. Not as an option — as a standard. In Brasil, a social signal emerges: mass usage by BID colleagues would itself be a reliability signal. <strong>The network effect may matter as much as result quality.</strong></p>
+      <div><div class="trust-num">60–100%</div><div class="trust-lbl">all 3 countries</div></div>
+      <p class="trust-body"><strong>Prefer traceability over speed.</strong> In all 3 missions, the majority chose slower-but-traceable over fast-but-unverified. Costa Rica is the first country where 40% preferred speed — a signal of growing AI confidence, not declining quality standards. Across all three: <em>"El link a la fuente oficial, siempre hago cross check" [The link to the official source, I always cross-check] (CR) · "Que utilice fuentes oficiales" [That it uses official sources] (CR) · "Que la herramienta se use de manera masiva por funcionarios del BID" [That it be used widely by BID staff] (BR). <strong>Social proof and institutional provenance are the two trust levers — design for both.</strong></p>
     </div>
 
     <div class="sh"><span class="sh-num">02</span><h2 class="sh-title">Opportunities — where they <em>converge</em> and <em>diverge</em></h2><span class="sh-rule"></span></div>
     <div class="opp-compare">
-      <div class="occ-head-row"><div class="occ-h co">Colombia</div><div></div><div class="occ-h br" style="text-align:right">Brasil</div></div>
-      <div class="occ-body-grid">
+      <div style="display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr">
+        <div class="occ-h co">Colombia</div><div></div>
+        <div class="occ-h" style="color:#6366F1;text-align:center">Costa Rica</div><div></div>
+        <div class="occ-h br" style="text-align:right">Brasil</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr">
         <div>
-          <div class="occ-row"><span class="occ-rank">1</span><span class="occ-name">Redactar borrador POD</span><span class="occ-pct co">100%</span></div>
-          <div class="occ-row"><span class="occ-rank">2</span><span class="occ-name">Buscar y descargar operaciones</span><span class="occ-pct co">100%</span></div>
-          <div class="occ-row"><span class="occ-rank">3</span><span class="occ-name">Detectar brechas en documento</span><span class="occ-pct co">88%</span></div>
-          <div class="occ-row"><span class="occ-rank">4</span><span class="occ-name">Consultar políticas con cita exacta</span><span class="occ-pct co">88%</span></div>
-          <div class="occ-row"><span class="occ-rank">5</span><span class="occ-name">Mapear ecosistema país/sector</span><span class="occ-pct co">75%</span></div>
-          <div class="occ-row"><span class="occ-rank">6</span><span class="occ-name">Cómo evolucionó un tema en la región</span><span class="occ-pct co">75%</span></div>
-          <div class="occ-row"><span class="occ-rank">7</span><span class="occ-name">Encontrar evidencia rigurosa</span><span class="occ-pct co">63%</span></div>
-          <div class="occ-row"><span class="occ-rank">8</span><span class="occ-name">Conectar con agentes de IA</span><span class="occ-pct co">38%</span></div>
+          <div class="occ-row"><span class="occ-rank">1</span><span class="occ-name">Draft first POD version</span><span class="occ-pct co">100%</span></div>
+          <div class="occ-row"><span class="occ-rank">2</span><span class="occ-name">Search and download operations</span><span class="occ-pct co">100%</span></div>
+          <div class="occ-row"><span class="occ-rank">3</span><span class="occ-name">Detect gaps in a document</span><span class="occ-pct co">88%</span></div>
+          <div class="occ-row"><span class="occ-rank">4</span><span class="occ-name">Consult policies with exact citation</span><span class="occ-pct co">88%</span></div>
+          <div class="occ-row"><span class="occ-rank">5</span><span class="occ-name">Map ecosystem country/sector</span><span class="occ-pct co">75%</span></div>
+          <div class="occ-row"><span class="occ-rank">6</span><span class="occ-name">How a topic evolved in the region</span><span class="occ-pct co">75%</span></div>
+          <div class="occ-row"><span class="occ-rank">7</span><span class="occ-name">Find rigorous evidence</span><span class="occ-pct co">63%</span></div>
+          <div class="occ-row"><span class="occ-rank">8</span><span class="occ-name">Connect with AI agents</span><span class="occ-pct co">38%</span></div>
         </div>
         <div class="occ-mid"></div>
         <div>
-          <div class="occ-row br"><span class="occ-rank">1</span><span class="occ-name br">Consultar políticas con cita exacta</span><span class="occ-pct br">92%</span></div>
-          <div class="occ-row br"><span class="occ-rank">2</span><span class="occ-name br">Encontrar evidencia rigurosa</span><span class="occ-pct br">90%</span></div>
-          <div class="occ-row br"><span class="occ-rank">3</span><span class="occ-name br">Detectar brechas en documento</span><span class="occ-pct br">88%</span></div>
-          <div class="occ-row br"><span class="occ-rank">4</span><span class="occ-name br">Buscar y descargar operaciones</span><span class="occ-pct br">79%</span></div>
-          <div class="occ-row br"><span class="occ-rank">5</span><span class="occ-name br">Cómo evolucionó un tema en la región</span><span class="occ-pct br">73%</span></div>
-          <div class="occ-row br"><span class="occ-rank">6</span><span class="occ-name br">Redactar borrador POD</span><span class="occ-pct br">71%</span></div>
-          <div class="occ-row br"><span class="occ-rank">7</span><span class="occ-name br">Conectar con agentes de IA</span><span class="occ-pct br">70%</span></div>
-          <div class="occ-row br"><span class="occ-rank">8</span><span class="occ-name br">Mapear ecosistema país/sector</span><span class="occ-pct br">69%</span></div>
+          <div class="occ-row"><span class="occ-rank">1</span><span class="occ-name" style="text-align:center">Detect gaps in a document</span><span class="occ-pct" style="color:#6366F1">100%</span></div>
+          <div class="occ-row"><span class="occ-rank">2</span><span class="occ-name" style="text-align:center">Consult policies with exact citation</span><span class="occ-pct" style="color:#6366F1">100%</span></div>
+          <div class="occ-row"><span class="occ-rank">3</span><span class="occ-name" style="text-align:center">Find rigorous evidence</span><span class="occ-pct" style="color:#6366F1">100%</span></div>
+          <div class="occ-row"><span class="occ-rank">4</span><span class="occ-name" style="text-align:center">How a topic evolved in the region</span><span class="occ-pct" style="color:#6366F1">100%</span></div>
+          <div class="occ-row"><span class="occ-rank">5</span><span class="occ-name" style="text-align:center">Connect with AI agents</span><span class="occ-pct" style="color:#6366F1">100%</span></div>
+          <div class="occ-row"><span class="occ-rank">6</span><span class="occ-name" style="text-align:center">Draft first POD version</span><span class="occ-pct" style="color:#6366F1">71%</span></div>
+          <div class="occ-row"><span class="occ-rank">7</span><span class="occ-name" style="text-align:center">Map ecosystem country/sector</span><span class="occ-pct" style="color:#6366F1">67%</span></div>
+          <div class="occ-row"><span class="occ-rank">8</span><span class="occ-name" style="text-align:center">Search and download operations</span><span class="occ-pct" style="color:#6366F1">67%</span></div>
+        </div>
+        <div class="occ-mid"></div>
+        <div>
+          <div class="occ-row br"><span class="occ-rank">1</span><span class="occ-name br">Consult policies with exact citation</span><span class="occ-pct br">92%</span></div>
+          <div class="occ-row br"><span class="occ-rank">2</span><span class="occ-name br">Find rigorous evidence</span><span class="occ-pct br">90%</span></div>
+          <div class="occ-row br"><span class="occ-rank">3</span><span class="occ-name br">Detect gaps in a document</span><span class="occ-pct br">88%</span></div>
+          <div class="occ-row br"><span class="occ-rank">4</span><span class="occ-name br">Search and download operations</span><span class="occ-pct br">79%</span></div>
+          <div class="occ-row br"><span class="occ-rank">5</span><span class="occ-name br">How a topic evolved in the region</span><span class="occ-pct br">73%</span></div>
+          <div class="occ-row br"><span class="occ-rank">6</span><span class="occ-name br">Draft first POD version</span><span class="occ-pct br">71%</span></div>
+          <div class="occ-row br"><span class="occ-rank">7</span><span class="occ-name br">Connect with AI agents</span><span class="occ-pct br">70%</span></div>
+          <div class="occ-row br"><span class="occ-rank">8</span><span class="occ-name br">Map ecosystem country/sector</span><span class="occ-pct br">69%</span></div>
         </div>
       </div>
     </div>
-    <p class="occ-note"><strong>Key read:</strong> Detectar brechas and Buscar operaciones are top-4 in both. Redactar POD drops from #1 to #6 in Brasil — evidence before generation. Conectar con IA jumps from 38% to 70% in Brasil.</p>
+    <p class="occ-note"><strong>Key read:</strong> Detect gaps and Consult policies appear top-3 in all three countries. Costa Rica is the most demanding profile — 5 items at 100%. Connect with AI agents jumps from 38% (Colombia) to 70–100% in Brasil and Costa Rica, signaling growing AI integration maturity.</p>
 
     <div class="sh"><span class="sh-num">03</span><h2 class="sh-title">What <em>diverges</em> — each country has its own pain</h2><span class="sh-rule"></span></div>
-    <div class="diverge-grid">
+    <div class="diverge-grid" style="grid-template-columns:1fr 1fr 1fr">
       <div class="div-card co">
         <div class="div-head"><span class="div-dot co"></span><span class="div-ctry co">Colombia · Unique tensions</span></div>
         <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Knowledge Careers gap.</strong> KM work isn't valued or visible. Incentives are misaligned with tacit knowledge production.</p></div>
@@ -355,6 +401,12 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
         <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Portfolio intelligence demand.</strong> Cross-sectional data — disbursements by project, risks by region — built manually in Excel today.</p></div>
         <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>PCR automático — explicit demand.</strong> "Why isn't there a system that automatically generates a PCR?" Not better search; automation of closure.</p></div>
         <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Consultar políticas as #1.</strong> Brasil prioritizes regulatory evidence over generation — one step earlier on the trust curve.</p></div>
+      </div>
+      <div class="div-card" style="background:rgba(99,102,241,0.04);border-color:rgba(99,102,241,0.2)">
+        <div class="div-head"><span class="div-dot" style="background:#6366F1"></span><span class="div-ctry" style="color:#6366F1">Costa Rica · Unique tensions</span></div>
+        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>"Parecerse más a Claude" [Be more like Claude].</strong> The most candid retention signal in the corpus. The platform must win on specialization, not restriction — institutional knowledge with the same conversational fluency.</p></div>
+        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>Cross-window silos — structural gap.</strong> BID Invest, BID Lab, and BID operate in isolation. No structured cross-visibility. Synergies depend on personal relationships, not the platform.</p></div>
+        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>Highest prior use (46%) but Convergencia bugs.</strong> Most mature adopter — yet technical failures undermine trust. A broken project link erases months of adoption gains.</p></div>
       </div>
     </div>
 
@@ -385,7 +437,7 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
     <div>
       <div class="report-label">Mission Report</div>
       <div class="report-title">Colombia</div>
-      <div class="report-source">IDB Knowledge Platform · Source: Field mission + Mentimeter survey · May 2026</div>
+      <div class="report-source">IDB Knowledge Platform · Source: Field mission + Mentimeter survey · Bogotá, 26–27 May 2026</div>
     </div>
     <button class="export-btn" onclick="exportCSV('colombia')">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -394,7 +446,7 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
   </div>
 
   <div class="cumulative">
-    <div class="cum-label">Cumulative totals — Colombia mission</div>
+    <div class="cum-label">Cumulative totals — Colombia mission · May 26–27, 2026</div>
     <div class="cum-stats">
       <div class="cum-item"><div class="cum-val">12</div><div class="cum-lbl">Participants</div></div>
       <div class="cum-div"></div>
@@ -402,7 +454,11 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
       <div class="cum-div"></div>
       <div class="cum-item"><div class="cum-val">64</div><div class="cum-lbl">Votes</div></div>
       <div class="cum-div"></div>
-      <div class="cum-item"><div class="cum-val">57%</div><div class="cum-lbl">Rated platform "useful"</div></div>
+      <div class="cum-item"><div class="cum-val">33%</div><div class="cum-lbl">Prior KP use</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">57%</div><div class="cum-lbl">Rated KP useful (4–5)</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">64%</div><div class="cum-lbl">Use AI daily</div></div>
     </div>
   </div>
 
@@ -416,16 +472,16 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
         <span class="delta neu">50% never used it</span>
       </div>
       <div class="stat-card">
-        <div class="sc-label">Utility rating</div>
-        <div class="sc-val">57%</div>
-        <div class="sc-sub">Rated 4 — útil</div>
-        <span class="delta up">↑ 0% rated 1–2</span>
+        <div class="sc-label">Adoption intent</div>
+        <div class="sc-val">100%</div>
+        <div class="sc-sub">Would complement tools</div>
+        <span class="delta up">↑ 0% as main tool</span>
       </div>
       <div class="stat-card">
-        <div class="sc-label">AI frequency</div>
-        <div class="sc-val">64%</div>
-        <div class="sc-sub">Use AI daily</div>
-        <span class="delta neu">27% weekly</span>
+        <div class="sc-label">Integration #1 need</div>
+        <div class="sc-val">#1</div>
+        <div class="sc-sub">Cited reliable sources</div>
+        <span class="delta neu">vs. speed</span>
       </div>
       <div class="stat-card">
         <div class="sc-label">Source preference</div>
@@ -482,7 +538,7 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
     <div>
       <div class="report-label">Mission Report</div>
       <div class="report-title">Brasil</div>
-      <div class="report-source">IDB Knowledge Platform · Source: Field mission + Mentimeter survey (PT) · Junho 2026</div>
+      <div class="report-source">IDB Knowledge Platform · Source: Field mission + Mentimeter survey (PT) · 1 Jun 2026</div>
     </div>
     <button class="export-btn" onclick="exportCSV('brasil')">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -491,13 +547,17 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
   </div>
 
   <div class="cumulative">
-    <div class="cum-label">Cumulative totals — Brasil mission</div>
+    <div class="cum-label">Cumulative totals — Brasil mission · June 1, 2026</div>
     <div class="cum-stats">
       <div class="cum-item"><div class="cum-val">20</div><div class="cum-lbl">Participants</div></div>
       <div class="cum-div"></div>
       <div class="cum-item"><div class="cum-val">107</div><div class="cum-lbl">Challenges</div></div>
       <div class="cum-div"></div>
       <div class="cum-item"><div class="cum-val">383</div><div class="cum-lbl">Votes</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">20%</div><div class="cum-lbl">Prior KP use</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">65%</div><div class="cum-lbl">Rated KP useful (4–5)</div></div>
       <div class="cum-div"></div>
       <div class="cum-item"><div class="cum-val">85%</div><div class="cum-lbl">Use AI daily</div></div>
     </div>
@@ -513,16 +573,16 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
         <span class="delta neu">60% never used it</span>
       </div>
       <div class="stat-card">
-        <div class="sc-label">Utility rating</div>
-        <div class="sc-val">65%</div>
-        <div class="sc-sub">Rated 4–5 (útil)</div>
-        <span class="delta up">↑ 0% rated 1–2</span>
+        <div class="sc-label">Adoption intent</div>
+        <div class="sc-val">87%</div>
+        <div class="sc-sub">Complement or find sources</div>
+        <span class="delta up">↑ 0% as main tool</span>
       </div>
       <div class="stat-card">
-        <div class="sc-label">AI frequency</div>
-        <div class="sc-val">85%</div>
-        <div class="sc-sub">Use AI daily</div>
-        <span class="delta up">↑ vs Colombia 64%</span>
+        <div class="sc-label">Integration #1 need</div>
+        <div class="sc-val">#1</div>
+        <div class="sc-sub">Cited reliable sources</div>
+        <span class="delta neu">vs. speed</span>
       </div>
       <div class="stat-card">
         <div class="sc-label">Source preference</div>
@@ -573,6 +633,210 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
   <div class="pb"></div>
 </div>
 
+
+<!-- ══════════ COSTA RICA ══════════ -->
+<div id="view-costarica" class="view">
+  <div class="subheader">
+    <div>
+      <div class="report-label">Mission Report</div>
+      <div class="report-title">Costa Rica</div>
+      <div class="report-source">IDB Knowledge Platform · Source: Field mission + Mentimeter survey · San José, 8 Jun 2026</div>
+    </div>
+    <button class="export-btn" onclick="exportCSV('costarica')">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      ↓ Export raw data
+    </button>
+  </div>
+
+  <div class="cumulative">
+    <div class="cum-label">Cumulative totals — Costa Rica mission · June 8, 2026</div>
+    <div class="cum-stats">
+      <div class="cum-item"><div class="cum-val">12</div><div class="cum-lbl">Participants</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">13</div><div class="cum-lbl">Challenges</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">49</div><div class="cum-lbl">Votes</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">46%</div><div class="cum-lbl">Prior KP use</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">91%</div><div class="cum-lbl">Rated KP useful (4–5)</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">75%</div><div class="cum-lbl">Use AI daily</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><span class="section-mono">&#9646; General Usability</span></div>
+    <div class="stat-cards">
+      <div class="stat-card hi">
+        <div class="sc-label">Prior KP use</div>
+        <div class="sc-val blue">46%</div>
+        <div class="sc-sub">Had used it before</div>
+        <span class="delta up">↑ highest across missions</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Rated KP useful (4–5)</div>
+        <div class="sc-val">91%</div>
+        <div class="sc-sub">0% rated 1–2</div>
+        <span class="delta up">↑ highest across missions</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Use AI daily</div>
+        <div class="sc-val">75%</div>
+        <div class="sc-sub">25% weekly, 0% never</div>
+        <span class="delta neu">vs BR 85% / CO 64%</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Adoption intent</div>
+        <div class="sc-val">81%</div>
+        <div class="sc-sub">Complement or find sources</div>
+        <span class="delta up">↑ 0% as main tool</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Integration #1 need</div>
+        <div class="sc-val">#1</div>
+        <div class="sc-sub">Tool integration with stack</div>
+        <span class="delta neu">≠ other countries</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="top-block">
+    <div>
+      <div class="section-head" style="margin-bottom:0.875rem"><span class="section-mono">&#9646; Key tensions from the mission</span></div>
+      <div class="tk-grid" id="tk-costarica"></div>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:0.875rem"><span class="section-mono">&#9646; Top quotes</span></div>
+      <div class="quotes-col" id="q-costarica"></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="table-card">
+      <div class="tc-head"><span class="tc-title">Challenges by stage</span><span class="tc-sub">13 reported · 49 votes</span></div>
+      <div id="ch-costarica"></div>
+    </div>
+    <div class="table-card">
+      <div class="tc-head"><span class="tc-title">Opportunities ranking</span><span class="tc-sub">% would use it</span></div>
+      <div id="opp-costarica"></div>
+    </div>
+  </div>
+
+  <div class="full-w">
+    <div class="section-head"><span class="section-mono">&#9646; Preferred use modes</span></div>
+    <div class="modes-grid" id="modes-costarica"></div>
+  </div>
+
+  <div class="full-w">
+    <div class="section-head"><span class="section-mono">&#9646; Current tools used · mentions</span></div>
+    <div class="tools-grid" id="tools-costarica"></div>
+  </div>
+  <div class="pb"></div>
+</div>
+
+
+<!-- ══════════ COSTA RICA ══════════ -->
+<div id="view-costarica" class="view">
+  <div class="subheader">
+    <div>
+      <div class="report-label">Mission Report</div>
+      <div class="report-title">Costa Rica</div>
+      <div class="report-source">IDB Knowledge Platform · Source: Field mission + Mentimeter survey · June 8, 2026</div>
+    </div>
+    <button class="export-btn" onclick="exportCSV('costarica')">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      ↓ Export raw data
+    </button>
+  </div>
+
+  <div class="cumulative">
+    <div class="cum-label">Cumulative totals — Costa Rica mission · June 8, 2026</div>
+    <div class="cum-stats">
+      <div class="cum-item"><div class="cum-val">12</div><div class="cum-lbl">Participants</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">13</div><div class="cum-lbl">Challenges</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">49</div><div class="cum-lbl">Votes</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">46%</div><div class="cum-lbl">Prior KP use</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">91%</div><div class="cum-lbl">Rated KP useful (4–5)</div></div>
+      <div class="cum-div"></div>
+      <div class="cum-item"><div class="cum-val">75%</div><div class="cum-lbl">Use AI daily</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><span class="section-mono">&#9646; General Usability</span></div>
+    <div class="stat-cards">
+      <div class="stat-card hi">
+        <div class="sc-label">Prior platform use</div>
+        <div class="sc-val blue">46%</div>
+        <div class="sc-sub">Had used it before</div>
+        <span class="delta up">↑ highest across missions</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Adoption intent</div>
+        <div class="sc-val">81%</div>
+        <div class="sc-sub">Complement or find sources</div>
+        <span class="delta up">↑ 0% as main tool</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Integration #1 need</div>
+        <div class="sc-val">#1</div>
+        <div class="sc-sub">Tool integration</div>
+        <span class="delta neu">≠ other countries</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Source preference</div>
+        <div class="sc-val">60%</div>
+        <div class="sc-sub">Prefer traceability</div>
+        <span class="delta neu">40% prefer speed</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Internal tools sufficient</div>
+        <div class="sc-val">5.4</div>
+        <div class="sc-sub">Score /10</div>
+        <span class="delta up">↑ vs Colombia 4.8</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="top-block">
+    <div>
+      <div class="section-head" style="margin-bottom:0.875rem"><span class="section-mono">&#9646; Key tensions from the mission</span></div>
+      <div class="tk-grid" id="tk-costarica"></div>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:0.875rem"><span class="section-mono">&#9646; Top quotes</span></div>
+      <div class="quotes-col" id="q-costarica"></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="table-card">
+      <div class="tc-head"><span class="tc-title">Challenges by stage</span><span class="tc-sub">13 reported · 49 votes</span></div>
+      <div id="ch-costarica"></div>
+    </div>
+    <div class="table-card">
+      <div class="tc-head"><span class="tc-title">Opportunities ranking</span><span class="tc-sub">% would use it</span></div>
+      <div id="opp-costarica"></div>
+    </div>
+  </div>
+
+  <div class="full-w">
+    <div class="section-head"><span class="section-mono">&#9646; Preferred use modes</span></div>
+    <div class="modes-grid" id="modes-costarica"></div>
+  </div>
+
+  <div class="full-w">
+    <div class="section-head"><span class="section-mono">&#9646; Current tools used · mentions</span></div>
+    <div class="tools-grid" id="tools-costarica"></div>
+  </div>
+  <div class="pb"></div>
+</div>
+
 <footer>
   <span class="ft">© 2026 IDB KNOWLEDGE PLATFORM · VPS/KLD</span>
   <span class="ft" id="footer-label" style="text-align:center">SYNTHESIS · COMPARATIVE REPORT</span>
@@ -589,9 +853,9 @@ const DATA = {
       {num:"Tension 4 · Knowledge Careers",tension:"Non-transferable tacit knowledge and misaligned incentives",signal:"Knowledge work happens outside working hours. Metrics reward academic publications over field execution. Access to synergies depends on personal networks, not systems.",impl:"The most valuable knowledge — field knowledge — isn't systematized or transferred.",cls:"tc4"}
     ],
     quotes: [
-      {text:"La plataforma lo que tiene distinto es el conocimiento curado. Pero hay muchos dashboards. Que sea uno solo — tengo ochenta cosas que hacer a la vez.",tag:"Fragmentation",tagCls:"qt-teal",etapa:"Plenary session"},
-      {text:"Que la información venga de documentos del BID me da a mí una tranquilidad.",tag:"Trust",tagCls:"qt-amber",etapa:"Day 2 · Synergies"},
-      {text:"Siempre estamos haciendo mucho — el problema es conectar lo que hacemos de manera ordenada.",tag:"Coordination",tagCls:"qt-red",etapa:"Synergies session"}
+      {text:"What makes the platform different is the curated knowledge. But there are too many dashboards. Make it one single place — I have eighty things to do at once.",tag:"Fragmentation",tagCls:"qt-teal",etapa:"Plenary session"},
+      {text:"The fact that the information comes from BID documents gives me peace of mind.",tag:"Trust",tagCls:"qt-amber",etapa:"Day 2 · Synergies"},
+      {text:"We're always doing a lot — the problem is connecting what we do in an organized way.",tag:"Coordination",tagCls:"qt-red",etapa:"Synergies session"}
     ],
     challenges: [
       {name:"TdR and similar contracts — no centralized access",sub:"Execution · Documents",badge:"CRITICAL",bcls:"b-crit",count:"4 reports"},
@@ -602,39 +866,39 @@ const DATA = {
       {name:"Disbursements and portfolio in manual Excel",sub:"Execution · Data",badge:"MED",bcls:"b-mid",count:"1 report"}
     ],
     opportunities: [
-      {name:"Redactar el primer borrador de un POD",pct:100},
-      {name:"Buscar y descargar operaciones o documentos",pct:100},
-      {name:"Detectar brechas en un documento",pct:88},
-      {name:"Consultar políticas con cita exacta",pct:88},
-      {name:"Mapear ecosistema de un país y sector",pct:75},
-      {name:"Cómo ha evolucionado un tema en la región",pct:75},
-      {name:"Encontrar evidencia rigurosa para decisiones",pct:63},
-      {name:"Conectar con agentes de IA",pct:38}
+      {name:"Draft the first POD version",pct:100},
+      {name:"Search and download operations or documents",pct:100},
+      {name:"Detect gaps in a document",pct:88},
+      {name:"Consult policies with exact citation",pct:88},
+      {name:"Map ecosystem of a country and sector",pct:75},
+      {name:"How a topic has evolved in the region",pct:75},
+      {name:"Find rigorous evidence for decisions",pct:63},
+      {name:"Connect with AI agents",pct:38}
     ],
     modes: [
-      {rank:1,name:"Crear documento con contenido existente",pts:"22 pts"},
-      {rank:2,name:"Buscar una respuesta rápida",pts:"18 pts"},
-      {rank:3,name:"Comparar o analizar información",pts:"17 pts"},
-      {rank:4,name:"Exportar datos en planilla",pts:"16 pts"}
+      {rank:1,name:"Create document from existing content",pts:"22 pts"},
+      {rank:2,name:"Search for a quick answer",pts:"18 pts"},
+      {rank:3,name:"Compare or analyze information",pts:"17 pts"},
+      {rank:4,name:"Export data to spreadsheet",pts:"16 pts"}
     ],
     tools: [
-      {name:"Copilot",count:11,pct:100},{name:"Colegas",count:10,pct:91},
+      {name:"Copilot",count:11,pct:100},{name:"Colleagues",count:10,pct:91},
       {name:"SharePoint/EzShare",count:7,pct:64},{name:"Google",count:6,pct:55},
-      {name:"Catálogo BID",count:6,pct:55},{name:"Claude",count:3,pct:27},
-      {name:"ChatGPT",count:2,pct:18},{name:"Otra",count:3,pct:27}
+      {name:"BID Catalog",count:6,pct:55},{name:"Claude",count:3,pct:27},
+      {name:"ChatGPT",count:2,pct:18},{name:"Other",count:3,pct:27}
     ]
   },
   brasil: {
     takeaways: [
-      {num:"Tensão 1",tension:"Institutional memory untraceable — knowledge dispersed in old programs",signal:"In older programs it's hard to find documents and execution agreements. Lessons learned by state, municipality and execution mechanism aren't accessible.",impl:"The platform must be where the BID's operational memory becomes queryable, not just formal publications.",cls:"tc1"},
-      {num:"Tensão 2",tension:"Portfolio intelligence demand — transversal data inaccessible",signal:"Specialists need disbursement projections by month and project, risks by sector/borrower/executor/region. Today this is done manually in Excel.",impl:"The opportunity isn't just document search — it's building real-time portfolio intelligence.",cls:"tc2"},
-      {num:"Tensão 3",tension:"PCR automático — closure document generation is a critical pain point",signal:"'Why isn't there a system that automatically generates a PCR?' Changes made during execution aren't recorded, making closure difficult.",impl:"The most desired use case isn't search — it's automated document generation with traceability.",cls:"tc3"},
-      {num:"Tensão 4 · Confiança",tension:"Adoption conditioned on traceability — speed doesn't compensate without cited sources",signal:"87% prefer answers with greater traceability even if slower. The unanimous demand: clear reference with link to source document.",impl:"Adoption isn't won with speed but with precision and source transparency.",cls:"tc4"}
+      {num:"Tension 1",tension:"Institutional memory untraceable — knowledge dispersed in old programs",signal:"In older programs it's hard to find documents and execution agreements. Lessons learned by state, municipality and execution mechanism aren't accessible.",impl:"The platform must be where the BID's operational memory becomes queryable, not just formal publications.",cls:"tc1"},
+      {num:"Tension 2",tension:"Portfolio intelligence demand — transversal data inaccessible",signal:"Specialists need disbursement projections by month and project, risks by sector/borrower/executor/region. Today this is done manually in Excel.",impl:"The opportunity isn't just document search — it's building real-time portfolio intelligence.",cls:"tc2"},
+      {num:"Tension 3",tension:"PCR automático — closure document generation is a critical pain point",signal:"'Why isn't there a system that automatically generates a PCR?' Changes made during execution aren't recorded, making closure difficult.",impl:"The most desired use case isn't search — it's automated document generation with traceability.",cls:"tc3"},
+      {num:"Tension 4 · Trust",tension:"Adoption conditioned on traceability — speed doesn't compensate without cited sources",signal:"87% prefer answers with greater traceability even if slower. The unanimous demand: clear reference with link to source document.",impl:"Adoption isn't won with speed but with precision and source transparency.",cls:"tc4"}
     ],
     quotes: [
-      {text:"Me gustaría tener información como gestora de portafolio: lecciones aprendidas de cierto mecanismo de ejecución en cierto estado, municipio de Brasil, y una recopilación de riesgos relevantes por sector, prestatario, ejecutor, región.",tag:"Portfolio intelligence",tagCls:"qt-teal",etapa:"Preparation"},
-      {text:"Futuro: ¿por qué no hay un sistema o herramienta que genere automáticamente un PCR?",tag:"Automation",tagCls:"qt-amber",etapa:"Closure & Evaluation"},
-      {text:"Que la herramienta se use de manera masiva y frecuente por los distintos funcionarios del BID — eso sería un mensaje contundente de confiabilidad.",tag:"Adoption & trust",tagCls:"qt-red",etapa:"Plenary session"}
+      {text:"I'd like portfolio-level information: lessons learned from a specific execution mechanism in a specific state or municipality in Brasil, and a risk compilation by sector, borrower, executor, and region.",tag:"Portfolio intelligence",tagCls:"qt-teal",etapa:"Preparation"},
+      {text:"Future ask: why isn't there a system or tool that automatically generates a PCR?",tag:"Automation",tagCls:"qt-amber",etapa:"Closure & Evaluation"},
+      {text:"If the tool is used widely and frequently by BID staff across the board — that would be a powerful signal of reliability.",tag:"Adoption & trust",tagCls:"qt-red",etapa:"Plenary session"}
     ],
     challenges: [
       {name:"Search for linked and similar operations",sub:"Preparation · Search",badge:"CRITICAL",bcls:"b-crit",count:"23 reports"},
@@ -645,28 +909,76 @@ const DATA = {
       {name:"Historical documents in older programs",sub:"Closure · Documents",badge:"MED",bcls:"b-mid",count:"6 reports"}
     ],
     opportunities: [
-      {name:"Consultar políticas con cita exacta",pct:92},
-      {name:"Encontrar evidencia rigurosa para decisiones",pct:90},
-      {name:"Detectar brechas en un documento",pct:88},
+      {name:"Consult policies with exact citation",pct:92},
+      {name:"Find rigorous evidence for decisions",pct:90},
+      {name:"Detect gaps in a document",pct:88},
       {name:"Buscar y descargar un grupo de operaciones",pct:79},
-      {name:"Cómo ha evolucionado un tema en la región",pct:73},
-      {name:"Redactar el primer borrador de un POD",pct:71},
-      {name:"Conectar con agentes de IA",pct:70},
-      {name:"Mapear ecosistema de un país y sector",pct:69}
+      {name:"How a topic has evolved in the region",pct:73},
+      {name:"Draft the first POD version",pct:71},
+      {name:"Connect with AI agents",pct:70},
+      {name:"Map ecosystem of a country and sector",pct:69}
     ],
     modes: [
-      {rank:1,name:"Criar documento com conteúdo existente",pts:"60 pts"},
-      {rank:2,name:"Comparar ou analisar informação",pts:"58 pts"},
-      {rank:3,name:"Buscar uma resposta rápida",pts:"52 pts"},
-      {rank:4,name:"Exportar dados em planilha",pts:"24 pts"}
+      {rank:1,name:"Create document from existing content",pts:"60 pts"},
+      {rank:2,name:"Compare or analyze information",pts:"58 pts"},
+      {rank:3,name:"Search for a quick answer",pts:"52 pts"},
+      {rank:4,name:"Export data to spreadsheet",pts:"24 pts"}
     ],
     tools: [
       {name:"Copilot",count:18,pct:100},{name:"SharePoint/EzShare",count:16,pct:89},
-      {name:"Colegas",count:15,pct:83},{name:"Google",count:14,pct:78},
-      {name:"ChatGPT",count:11,pct:61},{name:"Catálogo BID",count:8,pct:44},
-      {name:"Claude",count:6,pct:33},{name:"Otra",count:6,pct:33}
+      {name:"Colleagues",count:15,pct:83},{name:"Google",count:14,pct:78},
+      {name:"ChatGPT",count:11,pct:61},{name:"BID Catalog",count:8,pct:44},
+      {name:"Claude",count:6,pct:33},{name:"Other",count:6,pct:33}
     ]
   }
+  ,costarica: {
+    takeaways: [
+      {num:"Tensión 1",tension:"Integration as adoption condition — the platform cannot live in a silo",signal:"Costa Rica es la única misión donde integración con herramientas actuales supera cited sources as #1 requirement to prefer the platform. They already use Copilot 11 times — they want the KP to conecte a ese ecosistema, no que lo compita.",impl:"The value proposition only materializes if the platform speaks with the existing stack: Teams, SharePoint, correo. Sin integración, es una herramienta más.",cls:"tc1"},
+      {num:"Tensión 2",tension:"Alta adopción previa, expectativas ya formadas — usuarios más exigentes",signal:"46% had already used the platform before — double Colombia. This creates expectativas más altas: 'parecerse más a Claude', 'que no sean respuestas genéricas', 'calidad'. El listón está puesto.",impl:"Costa Rica no necesita onboarding básico — necesita profundidad. Los usuarios expertos son los más difíciles de recuperar si la primera experiencia decepciona.",cls:"tc2"},
+      {num:"Tensión 3",tension:"Documentos institucionales de planificación — gap específico muy concreto",signal:"El hottest challenge es Programación/Documentos (3 reportes): análisis de capacidad institucional, estudios de mercado, evaluaciones del sistema país. Y Preparation stage tiene 6 reportes centrados en documentos para Ministerio de Planificación.",impl:"Costa Rica tiene un perfil de necesidad muy específico — policy documents and institutional assessments — that the platform must be able to serve with precision.",cls:"tc3"},
+      {num:"Tension 4 · Productivity",tension:"The platform already works for some — the challenge is scaling that confianza",signal:"'Ya lo hace' appears as answer to \"what should the platform help you do?\" — someone is already satisfied. But alongside 'parecerse más a Claude' y 'que no sean respuestas genéricas' — hay una brecha entre usuarios satisfechos y usuarios exigentes.",impl:"El crecimiento en CR no viene de nuevos usuarios sino de profundizar con los existentes — convertir usuarios ocasionales en usuarios diarios.",cls:"tc4"}
+    ],
+    quotes: [
+      {text:"La respuesta muestra la fuente de manera que se puede validar. Siempre hago cross check — necesito el link a la fuente oficial.",tag:"Trazabilidad & fuentes",tagCls:"qt-teal",etapa:"Trust en documentos oficiales"},
+      {text:"Que no sean respuestas genéricas. Be more like Claude.",tag:"Calidad de respuesta",tagCls:"qt-amber",etapa:"¿Qué te haría volver?"},
+      {text:"Que los mismos usuarios califiquen la lección aprendida — eso le daría confiabilidad.",tag:"Social validation",tagCls:"qt-red",etapa:"What would you need to see?"}
+    ],
+    challenges: [
+      {name:"Análisis de capacidad institucional, estudios de mercado, evaluaciones del sistema país",sub:"Programación · Documentos",badge:"CRITICAL",bcls:"b-crit",count:"3 reports"},
+      {name:"Elaborar documentos para Ministerio de Planificación",sub:"Preparation stage · Documentos",badge:"HIGH",bcls:"b-high",count:"6 reports"},
+      {name:"Visualización del estado del proyecto (planificación, actualizaciones, avances)",sub:"Execution · Tools",badge:"HIGH",bcls:"b-high",count:"4 reports"},
+      {name:"Information search for programming stage",sub:"Preparation stage · Search",badge:"HIGH",bcls:"b-high",count:"3 reports"},
+      {name:"Herramientas y colaboración en ejecución",sub:"Ejecución · Otro",badge:"MED",bcls:"b-mid",count:"3 reports"},
+      {name:"Sin desafíos en cierre y evaluación reportados",sub:"Closure & Evaluation stage",badge:"N/A",bcls:"b-mid",count:"0 reports"}
+    ],
+    opportunities: [
+      {name:"Detect gaps in a document",pct:100},
+      {name:"Consult policies with exact citation",pct:100},
+      {name:"Find rigorous evidence for decision-making",pct:100},
+      {name:"How a topic has evolved in the region",pct:100},
+      {name:"Connect with AI agents",pct:100},
+      {name:"Draft the first POD version",pct:71},
+      {name:"Map ecosystem of a country and sector",pct:67},
+      {name:"Search and download a group of operations or documents",pct:67}
+    ],
+    modes: [
+      {rank:1,name:"Crear un documento usando contenido existente",pts:"14 pts"},
+      {rank:2,name:"Search for a quick answer",pts:"10 pts"},
+      {rank:3,name:"Compare or analyze information",pts:"7 pts"},
+      {rank:4,name:"Export data to spreadsheet",pts:"5 pts"}
+    ],
+    tools: [
+      {name:"Copilot",count:11,pct:100},
+      {name:"ChatGPT",count:8,pct:73},
+      {name:"Colleagues",count:8,pct:73},
+      {name:"Google",count:7,pct:64},
+      {name:"SharePoint/EzShare",count:7,pct:64},
+      {name:"Claude",count:4,pct:36},
+      {name:"BID Catalog",count:4,pct:36},
+      {name:"Other",count:0,pct:0}
+    ]
+  }
+
 };
 
 function pctCls(p){return p>=75?'pct-h':p>=50?'pct-m':'pct-l'}
@@ -732,7 +1044,7 @@ function switchTab(tab,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('view-'+tab).classList.add('active');
   btn.classList.add('active');
-  const labels={sintesis:'SYNTHESIS · COMPARATIVE REPORT',colombia:'COLOMBIA · MISSION REPORT · MAY 2026',brasil:'BRASIL · MISSION REPORT · JUN 2026'};
+  const labels={sintesis:'SYNTHESIS · COMPARATIVE REPORT',colombia:'COLOMBIA · MISSION REPORT · 26–27 MAY 2026',brasil:'BRASIL · MISSION REPORT · 1 JUN 2026',costarica:'COSTA RICA · MISSION REPORT · 8 JUN 2026'};
   document.getElementById('footer-label').textContent=labels[tab]||'';
 }
 
@@ -766,6 +1078,8 @@ function exportCSV(country){
 
 renderCountry('colombia');
 renderCountry('brasil');
+renderCountry('costarica');
+renderCountry('costarica');
 </script>
 </body>
 </html>
