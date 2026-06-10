@@ -166,7 +166,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--surface);color:var(
 .ed-lead strong{font-style:normal;font-weight:600;color:var(--amber-mid)}
 .ed-body{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.75;border-left:1px solid rgba(255,255,255,0.1);padding-left:1.5rem}
 
-.universals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.875rem;margin-bottom:1.5rem}
+.universals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.875rem;margin-bottom:1.5rem}.universals-grid>div:last-child{grid-column:1/-1}
 .u-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.1rem;position:relative;overflow:hidden}
 .u-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
 .uc1::before{background:var(--teal-mid)}.uc2::before{background:var(--amber-mid)}.uc3::before{background:var(--red-mid)}.uc4::before{background:var(--purple-mid)}.uc5::before{background:#3B82F6}.uc6::before{background:#EC4899}
@@ -335,6 +335,13 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
         <p class="u-signal">Prior use highest in CR — and so is utility rating</p>
         <p class="u-body">CR: 46% had used KP before (vs 33% CO, 20% BR) — and 91% rate it useful, the highest across missions. More familiarity → higher perceived value. But bugs in Convergencia integration threaten this trust: projects that don't appear break the adoption cycle.</p>
         <div class="u-tags"><span class="u-tag tag-co">🇨🇴 33% / 57%</span><span class="u-tag tag-br">🇧🇷 20% / 65%</span><span class="u-tag tag-cr">🇨🇷 46% / 91%</span></div>
+      </div>
+      <div class="u-card" style="grid-column:1/-1;position:relative;overflow:hidden;border-color:rgba(139,92,246,0.3);background:var(--purple-light)">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--purple-mid)"></div>
+        <p class="u-label" style="color:var(--purple)">Emerging signal · Beyond the survey data</p>
+        <p class="u-signal" style="color:var(--purple)">Users aren't just consumers — they're building their own agents</p>
+        <p class="u-body">A pattern surfacing across field research and internal interviews: power users have moved beyond using AI tools to <strong>building their own custom agents by division</strong>. IFD is actively building a Copilot agent for state capacity alignment with curated lessons — with shared workspaces for 30–40 people. Sector leads in climate, gender and rule of law are building their own agents. The emerging demand: <em>the KP as a catalog where those agents live and can be discovered by others</em> — an agent repository, not just a document repository. The benchmark is no longer "be more like Claude." It's "be the place where our Claude-level agents live."</p>
+        <div class="u-tags"><span class="u-tag" style="background:var(--purple-light);color:var(--purple)">IFD · internal research</span><span class="u-tag" style="background:var(--purple-light);color:var(--purple)">Sector leads · climate + gender</span><span class="u-tag" style="background:var(--purple-light);color:var(--purple)">🔮 Emerging</span></div>
       </div>
     </div>
 
