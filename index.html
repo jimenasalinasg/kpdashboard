@@ -394,7 +394,7 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
         row.style.cssText='display:grid;grid-template-columns:160px 1fr;gap:8px;align-items:center';
 
         const labelEl = document.createElement('div');
-        labelEl.style.cssText=`font-size:11px;color:${textPri};line-height:1.3;text-align:right`;
+        labelEl.style.cssText='font-size:11px;color:#111827;line-height:1.3;text-align:right;font-weight:500';
         labelEl.textContent=d.label;
         row.appendChild(labelEl);
 
@@ -411,7 +411,7 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
           fill.style.cssText=`height:100%;width:${pct}%;background:${c.color};border-radius:3px`;
           track.appendChild(fill);
           const pctLabel=document.createElement('div');
-          pctLabel.style.cssText=`font-size:10px;font-weight:500;color:${c.color};width:30px;flex-shrink:0`;
+          pctLabel.style.cssText=`font-size:10px;font-weight:600;color:${c.color};width:30px;flex-shrink:0`;
           pctLabel.textContent=pct+'%';
           barRow.appendChild(track);
           barRow.appendChild(pctLabel);
