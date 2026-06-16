@@ -476,18 +476,29 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
     </div>
 
     <div class="sh"><span class="sh-num">04</span><h2 class="sh-title">Where to <em>start</em> — three priorities by horizon</h2><span class="sh-rule"></span></div>
-    <p style="font-size:12.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 1.25rem;max-width:780px">Crossing what users asked for with what the data shows. Ordered from immediate and low-effort to most strategic. The internal API is the quiet backbone — priority 1 needs it to serve the fiduciary corpus, priority 2 uses it for every integration, priority 3 requires it to expose cross-window content with granular permissions.</p>
+    <p style="font-size:12.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 1.25rem;max-width:780px">Crossing what users asked for with what the data shows. Ordered from immediate and low-effort to most strategic. Note that the top 3 ranked opportunities — Consult policies, Detect gaps and Find rigorous evidence — share one technical backbone (traceable retrieval), so priority 1 covers all three by feeding the same engine different corpora. The internal API is the quiet backbone underneath everything — priority 1 needs it to serve the corpora, priority 2 uses it for every integration, priority 3 requires it to expose cross-window content with granular permissions.</p>
+
+    <div style="background:linear-gradient(135deg,#0D1B2E,#1B2A4A);border-radius:10px;padding:1.5rem 1.75rem;margin-bottom:1.75rem;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--amber-mid)"></div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber-mid);margin:0 0 0.5rem">The structural tension underneath all four missions</p>
+      <p style="font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1.15rem;color:#fff;line-height:1.5;margin:0 0 0.875rem">The platform indexes <strong style="font-style:normal;font-weight:600;color:var(--amber-mid)">approved, published knowledge</strong> — but the <strong style="font-style:normal;font-weight:600;color:var(--amber-mid)">living operational knowledge</strong> of a project's 6–7 year execution has nowhere to live.</p>
+      <p style="font-size:11.5px;color:rgba(255,255,255,0.75);line-height:1.6;margin:0 0 1rem;max-width:840px">It surfaces in all four countries: Panamá ("a project's history has nowhere to live", consultant deliverables vanish), Brasil (institutional memory dispersed by state/mechanism, PCR automation), Costa Rica (intermediate planning docs unsystematized — only final versions), Colombia (the Knowledge Loop — knowledge is generated but doesn't circulate). The platform ingests <em>final approved documents</em>; kick-off workshop minutes, mid-execution adjustments, in-progress TCs and semester reports circulate through personal drives and email — never indexed.</p>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:0.875rem 1.1rem">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin:0 0 0.4rem">→ Line of action</p>
+        <p style="font-size:11.5px;color:rgba(255,255,255,0.9);line-height:1.55;margin:0">This is a governance challenge, not a feature — like priority 3. It requires a <strong style="color:#fff">document classification protocol with Data Management</strong> (consistent naming, taxonomy, ingestion rules for non-final documents) before the platform can technically capture execution. Start by defining <strong style="color:#fff">which execution-phase document types to ingest first</strong> (PMRs, amendments, kick-off minutes) — and note that capturing the execution story is also the prerequisite for Brasil's PCR automation. Frame this as a parallel track to the three priorities, owned jointly with Data Management.</p>
+      </div>
+    </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem">
 
       <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid #14B8A6;border-radius:8px;padding:1.3rem">
         <div style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.08em;color:#0E7C6F;background:#D9F2EE;padding:3px 10px;border-radius:100px;margin-bottom:0.875rem">IMMEDIATE · Q3</div>
         <div style="font-family:'Fraunces',serif;font-style:italic;font-size:2rem;font-weight:600;color:#14B8A6;line-height:1">95%</div>
-        <div style="font-size:9px;color:var(--ink-faint);margin:2px 0 0.875rem">avg approval · 4 countries</div>
-        <p style="font-size:14px;font-weight:600;color:var(--navy);margin:0 0 0.25rem;line-height:1.3">Fiduciary assistant with exact citation</p>
-        <p style="font-size:11px;font-style:italic;color:#14B8A6;margin:0 0 0.625rem">"Consult policies with exact citation"</p>
-        <p style="font-size:11.5px;color:var(--ink);line-height:1.5;margin:0 0 0.625rem">#1 in the combined ranking — the only concept that rises in all four countries. Resolves direct operational risk: for execution profiles, an incorrect paraphrase has real consequences.</p>
-        <p style="font-size:10px;font-style:italic;color:var(--ink-muted);line-height:1.45;margin:0">Entry condition: index the priority fiduciary corpus (procurement, financial management). Literal traceable retrieval — no generative AI needed.</p>
+        <div style="font-size:9px;color:var(--ink-faint);margin:2px 0 0.875rem">avg · top concept of 4</div>
+        <p style="font-size:14px;font-weight:600;color:var(--navy);margin:0 0 0.25rem;line-height:1.3">Traceable retrieval engine</p>
+        <p style="font-size:11px;font-style:italic;color:#14B8A6;margin:0 0 0.625rem">Policies with exact citation + rigorous evidence</p>
+        <p style="font-size:11.5px;color:var(--ink);line-height:1.5;margin:0 0 0.625rem">The top 3 concepts share one engine: literal traceable retrieval, no generative AI. Consult policies (95%) and Find rigorous evidence (88%) use the same mechanics over different corpora — fiduciary policies and OVE evaluations + PCRs.</p>
+        <p style="font-size:10px;font-style:italic;color:var(--ink-muted);line-height:1.45;margin:0">One engine, fed in phases: first the fiduciary corpus (operational risk), then evaluations + PCRs (evidence for decisions). Every result with exact citation + document + version.</p>
       </div>
 
       <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid #E5A000;border-radius:8px;padding:1.3rem">
