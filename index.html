@@ -460,7 +460,7 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
       </div>
 
     </div>
-    <div class="sh"><span class="sh-num">04</span><h2 class="sh-title">Design <em>implications</em> — what to do with all this</h2><span class="sh-rule"></span></div>
+    <div class="sh"><span class="sh-num">03</span><h2 class="sh-title">Design <em>implications</em> — what to do with all this</h2><span class="sh-rule"></span></div>
     <div class="impl-grid">
       <div class="impl-card"><p class="impl-ey">Trust architecture · All 3 countries</p><p class="impl-title">Design for the citation, not the answer</p><p class="impl-body">Every result must show its evidence chain visibly and clickably: source doc, section, date. Not as collapsed metadata — as part of the result itself. Costa Rica makes this explicit: <em>"la respuesta muestra la fuente de manera que se puede validar"</em> — and users already do cross-checks before using any AI output in official documents.</p><p class="impl-sw">→ Trust isn't built with disclaimers — it's built with radical source transparency.</p></div>
 
@@ -473,6 +473,54 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
       <div class="impl-card"><p class="impl-ey">Cross-window · Costa Rica priority</p><p class="impl-title">BID Invest + BID Lab integration: a governance problem, not a technical one</p><p class="impl-body">Costa Rica surfaced the sharpest version of this: users from BID can't consult BID Invest environmental and social documents. Synergies between windows depend on personal relationships. This is the use case that makes the platform truly institutional — but it requires cross-team governance decisions before any technical work.</p><p class="impl-sw">→ Align with BID Invest and BID Lab teams before scoping. The blocker is access policy, not engineering.</p></div>
 
       <div class="impl-card"><p class="impl-ey">Big bets · Align with Project Preparation team</p><p class="impl-title">PCR automation + portfolio intelligence: legitimate, scoped, not solo</p><p class="impl-body">Brasil named PCR automation explicitly. The vision — capturing execution changes and synthesizing at closure — redefines the platform as a production system. Same with portfolio intelligence (disbursements, risks by region). Both are part of the Project Preparation project roadmap: these field signals should feed that team's prioritization, not be built in parallel.</p><p class="impl-sw">→ Share these findings with the Project Preparation team. They're building the infrastructure these use cases need.</p></div>
+    </div>
+
+    <div class="sh"><span class="sh-num">04</span><h2 class="sh-title">Where to <em>start</em> — three priorities by horizon</h2><span class="sh-rule"></span></div>
+    <p style="font-size:12.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 1.25rem;max-width:780px">Crossing what users asked for with what the data shows. Ordered from immediate and low-effort to most strategic. The internal API is the quiet backbone — priority 1 needs it to serve the fiduciary corpus, priority 2 uses it for every integration, priority 3 requires it to expose cross-window content with granular permissions.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+
+      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid #14B8A6;border-radius:8px;padding:1.3rem">
+        <div style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.08em;color:#0E7C6F;background:#D9F2EE;padding:3px 10px;border-radius:100px;margin-bottom:0.875rem">IMMEDIATE · Q3</div>
+        <div style="font-family:'Fraunces',serif;font-style:italic;font-size:2rem;font-weight:600;color:#14B8A6;line-height:1">95%</div>
+        <div style="font-size:9px;color:var(--ink-faint);margin:2px 0 0.875rem">avg approval · 4 countries</div>
+        <p style="font-size:14px;font-weight:600;color:var(--navy);margin:0 0 0.25rem;line-height:1.3">Fiduciary assistant with exact citation</p>
+        <p style="font-size:11px;font-style:italic;color:#14B8A6;margin:0 0 0.625rem">"Consult policies with exact citation"</p>
+        <p style="font-size:11.5px;color:var(--ink);line-height:1.5;margin:0 0 0.625rem">#1 in the combined ranking — the only concept that rises in all four countries. Resolves direct operational risk: for execution profiles, an incorrect paraphrase has real consequences.</p>
+        <p style="font-size:10px;font-style:italic;color:var(--ink-muted);line-height:1.45;margin:0">Entry condition: index the priority fiduciary corpus (procurement, financial management). Literal traceable retrieval — no generative AI needed.</p>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid #E5A000;border-radius:8px;padding:1.3rem">
+        <div style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.08em;color:#9A6700;background:#FBEFD3;padding:3px 10px;border-radius:100px;margin-bottom:0.875rem">MEDIUM · Q4</div>
+        <div style="font-family:'Fraunces',serif;font-style:italic;font-size:2rem;font-weight:600;color:#E5A000;line-height:1">5</div>
+        <div style="font-size:9px;color:var(--ink-faint);margin:2px 0 0.875rem">defined integration modes</div>
+        <p style="font-size:14px;font-weight:600;color:var(--navy);margin:0 0 0.25rem;line-height:1.3">System integrations</p>
+        <p style="font-size:11px;font-style:italic;color:#E5A000;margin:0 0 0.625rem">"Connect KP with other products"</p>
+        <p style="font-size:11.5px;color:var(--ink);line-height:1.5;margin:0 0 0.625rem">Pain #2 in feedback ("a third separate tool") and Costa Rica's #1 switching need. Sequence by effort: MD Skills → KP as a tool in Copilot/Claude → embedded sidebar in Ops Portal.</p>
+        <p style="font-size:10px;font-style:italic;color:var(--ink-muted);line-height:1.45;margin:0">The internal API is the backbone: it enables skills, sidebar, pills and RAG from one centralized layer — single source of truth.</p>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid #6366F1;border-radius:8px;padding:1.3rem">
+        <div style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.08em;color:#4044C4;background:#E6E7FB;padding:3px 10px;border-radius:100px;margin-bottom:0.875rem">STRATEGIC · Q4–2027</div>
+        <div style="font-family:'Fraunces',serif;font-style:italic;font-size:2rem;font-weight:600;color:#6366F1;line-height:1">2/4</div>
+        <div style="font-size:9px;color:var(--ink-faint);margin:2px 0 0.875rem">missions raised it</div>
+        <p style="font-size:14px;font-weight:600;color:var(--navy);margin:0 0 0.25rem;line-height:1.3">BID Invest / BID Lab synergies</p>
+        <p style="font-size:11px;font-style:italic;color:#6366F1;margin:0 0 0.625rem">Cross-window knowledge visibility</p>
+        <p style="font-size:11.5px;color:var(--ink);line-height:1.5;margin:0 0 0.625rem">The most strategic — touches the full BID Group, appears in 2 of 4 missions (CR + PA). But it's a governance blocker, not a technical one: deconfidentialization, conflict-of-interest rules.</p>
+        <p style="font-size:10px;font-style:italic;color:var(--ink-muted);line-height:1.45;margin:0">Scoped pilot: BID Invest's Dev Effectiveness dashboard (lessons by project, already exists). Depends on cross-team alignment.</p>
+      </div>
+
+    </div>
+
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem;margin-bottom:1.5rem">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.06em;color:var(--ink-muted);margin:0 0 0.875rem">PRIORITY 2 · INTEGRATION SEQUENCE BY EFFORT</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:grid;grid-template-columns:32px 220px 1fr;gap:12px;align-items:center"><span style="font-family:'Fraunces',serif;font-style:italic;font-size:16px;font-weight:600;color:#B9C7DC">01</span><span style="font-size:12px;font-weight:600;color:var(--navy)">MD Skills <span style="font-size:9px;font-weight:500;color:#0E7C6F;background:#D9F2EE;padding:1px 7px;border-radius:100px;margin-left:4px">low effort</span></span><span style="font-size:10.5px;color:var(--ink-muted);line-height:1.4">Validated prompts → versionable .md files (policy-recommendation, project-similarity, lessons-learned). No new code. Quick win.</span></div>
+        <div style="display:grid;grid-template-columns:32px 220px 1fr;gap:12px;align-items:center;border-top:1px solid var(--border);padding-top:8px"><span style="font-family:'Fraunces',serif;font-style:italic;font-size:16px;font-weight:600;color:#B9C7DC">02</span><span style="font-size:12px;font-weight:600;color:var(--navy)">KP as tool for Copilot / Claude <span style="font-size:9px;font-weight:500;color:#9A6700;background:#FBEFD3;padding:1px 7px;border-radius:100px;margin-left:4px">medium</span></span><span style="font-size:10.5px;color:var(--ink-muted);line-height:1.4">Exposes KP search as a tool via Graph connector (Copilot) and MCP server (Claude). Users work where they already work. RAG untouched.</span></div>
+        <div style="display:grid;grid-template-columns:32px 220px 1fr;gap:12px;align-items:center;border-top:1px solid var(--border);padding-top:8px"><span style="font-family:'Fraunces',serif;font-style:italic;font-size:16px;font-weight:600;color:#B9C7DC">03</span><span style="font-size:12px;font-weight:600;color:var(--navy)">Embedded sidebar — Ops Portal <span style="font-size:9px;font-weight:500;color:#9A6700;background:#FBEFD3;padding:1px 7px;border-radius:100px;margin-left:4px">medium</span></span><span style="font-size:10.5px;color:var(--ink-muted);line-height:1.4">Widget that detects active operation context and lets users query the KP without leaving the product. Snippet + BID SSO.</span></div>
+        <div style="display:grid;grid-template-columns:32px 220px 1fr;gap:12px;align-items:center;border-top:1px solid var(--border);padding-top:8px"><span style="font-family:'Fraunces',serif;font-style:italic;font-size:16px;font-weight:600;color:#B9C7DC">04</span><span style="font-size:12px;font-weight:600;color:var(--navy)">Knowledge pills in context <span style="font-size:9px;font-weight:500;color:#AA3333;background:#F6DEDE;padding:1px 7px;border-radius:100px;margin-left:4px">high</span></span><span style="font-size:10.5px;color:var(--ink-muted);line-height:1.4">The product detects which field the user is completing and surfaces relevant content automatically. Push pattern: knowledge arrives unprompted.</span></div>
+        <div style="display:grid;grid-template-columns:32px 220px 1fr;gap:12px;align-items:center;border-top:1px solid var(--border);padding-top:8px"><span style="font-family:'Fraunces',serif;font-style:italic;font-size:16px;font-weight:600;color:#B9C7DC">05</span><span style="font-size:12px;font-weight:600;color:var(--navy)">KP as internal API <span style="font-size:9px;font-weight:500;color:#4044C4;background:#E6E7FB;padding:1px 7px;border-radius:100px;margin-left:4px">high · enables all</span></span><span style="font-size:10.5px;color:var(--ink-muted);line-height:1.4">REST endpoints any BID product can consume. Turns each point-to-point integration into one centralized layer with granular permissions.</span></div>
+      </div>
     </div>
 
     <div class="hypothesis">
