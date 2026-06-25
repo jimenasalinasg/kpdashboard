@@ -47,11 +47,11 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--surface);color:var(
 
 /* ── CUMULATIVE ── */
 .cumulative{background:var(--navy);margin:1.5rem 2.5rem 0;border-radius:10px;padding:1.25rem 2rem}
-.cum-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.4);margin-bottom:0.875rem}
+.cum-label{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.7);margin-bottom:0.875rem}
 .cum-stats{display:flex;flex-wrap:wrap;gap:0}
 .cum-item{padding-right:2.5rem}
 .cum-val{font-family:'IBM Plex Mono',monospace;font-size:1.75rem;font-weight:500;color:#fff;line-height:1}
-.cum-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-top:3px}
+.cum-lbl{font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.78);margin-top:4px;font-weight:500}
 .cum-div{width:1px;background:rgba(255,255,255,0.1);margin-right:2.5rem;align-self:stretch}
 
 /* ── STAT CARDS ── */
@@ -147,11 +147,11 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--surface);color:var(
 .sp-text{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-muted)}
 
 .sint-scale{background:var(--navy);margin:1.5rem 2.5rem 0;border-radius:10px;padding:1.25rem 2rem}
-.ss-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.4);margin-bottom:0.875rem}
+.ss-label{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.7);margin-bottom:0.875rem}
 .ss-items{display:flex;flex-wrap:wrap;gap:0}
 .ss-item{padding-right:2rem}
 .ss-val{font-family:'IBM Plex Mono',monospace;font-size:1.75rem;font-weight:500;color:#fff;line-height:1}
-.ss-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-top:3px}
+.ss-lbl{font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.78);margin-top:4px;font-weight:500}
 .ss-div{width:1px;background:rgba(255,255,255,0.1);margin-right:2rem;align-self:stretch}
 
 .sint-page{padding:1.5rem 2.5rem 4rem}
@@ -293,9 +293,29 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
   </div>
 
   <div class="sint-page">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.4rem 1.6rem;margin-bottom:1.5rem">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--ink-muted);margin:0 0 0.4rem">WHAT THEY SAID IN THE ROOM · VS · WHAT WE SAW IN THE DATA</p>
+      <p style="font-size:11px;color:var(--ink-faint);margin:0 0 1.1rem">Workshop votes (intent) next to FullStory session activity by country, June 2026.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+        <div style="border-left:3px solid var(--teal);padding-left:1rem">
+          <p style="font-size:11px;font-weight:600;color:var(--teal);margin:0 0 0.6rem;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em">SAID · WORKSHOP VOTES</p>
+          <p style="font-size:12px;color:var(--ink);line-height:1.55;margin:0">Across the four missions, the top-voted concepts were consult policies with citation, detect gaps, and find rigorous evidence — all variations of <strong>traceable retrieval</strong>. The recurring demand: traceability over speed, and a tool that complements rather than replaces.</p>
+        </div>
+        <div style="border-left:3px solid #6366F1;padding-left:1rem">
+          <p style="font-size:11px;font-weight:600;color:#6366F1;margin:0 0 0.6rem;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em">DID · FULLSTORY · JUNE 2026</p>
+          <p style="font-size:12px;color:var(--ink);line-height:1.55;margin:0 0 0.75rem">Session activity by country shows where engagement actually concentrated. Brasil leads regional usage by a wide margin, with Costa Rica second — both consistent with their high in-room enthusiasm.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:5px 10px"><span style="font-size:11px;color:var(--ink)">🇧🇷 Brasil</span><span style="font-size:12px;font-weight:600;color:#F59E0B">70</span></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:5px 10px"><span style="font-size:11px;color:var(--ink)">🇨🇷 Costa Rica</span><span style="font-size:12px;font-weight:600;color:#6366F1">21</span></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:5px 10px"><span style="font-size:11px;color:var(--ink)">🇨🇴 Colombia</span><span style="font-size:12px;font-weight:600;color:#14B8A6">15</span></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:5px 10px"><span style="font-size:11px;color:var(--ink)">🇵🇦 Panamá</span><span style="font-size:12px;font-weight:600;color:#E5A000">9</span></div>
+          </div>
+          <p style="font-size:9.5px;color:var(--ink-faint);font-style:italic;margin:0.6rem 0 0;line-height:1.4">Sessions by IP location, not operation country — US (HQ) leads overall at 146 (44%). Platform-wide June: 328 users · 28 countries · 9.1% penetration · CSAT 58.3%.</p>
+        </div>
+      </div>
+    </div>
     <div class="editorial">
-      <p class="ed-lead">Four countries, four operational contexts — and a consistent signal across all of them. <strong>The same desire</strong>: an institutional knowledge source that is reliable, traceable, and speaks the language of real work — not the language of the formal archive.</p>
-      <p class="ed-body">What emerges isn't a technology or access problem. It's an epistemic trust problem. Teams already use AI daily across all four countries. But they don't trust it for official documents. Costa Rica named Claude as the benchmark spontaneously. The question is no longer whether they'll use AI. It's which one, for what, and who governs it.</p>
+      <p class="ed-body">What emerges isn't a technology or access problem — it's an epistemic trust problem. Teams already use AI daily across all four countries, but they don't trust it for official documents. Costa Rica named Claude as the benchmark spontaneously. The question is no longer whether they'll use AI — it's which one, for what, and who governs it.</p>
     </div>
 
     <div class="sh"><span class="sh-num">01</span><h2 class="sh-title">Universal signals — <em>what crosses borders</em></h2><span class="sh-rule"></span></div>
@@ -310,182 +330,152 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
     </div>
     <div class="universals-grid">
       <div class="u-card uc1">
-        <p class="u-label">Trust · Universal</p>
+        <p class="u-label">Trust</p>
         <p class="u-signal">Traceability over speed — always</p>
-        <p class="u-body">Colombia: 100%, Brasil: 87%, Costa Rica: 60% prefer slower answers with cited sources. Panamá: unanimous endorsement of all platform concepts in voting — source traceability was a recurring demand in the synergies session. CR is the first country where speed preference appears (40%) — but the majority still demands traceability. <em style="color:var(--ink-faint);font-size:10px">"La respuesta muestra la fuente de manera que se puede validar." — CR participant</em></p>
-        <div class="u-tags"><span class="u-tag tag-co">🇨🇴 100%</span><span class="u-tag tag-br">🇧🇷 87%</span><span class="u-tag tag-cr">🇨🇷 60%</span><span class="u-tag" style="background:#FEF3C7;color:#92400E">🇵🇦 unanimous</span></div>
+        <p class="u-body">The majority in every mission chose slower-but-cited over fast-but-unverified. Users cross-check before using any AI output in an official document. <em style="color:var(--ink-faint);font-size:10px">"La respuesta muestra la fuente de manera que se puede validar" — CR participant.</em></p>
       </div>
       <div class="u-card uc2">
-        <p class="u-label">Tools · Universal</p>
-        <p class="u-signal">Copilot #1, but Claude is rising</p>
-        <p class="u-body">Copilot leads all 3 countries (11 mentions each in CO/CR, 18 in BR). Claude is growing: 3→4→6 mentions across CO, CR, BR. In CR, ChatGPT ties with colegas at 8 — the most AI-diverse tool mix of the three missions.</p>
-        <div class="u-tags"><span class="u-tag tag-co">🇨🇴 Colombia</span><span class="u-tag tag-br">🇧🇷 Brasil</span><span class="u-tag tag-cr">🇨🇷 Costa Rica</span></div>
+        <p class="u-label">Tools</p>
+        <p class="u-signal">Copilot is #1 — but Claude is rising</p>
+        <p class="u-body">Copilot leads everywhere. Claude is growing mission over mission and was named spontaneously as the quality benchmark in Costa Rica. The KP competes inside an already-mature AI habit, not a vacuum.</p>
       </div>
       <div class="u-card uc3">
-        <p class="u-label">Adoption · Universal</p>
-        <p class="u-signal">Complement, not replace — across all 3</p>
-        <p class="u-body">0% want the KP as their main tool in any country. CR: 7 complement + 6 find sources = 76% see it as a layer, not a replacement. <em style="color:var(--ink-faint);font-size:10px">"Ya lo hace" [It already does it] — one CR participant, when asked what they need from the platform in one click.</em></p>
-        <div class="u-tags"><span class="u-tag tag-co">🇨🇴 Colombia</span><span class="u-tag tag-br">🇧🇷 Brasil</span><span class="u-tag tag-cr">🇨🇷 Costa Rica</span></div>
+        <p class="u-label">Adoption</p>
+        <p class="u-signal">Complement, never replace</p>
+        <p class="u-body">Nobody wants the KP as their main tool — they want a trusted layer over the stack they already use. <em style="color:var(--ink-faint);font-size:10px">"Ya lo hace" [It already does it] — one CR participant.</em></p>
       </div>
       <div class="u-card uc4">
-        <p class="u-label">Source quality · Universal</p>
-        <p class="u-signal">Integration #1 need in CR; cited sources #1 in CO+BR</p>
-        <p class="u-body">CO and BR rank fuentes confiables y citadas as #1 to switch. CR flips it — integración con herramientas actuales is #1, fuentes #2. CR users are already more integrated in their workflows and want seamless embedding, not just better search.</p>
-        <div class="u-tags"><span class="u-tag tag-co">🇨🇴 cited sources first</span><span class="u-tag tag-br">🇧🇷 cited sources first</span><span class="u-tag tag-cr">🇨🇷 tool integration first</span></div>
+        <p class="u-label">Source quality</p>
+        <p class="u-signal">Cited, complete, and findable</p>
+        <p class="u-body">Reliable cited sources are the top switching trigger in CO and BR. Panamá surfaced the gaps: no exhaustive listings, and CTs with weaker coverage than loan operations. Inconsistent file naming and broken links recur across missions.</p>
       </div>
       <div class="u-card uc5">
-        <p class="u-label">AI Use · Universal</p>
-        <p class="u-signal">AI daily: BR 85% · CR 75% · CO 64%</p>
-        <p class="u-body">All three missions show majority daily AI use — and 0% "never" in any country. CR and BR are most mature. The benchmark CR named for retention: <em style="color:var(--ink-faint);font-size:10px">"Parecerse más a Claude" [Be more like Claude] — CR participant, Mentimeter retention question.</em></p>
-        <div class="u-tags"><span class="u-tag tag-co">🇨🇴 64%</span><span class="u-tag tag-br">🇧🇷 85%</span><span class="u-tag tag-cr">🇨🇷 75%</span></div>
+        <p class="u-label">AI maturity</p>
+        <p class="u-signal">AI is already a daily habit</p>
+        <p class="u-body">Majority daily use across all four countries; zero "never." There's no cultural resistance to overcome — the platform's job is to find its differential inside an established ecosystem.</p>
       </div>
       <div class="u-card uc6">
-        <p class="u-label">Platform perception · Universal</p>
-        <p class="u-signal">Prior use highest in CR — and so is utility rating</p>
-        <p class="u-body">CR: 46% had used KP before (vs 33% CO, 20% BR) — and 91% rate it useful, the highest across missions. More familiarity → higher perceived value. But bugs in Convergencia integration threaten this trust: projects that don't appear break the adoption cycle.</p>
-        <div class="u-tags"><span class="u-tag tag-co">🇨🇴 33% / 57%</span><span class="u-tag tag-br">🇧🇷 20% / 65%</span><span class="u-tag tag-cr">🇨🇷 46% / 91%</span></div>
+        <p class="u-label">Reliability</p>
+        <p class="u-signal">Technical trust is the new fragility</p>
+        <p class="u-body">As adoption grows, technical failures become the #1 trust risk. Costa Rica (the most mature adopter) and Panamá both reported Convergencia sync issues and a download bug — a project that doesn't appear undoes months of adoption.</p>
       </div>
       <div class="u-card" style="grid-column:1/-1;position:relative;overflow:hidden;border-color:rgba(139,92,246,0.3);background:var(--purple-light)">
         <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--purple-mid)"></div>
         <p class="u-label" style="color:var(--purple)">Emerging signal · Beyond the survey data</p>
         <p class="u-signal" style="color:var(--purple)">Users aren't just consumers — they're building their own agents</p>
-        <p class="u-body">A pattern surfacing across field research and internal interviews: power users have moved beyond using AI tools to <strong>building their own custom agents by division</strong>. IFD is actively building a Copilot agent for state capacity alignment with curated lessons — with shared workspaces for 30–40 people. Sector leads in climate, gender and rule of law are building their own agents. The emerging demand: <em>the KP as a catalog where those agents live and can be discovered by others</em> — an agent repository, not just a document repository. The benchmark is no longer "be more like Claude." It's "be the place where our Claude-level agents live."</p>
+        <p class="u-body">A pattern surfacing across field research and internal interviews: power users have moved beyond using AI tools to <strong>building their own custom agents by division</strong>. IFD is building a Copilot agent for state capacity alignment with curated lessons, with shared workspaces for 30–40 people. Sector leads in climate, gender and rule of law are building their own. The emerging demand: <em>the KP as a catalog where those agents live and can be discovered</em> — an agent repository, not just a document repository. The benchmark is no longer "be more like Claude." It's "be the place where our Claude-level agents live."</p>
         <div class="u-tags"><span class="u-tag" style="background:var(--purple-light);color:var(--purple)">IFD · internal research</span><span class="u-tag" style="background:var(--purple-light);color:var(--purple)">Sector leads · climate + gender</span><span class="u-tag" style="background:var(--purple-light);color:var(--purple)">🔮 Emerging</span></div>
       </div>
     </div>
 
-    <div class="trust-bar">
-      <div><div class="trust-num">60–100%</div><div class="trust-lbl">all 4 countries</div></div>
-      <p class="trust-body"><strong>Prefer traceability over speed.</strong> In all 4 missions, the majority chose slower-but-traceable over fast-but-unverified. Panamá endorsed all platform concepts unanimously — the strongest institutional endorsement in the corpus. Costa Rica is the first country where 40% preferred speed — a signal of growing AI confidence, not declining quality standards. Across all three: <em>"El link a la fuente oficial, siempre hago cross check" [The link to the official source, I always cross-check] (CR) · "Que utilice fuentes oficiales" [That it uses official sources] (CR) · "Que la herramienta se use de manera masiva por funcionarios del BID" [That it be used widely by BID staff] (BR). <strong>Social proof and institutional provenance are the two trust levers — design for both.</strong></p>
-    </div>
-
     <div class="sh"><span class="sh-num">02</span><h2 class="sh-title">Opportunities — where they <em>converge</em> and <em>diverge</em></h2><span class="sh-rule"></span></div>
     <div style="padding:0.25rem 0 0.5rem">
-      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:1.25rem">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:1.5rem">
         <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:2px;background:#14B8A6"></span>🇨🇴 Colombia</span>
         <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:2px;background:#F59E0B"></span>🇧🇷 Brasil</span>
         <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:2px;background:#6366F1"></span>🇨🇷 Costa Rica</span>
         <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:2px;background:#E5A000"></span>🇵🇦 Panamá</span>
       </div>
-      <div id="opp-bars-chart" style="display:flex;flex-direction:column;gap:10px"></div>
-      <p class="occ-note" style="margin-top:1rem">% of participants who said they would use each feature across Colombia, Brasil and Costa Rica (Panamá voted 100% on top 5 in concept voting but survey data is partial). Ordered by average approval across 3 surveyed missions. <strong>Key read:</strong> Connect with AI agents is the widest spread (38%→70%→100%) — the clearest signal of growing AI maturity across countries. Detect gaps and Consult policies hit 100% in Costa Rica while remaining strong across all three.</p>
+      <div id="opp-bars-chart" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem 1rem"></div>
+      <p class="occ-note" style="margin-top:1.25rem">% who said they would use each feature, by country. Ordered by 4-country average. <strong>Key read:</strong> the top 3 (consult policies, detect gaps, find evidence) are strong everywhere. Connect-with-AI shows the widest spread — low in Colombia, full in Costa Rica — a marker of differing AI maturity.</p>
     </div>
     <script>
     (function(){
       const oppData = [
-        { label: "Detect gaps in a document",        co: 88, br: 88, cr: 100, pa: 100 },
-        { label: "Consult policies (exact citation)", co: 88, br: 92, cr: 100, pa: 100 },
-        { label: "Find rigorous evidence",            co: 63, br: 90, cr: 100, pa: 100 },
-        { label: "How a topic evolved (region)",      co: 75, br: 73, cr: 100, pa: 50  },
-        { label: "Connect with AI agents",            co: 38, br: 70, cr: 100, pa: 50  },
-        { label: "Search & download operations",      co: 100, br: 79, cr: 67,  pa: 50 },
-        { label: "Map country/sector ecosystem",      co: 75, br: 69, cr: 67,  pa: 100 },
-        { label: "Draft first POD version",           co: 100, br: 71, cr: 71, pa: 100 },
+        { label: "Consult policies", co: 88, br: 92, cr: 100, pa: 100 },
+        { label: "Detect gaps", co: 88, br: 88, cr: 100, pa: 100 },
+        { label: "Find rigorous evidence", co: 63, br: 90, cr: 100, pa: 100 },
+        { label: "Draft first POD", co: 100, br: 71, cr: 71, pa: 100 },
+        { label: "Map ecosystem", co: 75, br: 69, cr: 67, pa: 100 },
+        { label: "How topic evolved", co: 75, br: 73, cr: 100, pa: 50 },
+        { label: "Search & download", co: 100, br: 79, cr: 67, pa: 50 },
+        { label: "Connect with AI agents", co: 38, br: 70, cr: 100, pa: 50 },
       ];
       oppData.sort((a,b)=>((b.co+b.br+b.cr+b.pa)/4)-((a.co+a.br+a.cr+a.pa)/4));
 
       const container = document.getElementById('opp-bars-chart');
       if (!container) return;
+      const countries = [
+        {key:'co',color:'#14B8A6'},
+        {key:'br',color:'#F59E0B'},
+        {key:'cr',color:'#6366F1'},
+        {key:'pa',color:'#E5A000'},
+      ];
       const isDark = matchMedia('(prefers-color-scheme:dark)').matches;
       const textPri = isDark?'#e5e5e5':'#111827';
       const textSec = isDark?'#9CA3AF':'#6B7280';
-      const bgTrack = isDark?'rgba(255,255,255,0.08)':'rgba(0,0,0,0.06)';
-      const countries = [
-        {key:'co',color:'#14B8A6',label:'🇨🇴 Colombia'},
-        {key:'br',color:'#F59E0B',label:'🇧🇷 Brasil'},
-        {key:'cr',color:'#6366F1',label:'🇨🇷 Costa Rica'},
-        {key:'pa',color:'#E5A000',label:'🇵🇦 Panamá'},
-      ];
+      const trackBg = isDark?'rgba(255,255,255,0.06)':'rgba(0,0,0,0.04)';
 
       oppData.forEach(d=>{
-        const avg = Math.round((d.co+d.br+d.cr)/3);
-        const row = document.createElement('div');
-        row.style.cssText='display:grid;grid-template-columns:160px 1fr;gap:8px;align-items:center';
+        const avg = Math.round((d.co+d.br+d.cr+d.pa)/4);
+        const cell = document.createElement('div');
+        cell.style.cssText='display:flex;flex-direction:column;border:1px solid var(--border);border-radius:8px;padding:0.75rem 0.75rem 0.6rem;background:var(--white)';
 
-        const labelEl = document.createElement('div');
-        labelEl.style.cssText='font-size:11px;color:#111827;line-height:1.3;text-align:right;font-weight:500';
-        labelEl.textContent=d.label;
-        row.appendChild(labelEl);
+        // title
+        const title = document.createElement('div');
+        title.style.cssText=`font-size:11px;font-weight:600;color:${textPri};line-height:1.25;min-height:28px;margin-bottom:2px`;
+        title.textContent=d.label;
+        cell.appendChild(title);
 
-        const barsCol = document.createElement('div');
-        barsCol.style.cssText='display:flex;flex-direction:column;gap:2px';
+        const avgEl = document.createElement('div');
+        avgEl.style.cssText=`font-size:9px;color:${textSec};margin-bottom:8px`;
+        avgEl.textContent='avg '+avg+'%';
+        cell.appendChild(avgEl);
 
+        // vertical bars row
+        const bars = document.createElement('div');
+        bars.style.cssText='display:flex;align-items:flex-end;justify-content:space-between;gap:5px;height:78px';
         countries.forEach(c=>{
           const pct=d[c.key];
-          const barRow=document.createElement('div');
-          barRow.style.cssText='display:flex;align-items:center;gap:8px';
+          const col=document.createElement('div');
+          col.style.cssText='display:flex;flex-direction:column;align-items:center;flex:1;height:100%;justify-content:flex-end';
+          const val=document.createElement('div');
+          val.style.cssText=`font-size:8.5px;font-weight:600;color:${c.color};margin-bottom:2px`;
+          val.textContent=pct;
           const track=document.createElement('div');
-          track.style.cssText=`flex:1;height:9px;background:${bgTrack};border-radius:2px;overflow:hidden`;
-          const fill=document.createElement('div');
-          fill.style.cssText=`height:100%;width:${pct}%;background:${c.color};border-radius:3px`;
-          track.appendChild(fill);
-          const pctLabel=document.createElement('div');
-          pctLabel.style.cssText=`font-size:10px;font-weight:600;color:${c.color};width:30px;flex-shrink:0`;
-          pctLabel.textContent=pct+'%';
-          barRow.appendChild(track);
-          barRow.appendChild(pctLabel);
-          barsCol.appendChild(barRow);
+          track.style.cssText=`width:100%;height:${Math.max(pct*0.6,2)}px;background:${c.color};border-radius:3px 3px 0 0`;
+          col.appendChild(val);
+          col.appendChild(track);
+          bars.appendChild(col);
         });
+        cell.appendChild(bars);
 
-        const avgBadge=document.createElement('div');
-        avgBadge.style.cssText=`font-size:9px;color:${textSec};margin-top:0px`;
-        avgBadge.textContent='avg '+ Math.round((d.co+d.br+d.cr+d.pa)/4) +'%';
-        barsCol.appendChild(avgBadge);
-
-        row.appendChild(barsCol);
-        container.appendChild(row);
+        container.appendChild(cell);
       });
     })();
     </script>
 
-    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.06em;color:var(--ink-muted);margin:0.5rem 0 0.875rem">WHERE EACH COUNTRY DIVERGES — ITS OWN SPECIFIC FOCUS</p>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.06em;color:var(--ink-muted);margin:0.5rem 0 0.4rem">WHAT IS TRULY UNIQUE TO EACH COUNTRY</p>
+    <p style="font-size:11.5px;color:var(--ink-muted);line-height:1.5;margin:0 0 1rem;max-width:820px">Several needs are shared across missions and belong to the universal patterns above — TdRs and Pliegos (Colombia + Panamá), PCR automation (Brasil + Panamá), lessons learned and TC knowledge products (Colombia + Brasil). What follows is only what genuinely distinguishes each country.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1rem;margin-bottom:2rem">
 
       <div class="div-card co">
         <div class="div-head"><span class="div-dot co"></span><span class="div-ctry co">🇨🇴 Colombia</span></div>
-        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>TdRs and Pliegos as the most urgent use case.</strong> Teams search for Terms of Reference (TdRs) and bidding documents (Pliegos) from similar past projects to avoid starting from scratch. These are two distinct document types — and today they live in the Portal del Cliente, not centralized in the platform.</p></div>
-        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Draft POD as #1 opportunity.</strong> The most generation-forward profile — already trusts enough to want outputs, not just inputs.</p></div>
-        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Interoperability as a governance problem.</strong> 1,500+ agents operating without articulation; duplicated dashboards and parallel initiatives. The gap isn't lack of data — it's the lack of connection between the bank's platforms.</p></div>
+        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Draft POD as #1 opportunity.</strong> Colombia is the only mission that ranks document generation above search — already trusts the platform enough to want outputs, not just inputs.</p></div>
+        <div class="div-item co"><span class="div-bul"></span><p class="div-text"><strong>Interoperability as a governance problem.</strong> 1,500+ agents operating without articulation; duplicated dashboards and parallel bank initiatives. Named here more sharply than anywhere else.</p></div>
       </div>
 
       <div class="div-card br">
         <div class="div-head"><span class="div-dot br"></span><span class="div-ctry br">🇧🇷 Brasil</span></div>
-        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Portfolio intelligence demand.</strong> Disbursement projections, risks by sector/region — all built manually in Excel today. The platform could replace this.</p></div>
-        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>PCR automation — explicit demand.</strong> "Why isn't there a system that automatically generates a PCR?" Teams want closure documents generated from execution data, not written from scratch.</p></div>
-        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Subnational / state-level visibility.</strong> Given Brasil's scale, teams need lessons learned organized by state, municipality and execution mechanism — not just at the national level. That granular subnational view is what's missing today.</p></div>
+        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Portfolio intelligence demand.</strong> Disbursement projections and risks by sector/region, built manually in Excel today. The most data-engineering-shaped ask of the four.</p></div>
+        <div class="div-item br"><span class="div-bul"></span><p class="div-text"><strong>Subnational / state-level visibility.</strong> Given Brasil's scale, lessons must be organized by state, municipality and execution mechanism — a granularity no other mission required.</p></div>
       </div>
 
       <div class="div-card" style="background:rgba(99,102,241,0.04);border-color:rgba(99,102,241,0.2)">
         <div class="div-head"><span class="div-dot" style="background:#6366F1"></span><span class="div-ctry" style="color:#6366F1">🇨🇷 Costa Rica</span></div>
-        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>"Be more like Claude."</strong> A user named Claude as the retention benchmark spontaneously. The platform must win on institutional specialization, not by restricting generic AI access.</p></div>
-        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>Cross-window silos.</strong> No structured cross-visibility between BID Invest, BID Lab and BID. Synergies still depend on personal relationships.</p></div>
-        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>Highest prior use (46%) — but Convergencia bugs.</strong> Most mature adopter, yet technical failures erode trust. A broken project link undoes months of adoption.</p></div>
+        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>"Be more like Claude."</strong> The only mission where a user named Claude spontaneously as the retention benchmark. Win on specialization, not by restricting generic AI.</p></div>
+        <div class="div-item co"><span class="div-bul" style="background:#6366F1"></span><p class="div-text"><strong>Tool integration as the #1 switching trigger.</strong> The only country where integration with their existing stack beats cited sources as the top need — the most workflow-mature profile.</p></div>
       </div>
 
       <div class="div-card" style="background:rgba(234,179,8,0.04);border-color:rgba(234,179,8,0.25)">
         <div class="div-head"><span class="div-dot" style="background:#E5A000"></span><span class="div-ctry" style="color:#A16207">🇵🇦 Panamá</span></div>
-        <div class="div-item co"><span class="div-bul" style="background:#E5A000"></span><p class="div-text"><strong>Tools built for HQ, not for executing agencies.</strong> The hottest challenge in the corpus (8 reports): specialists can't move the needle because agencies lack access to bank knowledge. Tools are designed for BID staff to report, not for agencies to execute.</p></div>
-        <div class="div-item co"><span class="div-bul" style="background:#E5A000"></span><p class="div-text"><strong>PCR is structurally broken — not just slow.</strong> The sharpest critique: "One lies in the PCR." The margin of maneuver at closure is 0. PMRs and amendments have more value than the final PCR — the platform should capture the journey, not just the end.</p></div>
-        <div class="div-item co"><span class="div-bul" style="background:#E5A000"></span><p class="div-text"><strong>AI governance gap.</strong> Panamá was the only country to explicitly ask about AI licensing. The bank is in an "experimentation phase" with no individual licenses yet — users are ready, governance isn't.</p></div>
+        <div class="div-item co"><span class="div-bul" style="background:#E5A000"></span><p class="div-text"><strong>Tools built for HQ, not for executing agencies.</strong> The hottest challenge in the whole corpus (8 reports) — and unique to Panamá: the platform should reach the agencies that run projects on the ground.</p></div>
+        <div class="div-item co"><span class="div-bul" style="background:#E5A000"></span><p class="div-text"><strong>Cross-window collaboration depends on one coordinator.</strong> BID Invest synergies are ad hoc, with no structural incentive. The sharpest articulation of the governance blocker.</p></div>
       </div>
 
     </div>
-    <div class="sh"><span class="sh-num">03</span><h2 class="sh-title">Design <em>implications</em> — what to do with all this</h2><span class="sh-rule"></span></div>
-    <div class="impl-grid">
-      <div class="impl-card"><p class="impl-ey">Trust architecture · All 3 countries</p><p class="impl-title">Design for the citation, not the answer</p><p class="impl-body">Every result must show its evidence chain visibly and clickably: source doc, section, date. Not as collapsed metadata — as part of the result itself. Costa Rica makes this explicit: <em>"la respuesta muestra la fuente de manera que se puede validar"</em> — and users already do cross-checks before using any AI output in official documents.</p><p class="impl-sw">→ Trust isn't built with disclaimers — it's built with radical source transparency.</p></div>
 
-      <div class="impl-card"><p class="impl-ey">Positioning · Costa Rica signal</p><p class="impl-title">Don't replace Copilot — and don't try to replace Claude either</p><p class="impl-body">Copilot has speed and BID integration. Claude has conversational fluency. Costa Rica users already use Claude directly (4 mentions) and named it as the retention benchmark. The platform's edge is neither: it's the only tool with cited BID institutional knowledge — real bank documents, specific operations, policies with page numbers.</p><p class="impl-sw">→ The platform wins where neither Copilot nor Claude can go: institutional precision with provenance.</p></div>
-
-      <div class="impl-card"><p class="impl-ey">Differentiated roadmap · 3 trust curves</p><p class="impl-title">Colombia generates. Brasil verifies. Costa Rica integrates.</p><p class="impl-body">Colombia wants outputs (Draft POD #1). Brasil prioritizes evidence before generating (Consult policies #1). Costa Rica — the most mature adopter — wants the platform embedded in their existing workflow: integration with tools is their #1 switching trigger, unlike the other two missions.</p><p class="impl-sw">→ One platform, three entry points on the trust curve. UX must adapt to where each user is.</p></div>
-
-      <div class="impl-card"><p class="impl-ey">MVP → next expansion</p><p class="impl-title">Similar projects is live. Next: exact policy citation + TC contextual search</p><p class="impl-body">The MVP already covers similar projects. The clearest expansion validated across all 3 missions: <strong>consult policies with exact citation</strong> (top-3 in all countries) and <strong>deeper TC integration in contextual search</strong> — Cooperaciones Técnicas appear as key instruments in Colombia and Brasil but aren't fully surfaced in search results today.</p><p class="impl-sw">→ Expand from what works. Both next features are low-lift, high-signal for institutional trust.</p></div>
-
-      <div class="impl-card"><p class="impl-ey">Cross-window · Costa Rica priority</p><p class="impl-title">BID Invest + BID Lab integration: a governance problem, not a technical one</p><p class="impl-body">Costa Rica surfaced the sharpest version of this: users from BID can't consult BID Invest environmental and social documents. Synergies between windows depend on personal relationships. This is the use case that makes the platform truly institutional — but it requires cross-team governance decisions before any technical work.</p><p class="impl-sw">→ Align with BID Invest and BID Lab teams before scoping. The blocker is access policy, not engineering.</p></div>
-
-      <div class="impl-card"><p class="impl-ey">Big bets · Align with Project Preparation team</p><p class="impl-title">PCR automation + portfolio intelligence: legitimate, scoped, not solo</p><p class="impl-body">Brasil named PCR automation explicitly. The vision — capturing execution changes and synthesizing at closure — redefines the platform as a production system. Same with portfolio intelligence (disbursements, risks by region). Both are part of the Project Preparation project roadmap: these field signals should feed that team's prioritization, not be built in parallel.</p><p class="impl-sw">→ Share these findings with the Project Preparation team. They're building the infrastructure these use cases need.</p></div>
-    </div>
-
-    <div class="sh"><span class="sh-num">04</span><h2 class="sh-title">Where to <em>start</em> — three priorities by horizon</h2><span class="sh-rule"></span></div>
+    <div class="sh"><span class="sh-num">03</span><h2 class="sh-title">Where to <em>start</em> — three priorities by horizon</h2><span class="sh-rule"></span></div>
     <p style="font-size:12.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 1.25rem;max-width:780px">Crossing what users asked for with what the data shows. Ordered from immediate and low-effort to most strategic. Note that the top 3 ranked opportunities — Consult policies, Detect gaps and Find rigorous evidence — share one technical backbone (traceable retrieval), so priority 1 covers all three by feeding the same engine different corpora. The internal API is the quiet backbone underneath everything — priority 1 needs it to serve the corpora, priority 2 uses it for every integration, priority 3 requires it to expose cross-window content with granular permissions.</p>
 
     <div style="background:linear-gradient(135deg,#0D1B2E,#1B2A4A);border-radius:10px;padding:1.5rem 1.75rem;margin-bottom:1.75rem;position:relative;overflow:hidden">
@@ -592,14 +582,8 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
     <div class="section-head"><span class="section-mono">&#9646; General Usability</span></div>
     <div class="stat-cards">
       <div class="stat-card hi">
-        <div class="sc-label">Prior platform use</div>
-        <div class="sc-val blue">33%</div>
-        <div class="sc-sub">Had used it before</div>
-        <span class="delta neu">50% never used it</span>
-      </div>
-      <div class="stat-card">
         <div class="sc-label">Adoption intent</div>
-        <div class="sc-val">100%</div>
+        <div class="sc-val blue">100%</div>
         <div class="sc-sub">Would complement tools</div>
         <span class="delta up">↑ 0% as main tool</span>
       </div>
@@ -693,14 +677,8 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
     <div class="section-head"><span class="section-mono">&#9646; General Usability</span></div>
     <div class="stat-cards">
       <div class="stat-card hi">
-        <div class="sc-label">Prior platform use</div>
-        <div class="sc-val blue">20%</div>
-        <div class="sc-sub">Had used it before</div>
-        <span class="delta neu">60% never used it</span>
-      </div>
-      <div class="stat-card">
         <div class="sc-label">Adoption intent</div>
-        <div class="sc-val">87%</div>
+        <div class="sc-val blue">87%</div>
         <div class="sc-sub">Complement or find sources</div>
         <span class="delta up">↑ 0% as main tool</span>
       </div>
@@ -795,26 +773,8 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
     <div class="section-head"><span class="section-mono">&#9646; General Usability</span></div>
     <div class="stat-cards">
       <div class="stat-card hi">
-        <div class="sc-label">Prior KP use</div>
-        <div class="sc-val blue">46%</div>
-        <div class="sc-sub">Had used it before</div>
-        <span class="delta up">↑ highest across missions</span>
-      </div>
-      <div class="stat-card">
-        <div class="sc-label">Rated KP useful (4–5)</div>
-        <div class="sc-val">91%</div>
-        <div class="sc-sub">0% rated 1–2</div>
-        <span class="delta up">↑ highest across missions</span>
-      </div>
-      <div class="stat-card">
-        <div class="sc-label">Use AI daily</div>
-        <div class="sc-val">75%</div>
-        <div class="sc-sub">25% weekly, 0% never</div>
-        <span class="delta neu">vs BR 85% / CO 64%</span>
-      </div>
-      <div class="stat-card">
         <div class="sc-label">Adoption intent</div>
-        <div class="sc-val">81%</div>
+        <div class="sc-val blue">81%</div>
         <div class="sc-sub">Complement or find sources</div>
         <span class="delta up">↑ 0% as main tool</span>
       </div>
@@ -823,6 +783,12 @@ footer{border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align
         <div class="sc-val">#1</div>
         <div class="sc-sub">Tool integration with stack</div>
         <span class="delta neu">≠ other countries</span>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Retention benchmark</div>
+        <div class="sc-val">Claude</div>
+        <div class="sc-sub">"Parecerse más a Claude"</div>
+        <span class="delta neu">named spontaneously</span>
       </div>
     </div>
   </div>
